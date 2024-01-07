@@ -1,36 +1,41 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
+title: Welcome to OpenIPC Documentation
+description: Start your journey with OpenIPC for advanced camera firmware solutions.
 template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: Dive into the world of OpenIPC and unlock your camera's full potential!
   image:
     file: ../../assets/houston.webp
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Getting Started Guide
+      link: /getting-started/quick-start/
       icon: right-arrow
       variant: primary
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
+    - text: Explore Use Cases
+      link: /use-cases/fpv/quick-start/
+      icon: right-arrow
+      variant: secondary
 ---
 
 import { Card, CardGrid } from "@astrojs/starlight/components";
 
-## Next steps
+## Next Steps in Your OpenIPC Adventure
 
 <CardGrid stagger>
-  <Card title="Update content" icon="pencil">
-    Edit `src/content/docs/index.mdx` to see this page change.
+  <Card title="Explore Hardware Compatibility" icon="camera">
+    Check [the Hardware section](/hardware/supported-devices/). for compatible
+    devices and setup instructions.
   </Card>
-  <Card title="Add new content" icon="add-document">
-    Add Markdown or MDX files to `src/content/docs` to create new pages.
+  <Card title="Configure Your Camera" icon="gear">
+    Navigate to [the Software section](/software/software-overview/). for
+    software settings and customizations.
   </Card>
-  <Card title="Configure your site" icon="setting">
-    Edit your `sidebar` and other config in `astro.config.mjs`.
+  <Card title="Join the Community" icon="group">
+    Connect with other users in the OpenIPC community for support and
+    collaboration.
   </Card>
-  <Card title="Read the docs" icon="open-book">
-    Learn more in [the Starlight Docs](https://starlight.astro.build/).
+  <Card title="Contribute to OpenIPC" icon="heart">
+    Find out how you can contribute to the project in [the OpenIPC Contribution
+    Guide](/development/contribution-guidelines/).
   </Card>
 </CardGrid>
