@@ -4,6 +4,7 @@ import starlight from "@astrojs/starlight";
 // https://astro.build/config
 export default defineConfig({
   site: "https://ihsenbouallegue.github.io",
+  base: "/openipc-docs/",
   integrations: [
     starlight({
       title: "Open IPC Docs",
