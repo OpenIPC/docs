@@ -3,17 +3,20 @@ import starlight from "@astrojs/starlight";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://ihsenbouallegue.github.io",
-  base: "/openipc-docs",
+  site: "https://docs.openipc.org",
+  base: "/",
   integrations: [
     starlight({
       title: "Documentation",
       social: {
-        github: "https://github.com/withastro/starlight",
+        github: "https://github.com/OpenIPC",
       },
       logo: {
         light: './src/assets/logo/OpenIPC__OPENIPC_logo_vertical.svg',
         dark: './src/assets/logo/OpenIPC__OPENIPC_logo_vertical_white.svg',
+      },
+      editLink: {
+        baseUrl: 'https://github.com/OpenIPC/docs/edit/main/',
       },
       sidebar: [
         {
