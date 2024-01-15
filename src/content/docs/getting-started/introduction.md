@@ -11,8 +11,8 @@ The essence of OpenIPC lies in its community-driven approach. By leveraging the 
 
 ### Explore More About OpenIPC:
 
-- **Getting Started**: Embark on your OpenIPC journey and understand the basics of installation and configuration in our comprehensive [Getting Started Guide](/openipc-docs/getting-started/quick-start/).
-- **Diverse Use Cases**: Discover the versatility of OpenIPC across different scenarios in our detailed Use Cases section, which includes specialized guides for [FPV setups](/openipc-docs/use-cases/fpv/quick-start), [home automation](/openipc-docs/use-cases/home-automation/quick-start) configurations, and [video surveillance](/openipc-docs/use-cases/video-surveillance/quick-start) applications.
-- **Hardware Compatibility**: Learn about the supported devices and how to maximize their potential with OpenIPC in the [Hardware Compatibility]/openipc-docs(/hardware/supported-devices/) guide.
+- **Getting Started**: Embark on your OpenIPC journey and understand the basics of installation and configuration in our comprehensive [Getting Started Guide](/getting-started/quick-start/).
+- **Diverse Use Cases**: Discover the versatility of OpenIPC across different scenarios in our detailed Use Cases section, which includes specialized guides for [FPV setups](/use-cases/fpv/quick-start), [home automation](/use-cases/home-automation/quick-start) configurations, and [video surveillance](/use-cases/video-surveillance/quick-start) applications.
+- **Hardware Compatibility**: Learn about the supported devices and how to maximize their potential with OpenIPC in the [Hardware Compatibility](/hardware/supported-devices/) guide.
 
 Join the OpenIPC movement and be part of a community that's reshaping the world of camera technology. With OpenIPC, the possibilities are endless, and the future is open.

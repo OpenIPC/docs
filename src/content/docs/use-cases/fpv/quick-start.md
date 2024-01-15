@@ -21,27 +21,26 @@ This guide is designed to provide a detailed walkthrough for setting up an FPV (
 ## Hardware Requirements
 
 - **Camera**: An SSC338 based board with a Sony IMX415 sensor was used for this guide.
-  ![Camera](/images/sbs-Camera.jpg)
-
+  ![Camera](/src/assets/images/sbs-Camera.jpg)
   - [Camera Purchase Link](https://www.aliexpress.com/item/1005004350557805.html)
 
 - **Groundstation**: An Nvr board is recommended for its popularity and cost-effectiveness.
-  ![Nvr Board](/images/sbs-Nvr.JPG)
+  ![Nvr Board](/src/assets/images/sbs-Nvr.JPG)
 
   - [Nvr Board Purchase Link](https://www.aliexpress.com/item/1005004023376532.html)
 
 - **WiFi Adapters**: RTL8812AU modules are a good choice.
-  ![Wifi board](/images/sbs-wifi.png)
+  ![Wifi board](/src/assets/images/sbs-wifi.png)
 
   - [WiFi Adapter Purchase Link](https://www.aliexpress.com/item/1005005638445796.html)
 
 - **BECs**: These are used for voltage regulation.
-  ![BECs](/images/sbs-BECS.jpg)
+  ![BECs](/src/assets/images/sbs-BECS.jpg)
 
   - [BECs Purchase Link](https://www.ebay.co.uk/itm/254153188189)
 
 - **FTDI Adapter**: Essential for the flashing process.
-  ![FTDI Adapter](/images/sbs-ftdi.jpg)
+  ![FTDI Adapter](/src/assets/images/sbs-ftdi.jpg)
 
   - [FTDI Adapter Purchase Link](https://www.ebay.co.uk/itm/203581591537?hash=item2f66688ff1)
 
@@ -52,7 +51,7 @@ This guide is designed to provide a detailed walkthrough for setting up an FPV (
 #### Step 1.1: Flashing the Camera
 
 - **Connection Points**: Identify the UART connection points on the camera board.
-  ![Camera Pin out](/images/sbs-Camera-Pinout.jpg)
+  ![Camera Pin out](/src/assets/images/sbs-Camera-Pinout.jpg)
 - **Using FTDI Adapter**: Connect the camera to the FTDI adapter for console access.
 - **Flashing Process**: Use console commands to flash the OpenIPC firmware onto the camera.
 

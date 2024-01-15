@@ -84,7 +84,6 @@ export default defineConfig({
         {
           label: "Development",
           items: [
-            // Placeholder for API Documentation
             {
               label: "Contribution Guidelines",
               link: "/development/contribution-guidelines/",
@@ -99,7 +98,6 @@ export default defineConfig({
           label: "Resources",
           items: [
             { label: "Frequently Asked Questions", link: "/resources/faq/" },
-            // Placeholder for Community Forum link
             { label: "Useful Links", link: "/resources/useful-links/" },
           ],
         },
