@@ -1,8 +1,7 @@
 ---
 title: GroundStation on NVR
-description: How to make an NVR Board work with OpenIPC 
+description: How to make an NVR Board work with OpenIPC
 ---
-
 
 ## Upgrade from original HI3536DV100 NVR board firmware to OpenIPC FPV firmware
 

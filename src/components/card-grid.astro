@@ -1,0 +1,17 @@
+---
+import Card from "./card.astro";
+
+interface Props {
+    members: {
+        name: string;
+        github: string;
+        title: string;
+    }[];
+}
+
+const { members } = Astro.props;
+---
+
+<div class="grid grid-cols-3 gap-6 pt-6">
+    {members.map((member) => <Card {...member} />)}
+</div>

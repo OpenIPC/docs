@@ -1,0 +1,59 @@
+---
+interface Props {
+    name: string;
+    github: string;
+    title: string;
+}
+
+const { name, github, title } = Astro.props;
+
+const avatarUrl = `https://github.com/${github}.png`;
+const githubUrl = `https://github.com/${github}`;
+
+const hoverColors = [
+    "hover:shadow-red-500",
+    "hover:shadow-green-500",
+    "hover:shadow-blue-500",
+    "hover:shadow-yellow-500",
+    "hover:shadow-purple-500",
+    "hover:shadow-pink-500",
+];
+
+// Hash function to convert name to a number
+const hashCode = (str: string) => {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        const character = str.charCodeAt(i);
+        hash = (hash << 5) - hash + character;
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    return Math.abs(hash);
+};
+
+// Use hash function to select a consistent color for each name
+const randomColorClass = hoverColors[hashCode(name) % hoverColors.length];
+---
+
+<div
+    class={`card max-w-sm rounded-md overflow-hidden shadow-lg hover:shadow-lg transition-shadow duration-300 ease-in-out ${randomColorClass} border-solid border-2 cursor-pointer`}
+    style="margin: 0;"
+>
+    <a
+        href={githubUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="no-underline hover:no-underline"
+    >
+        <div
+            class="bg-cover bg-center h-44 p-4"
+            style={`background-image: url(${avatarUrl})`}
+        >
+        </div>
+        <div class="px-6 py-2">
+            <p class="font-bold text-xl">{name}</p>
+            <span class="text-gray-600 text-base m-0 pt-0 inset-0">
+                {title}
+            </span>
+        </div>
+    </a>
+</div>

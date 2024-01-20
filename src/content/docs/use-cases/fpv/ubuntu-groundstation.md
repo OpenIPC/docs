@@ -6,9 +6,11 @@ description: A guide designed to provide a detailed walkthrough for setting up t
 Video version: - [OpenIPC - Prepare GroundStation: Ubuntu + QGroundControl](https://www.youtube.com/watch?v=JMtRAsOm0Dc)
 
 ## Prepare
+
 ```
 sudo apt update
 ```
+
 ```
 sudo apt install dkms git python3-all-dev net-tools virtualenv fakeroot debhelper python3-twisted
 sudo apt install dkms git python3-all-dev net-tools virtualenv fakeroot debhelper python3-twisted
@@ -16,6 +18,7 @@ sudo apt install dkms git python3-all-dev net-tools virtualenv fakeroot debhelpe
 ```
 
 ## Libsodium
+
 ```
 git clone https://github.com/jedisct1/libsodium --branch stable
 cd libsodium
@@ -25,6 +28,7 @@ sudo make install
 ```
 
 ## Wifi card driver
+
 ```
 git clone -b v5.2.20 https://github.com/svpcom/rtl8812au.git
 cd rtl8812au/
@@ -32,6 +36,7 @@ sudo ./dkms-install.sh
 ```
 
 ## WFB-NG
+
 ```
 git clone -b stable https://github.com/svpcom/wfb-ng.git
 cd wfb-ng
@@ -39,17 +44,21 @@ sudo ./scripts/install_gs.sh wlan0
 ```
 
 ## Channel configuration
+
 ```
 vi /etc/wifibroadcast.cfg
 ```
 
 ## Start WFB CLI
+
 ```
 wfb-cli gs
 ```
+
 ######GS IS READY FOR USE######
 
 ## Start, stop, restart service
+
 ```
 systemctl status wifibroadcast@gs
 systemctl stop wifibroadcast@gs
@@ -61,17 +70,16 @@ systemctl start wifibroadcast@gs
 - https://docs.qgroundcontrol.com/master/en/getting_started/download_and_install.html
 
 ## Get last logs from service
+
 ```
 journalctl -xu wifibroadcast@gs -n 100
 ```
 
 ## Useful commands
+
 ```
 nmcli
 ifconfig
 iwconfig
 
 ```
-
-
-

@@ -22,6 +22,7 @@ This guide is designed to provide a detailed walkthrough for setting up an FPV (
 
 - **Camera**: An SSC338 based board with a Sony IMX415 sensor was used for this guide.
   ![Camera](/src/assets/images/sbs-Camera.jpg)
+
   - [Camera Purchase Link](https://www.aliexpress.com/item/1005004350557805.html)
 
 - **Groundstation**: An Nvr board is recommended for its popularity and cost-effectiveness.
