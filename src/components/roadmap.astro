@@ -1,0 +1,54 @@
+---
+// TypeScript interface for a single milestone
+interface Milestone {
+    title: string;
+    description: string;
+    date: string; // Format: YYYY-MM
+    reached: boolean; // Indicates if the milestone is reached
+}
+
+// Props: array of milestones
+interface Props {
+    milestones: Milestone[];
+}
+
+const { milestones } = Astro.props as Props;
+---
+
+<div>
+    {
+        milestones.map((milestone, index) => (
+            <div class="flex items-center justify-center h-40" style="margin:0">
+                <div class="flex relative h-full w-6">
+                    <div
+                        class={`absolute top-1/2 -translate-y-1/2 flex-shrink-0 h-6 w-6 rounded-full ${
+                            milestone.reached ? "bg-green-500" : "bg-blue-300"
+                        } inline-flex items-center justify-center z-10`}
+                        style="margin: 0;"
+                    />
+                    <div
+                        class={`absolute h-full w-0.5 left-1/2 -translate-x-1/2 transform ${
+                            milestone.reached ? "bg-green-500" : "bg-blue-300"
+                        }`}
+                        style="margin: 0;"
+                    />
+                </div>
+
+                <div class="flex-grow pl-4" style="margin: 0;">
+                    <h3 class="font-bold text-lg flex items-center">
+                        {milestone.title}
+                        {milestone.reached && (
+                            <span class="ml-4 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-bold bg-green-500 text-white">
+                                Reached
+                            </span>
+                        )}
+                    </h3>
+                    <p class="text-gray-600">{milestone.description}</p>
+                    <span class="text-sm text-gray-500">
+                        Date: {milestone.date}
+                    </span>
+                </div>
+            </div>
+        ))
+    }
+</div>
