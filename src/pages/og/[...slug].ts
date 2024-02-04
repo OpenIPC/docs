@@ -30,7 +30,7 @@ export const { getStaticPaths, GET } = OGImageRoute({
         [31, 40, 92],
       ],
       border: { color: [255, 255, 255], width: 20 },
-      padding: 120,
+      padding: 40,
       fonts: ["./src/fonts/Poppins-Bold.ttf", "./src/fonts/Poppins-Medium.ttf"],
       font: {
         title: {
