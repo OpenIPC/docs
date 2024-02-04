@@ -36,7 +36,7 @@ export const { getStaticPaths, GET } = OGImageRoute({
         title: {
           weight: "Black",
           families: ["Poppins", "sans-serif"],
-          lineHeight: 1.7,
+          lineHeight: 1.6,
         },
         description: {
           weight: "Medium",
