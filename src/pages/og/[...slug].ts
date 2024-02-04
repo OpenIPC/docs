@@ -22,7 +22,7 @@ export const { getStaticPaths, GET } = OGImageRoute({
       description: page.data.description,
       // Customize various colors and add a border.
       logo: {
-        path: "./src/assets/logo/OpenIPC__OPENIPC_logo_vertical_white.svg",
+        path: "./src/assets/logo/OpenIPC__OPENIPC_logo_vertical_white.png",
         size: [200],
       },
       bgGradient: [
@@ -31,6 +31,7 @@ export const { getStaticPaths, GET } = OGImageRoute({
       ],
       border: { color: [255, 255, 255], width: 20 },
       padding: 120,
+      fonts: ["https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2"]
     };
   },
 });
