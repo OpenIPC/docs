@@ -22,8 +22,8 @@ export const { getStaticPaths, GET } = OGImageRoute({
       description: page.data.description,
       // Customize various colors and add a border.
       logo: {
-        path: "./src/assets/logo/OpenIPC__OPENIPC_logo_vertical_white.png",
-        size: [200],
+        path: "./src/OpenIPC__OPENIPC_logo_vertical_white.png",
+        size: [200, 200], // Modify the size to have exactly two elements.
       },
       bgGradient: [
         [76, 96, 216],
@@ -31,7 +31,17 @@ export const { getStaticPaths, GET } = OGImageRoute({
       ],
       border: { color: [255, 255, 255], width: 20 },
       padding: 120,
-      fonts: ["https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2"]
+      fonts: ["./src/fonts/Poppins-Bold.ttf", "./src/fonts/Poppins-Medium.ttf"],
+      font: {
+        title: {
+          weight: "Black",
+          families: ["Poppins", "sans-serif"],
+        },
+        description: {
+          weight: "Medium",
+          families: ["Poppins", "sans-serif"],
+        }
+      }
     };
   },
 });
