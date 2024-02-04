@@ -22,8 +22,8 @@ export const { getStaticPaths, GET } = OGImageRoute({
       description: page.data.description,
       // Customize various colors and add a border.
       logo: {
-        path: "./src/OpenIPC__OPENIPC_logo_vertical_white.png",
-        size: [200, 200], // Modify the size to have exactly two elements.
+        path: "./src/assets/logo/OpenIPC__OPENIPC_logo_vertical_white.svg",
+        size: [120], // Modify the size to have exactly two elements.
       },
       bgGradient: [
         [76, 96, 216],
