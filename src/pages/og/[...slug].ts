@@ -42,8 +42,8 @@ export const { getStaticPaths, GET } = OGImageRoute({
           weight: "Medium",
           families: ["Poppins", "sans-serif"],
           lineHeight: 1.5,
-        }
-      }
+        },
+      },
     };
   },
 });

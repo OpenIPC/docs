@@ -7,14 +7,16 @@ import Roadmap from "../../../components/roadmap.astro";
 
 Check our Roadmap, highlighting achievements and upcoming plans on our journey.
 
-<div class="relative">
+<div class="static min-h-full">
   <Roadmap
     milestones={[
       {
-        title: "Milestone 1",
-        description: "This is the first milestone.",
-        date: "2022-01",
-        reached: true,
+        title: "Milestone 2",
+        description: "This is the second milestone.",
+        date: "2022-02",
+        goals: [
+          "Goal 1",
+        ]
       },
       {
         title: "Milestone 1.5",
@@ -23,10 +25,17 @@ Check our Roadmap, highlighting achievements and upcoming plans on our journey.
         reached: true,
       },
       {
-        title: "Milestone 2",
-        description: "This is the second milestone.",
-        date: "2022-02",
+        title: "Milestone 1",
+        description: "This is the first milestone.",
+        date: "2022-01",
+        reached: true,
+        goals: [
+          "Goal 1",
+          "Goal 2",
+          "Goal 3",
+        ]
       },
     ]}
   />
+
 </div>

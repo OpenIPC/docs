@@ -5,6 +5,7 @@ interface Milestone {
     description: string;
     date: string; // Format: YYYY-MM
     reached: boolean; // Indicates if the milestone is reached
+    goals?: string[]; // Optional: array of goals
 }
 
 // Props: array of milestones
@@ -15,38 +16,53 @@ interface Props {
 const { milestones } = Astro.props as Props;
 ---
 
-<div>
+<div class="not-content">
     {
-        milestones.map((milestone, index) => (
-            <div class="flex items-center justify-center h-40" style="margin:0">
-                <div class="flex relative h-full w-6">
-                    <div
-                        class={`absolute top-1/2 -translate-y-1/2 flex-shrink-0 h-6 w-6 rounded-full ${
-                            milestone.reached ? "bg-green-500" : "bg-blue-300"
-                        } inline-flex items-center justify-center z-10`}
-                        style="margin: 0;"
-                    />
-                    <div
-                        class={`absolute h-full w-0.5 left-1/2 -translate-x-1/2 transform ${
-                            milestone.reached ? "bg-green-500" : "bg-blue-300"
-                        }`}
-                        style="margin: 0;"
-                    />
+        milestones.map((milestone) => (
+            <div class="flex">
+                <div class="w-1/6">
+                    <div class="h-full w-full">
+                        <div class="relative h-full">
+                            <div
+                                class={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex-shrink-0 h-6 w-6 rounded-full ${
+                                    milestone.reached
+                                        ? "bg-green-500"
+                                        : "bg-blue-300"
+                                } inline-flex items-center justify-center z-10`}
+                            />
+                            <div
+                                class={`absolute h-full w-0.5 left-1/2 -translate-x-1/2 transform ${
+                                    milestone.reached
+                                        ? "bg-green-500"
+                                        : "bg-blue-300"
+                                }`}
+                            />
+                        </div>
+                    </div>
                 </div>
 
-                <div class="flex-grow pl-4" style="margin: 0;">
-                    <h3 class="font-bold text-lg flex items-center">
-                        {milestone.title}
+                <div class="w-5/6 pl-4 my-4">
+                    <div class="flex gap-4">
+                        <h3 class="font-bold text-2xl flex items-center">
+                            {milestone.title}
+                        </h3>
+                        <span class="h-fit text-white text-xs font-bold px-2.5 py-0.5 rounded-md bg-violet-800 border-[1px] border-violet-300">
+                            {milestone.date}
+                        </span>
                         {milestone.reached && (
-                            <span class="ml-4 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-bold bg-green-500 text-white">
+                            <span class="h-fit text-white text-xs font-bold px-2.5 py-0.5 rounded-md bg-green-800 border-[1px] border-green-300">
                                 Reached
                             </span>
                         )}
-                    </h3>
+                    </div>
                     <p class="text-gray-600">{milestone.description}</p>
-                    <span class="text-sm text-gray-500">
-                        Date: {milestone.date}
-                    </span>
+                    {milestone.goals && (
+                        <ul class="pl-5 mt-2">
+                            {milestone.goals.map((goal) => (
+                                <li>{goal}</li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
             </div>
         ))
