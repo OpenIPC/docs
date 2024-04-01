@@ -36,7 +36,6 @@ export default defineConfig({
             {
               label: "Quick Start",
               link: "/getting-started/quick-start/",
-              badge: { text: "WIP", variant: "caution" },
             },
             {
               label: "Roadmap",
