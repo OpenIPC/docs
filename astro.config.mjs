@@ -38,6 +38,10 @@ export default defineConfig({
               link: "/getting-started/quick-start/",
             },
             {
+              label: "FAQ",
+              link: "/getting-started/faq/",
+            },            
+            {
               label: "Roadmap",
               link: "/getting-started/roadmap/",
             },
