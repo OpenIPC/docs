@@ -75,7 +75,6 @@ export default defineConfig({
             {
               label: "Supported Devices",
               link: "/hardware/supported-devices/",
-              badge: { text: "WIP", variant: "caution" },
             },
             {
               label: "Flashing Firmware",
