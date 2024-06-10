@@ -1,4 +1,7 @@
-# OpenIPC WebUI Developer's Guide
+---
+title: Web Interface Developer's Guide
+description: ???
+---
 
 **slogan:** _document it, baby. ur mom._
 
