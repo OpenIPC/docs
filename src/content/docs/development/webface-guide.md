@@ -31,7 +31,7 @@ what else can I add that I do not know about? `??idontknow??`
 ## Here we go
 
 
-### - webui (also legacy-webui)
+### webui (also legacy-webui)
 
 [webui repo](https://github.com/OpenIPC/webui) (now in frozen state, bug fixes only!)
 
@@ -43,7 +43,8 @@ Also, the bulk of plugins have been developed in this interface, which many user
 
 
 
-### - majestic-webui
+### majestic-webui
+
 [majestic-webui repo](https://github.com/OpenIPC/majestic-webui/)
 
 Majestic WebUI was initially created to address some of the issues of the original (now legacy) webui:
@@ -55,12 +56,12 @@ The general structure is mostly oriented at the original design, but slimmed dow
 Concerns are mostly brought up if a dev brings in a lot of changes without further support from their side.
 But if further maintenance is planned, then I see no reason against some refactoring/updating.
 
-##### * Road Map
+#### Road Map
 - [ ] filling out the developer's guide
 - [ ] Teleport plugins (not just copy, a full refactoring with use of best practicies!) from legacy webui
 - [ ] `??idontknow??`
 
-##### * Directory structure
+#### Directory structure
 
 | path | description |
 |---|---|
@@ -71,49 +72,54 @@ But if further maintenance is planned, then I see no reason against some refacto
 | www/cgi-bin/p/             | header, footer |
 | www/cgi-bin/p/common.cgi   | functions, common used in other scripts |
 
-##### * Code conventions
+#### * Code conventions
 `??idontknow??`
 
-##### * Best practicies
+#### * Best practicies
 `??idontknow??`
 
-##### * Some tricks
+#### * Some tricks
 `??idontknow??`
 
-##### * Template scripts (for a quick and proper start)
+#### * Template scripts (for a quick and proper start)
 `??idontknow??`
 
 
 
 ### fancyweb and fancyweb-ng
 [fancyweb repo](https://github.com/openipc/fancyweb/) ,
-[fancyweb-ng repo](https://github.com/openipc/fancyweb-ng/)
 
 Usefull links: [Preact](https://preactjs.com/) , [Tailwind CSS](https://tailwindcss.com/).
 
 **fancyweb:** a gorgeous interface that did not find its embodiment simply because of some "fatness" at that time and the lack of API work in the streamer. Written in ReactJS.
 [An excellent presentation](https://github.com/OpenIPC/fancyweb/blob/master/presentation/OpenIPC_fancyweb_interface_rus.pdf) is available to familiarize yourself with the possibilities.
 
+
+
+### fancyweb-ng
+
+[fancyweb-ng repo](https://github.com/openipc/fancyweb-ng/)
+
 **fancyweb-ng:** The main idea is to use modern techniques as Preact (not React but Preact) library and tailwind for styling. My (@LaikaPanda) goal is to create the maximum number of simple components that can be used in both. Regarding this choice, then Preact is small and quick and everybody knows it to maintain, and tailwind besides convenient approach significantly reduces the amount of code. 
 
 
-
-##### * Road Map
+#### Road Map
 - [ ] filling out the developer's guide
 
-##### * Directory structure
+#### Directory structure
 | path | description |
 |---|---|
 |                        | |
 
-##### * Code conventions
+#### Code conventions
 `??idontknow??`
 
 ##### * Best practicies
 `??idontknow??`
 
-##### * Some tricks
+#### Some tricks
 `??idontknow??`
 
-##### * Template scripts (for a quick and proper start)
+#### Template scripts (for a quick and proper start)
 `??idontknow??`
+
