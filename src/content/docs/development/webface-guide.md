@@ -61,6 +61,25 @@ But if further maintenance is planned, then I see no reason against some refacto
 - [ ] Teleport plugins (not just copy, a full refactoring with use of best practicies!) from legacy webui
 - [ ] `??idontknow??`
 
+#### Menu structure (current)
+- Information
+   - Status
+   - Majestic
+   - Kernel
+   - Overlay
+- Majestic
+   - ...
+- Firmware
+   - ...
+-Tools
+   - ...
+- Extensions
+   - OpenWall
+   - Telegram
+   - Tunnel
+   - Proxy
+- Preview
+
 #### Directory structure
 
 | path | description |
