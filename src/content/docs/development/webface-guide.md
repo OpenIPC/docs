@@ -64,19 +64,27 @@ But if further maintenance is planned, then I see no reason against some refacto
 #### Menu structure (current)
 - Information
    - Status
+   - -
    - Majestic
    - Kernel
    - Overlay
 - Majestic
-   - ...
+   - ?
 - Firmware
-   - ...
--Tools
-   - ...
+   - Network
+   - Time
+   - Interface
+   - -
+   - Update
+   - Settings
+- Tools
+   - Console
+   - Files
 - Extensions
    - OpenWall
    - Telegram
    - Tunnel
+       - _This item should be renamed to Vtun since we have other tunnels, WireGuard and ZeroTier, for which there will also be menus_
    - Proxy
 - Preview
 
@@ -105,7 +113,7 @@ But if further maintenance is planned, then I see no reason against some refacto
 
 
 
-### fancyweb and fancyweb-ng
+### fancyweb
 [fancyweb repo](https://github.com/openipc/fancyweb/) ,
 
 Usefull links: [Preact](https://preactjs.com/) , [Tailwind CSS](https://tailwindcss.com/).
