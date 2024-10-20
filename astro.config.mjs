@@ -79,23 +79,10 @@ export default defineConfig({
 				},
 				{
 					label: "Software",
-					items: [
-						{
-							label: "Software Overview",
-							link: "/software/software-overview/",
-							badge: { text: "WIP", variant: "caution" },
-						},
-						{
-							label: "Configuration Details",
-							link: "/software/configuration-details/",
-							badge: { text: "WIP", variant: "caution" },
-						},
-						{
-							label: "Firmware Updates",
-							link: "/software/firmware-updates/",
-							badge: { text: "WIP", variant: "caution" },
-						},
-					],
+					badge: { text: "WIP", variant: "caution" },
+					autogenerate: {
+						directory: "/hardware",
+					},
 				},
 				{
 					label: "Development",
