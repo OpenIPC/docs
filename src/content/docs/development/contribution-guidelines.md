@@ -142,7 +142,7 @@ git push origin add-new-page
 - Go to the [OpenIPC documentation site](https://docs.openipc.org).
 - Find the page that you want to edit and click the **Edit page** button, as shown below:
 
-![Edit Page Button](edit-a-page-1.png)
+![Edit Page Button](../../../assets/images/edit-a-page-1.png)
 
 This will take you directly to the corresponding markdown file in the GitHub repository.
 
@@ -151,7 +151,7 @@ You’ll be taken to the GitHub editor, where you can make changes directly to t
 
 For example:
 
-![Editing the Page in GitHub](/assets/images/edit-a-page-2.png)
+![Editing the Page in GitHub](../../../assets/images//edit-a-page-2.png)
 
 ### 3. Propose Your Changes
 Once you've made your edits:
@@ -159,7 +159,7 @@ Once you've made your edits:
 - Add a short commit message that describes the update.
 - Choose whether you want to commit directly to the main branch or create a new branch for the changes.
 
-![Proposing Changes](src/assets/images/edit-a-page-3.png)
+![Proposing Changes](../../../assets/images/edit-a-page-3.png)
 
 ### 4. Create a Pull Request (If Necessary)
 If you've created a new branch, click **Propose changes** to start a Pull Request (PR). In the PR description, explain what changes you made and why.
