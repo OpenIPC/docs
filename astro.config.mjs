@@ -36,8 +36,11 @@ export default defineConfig({
             {
               label: "Quick Start",
               link: "/getting-started/quick-start/",
-              badge: { text: "WIP", variant: "caution" },
             },
+            {
+              label: "FAQ",
+              link: "/getting-started/faq/",
+            },            
             {
               label: "Roadmap",
               link: "/getting-started/roadmap/",
@@ -74,9 +77,8 @@ export default defineConfig({
           label: "Hardware",
           items: [
             {
-              label: "Supported Hardware",
+              label: "Supported Devices",
               link: "/hardware/supported-devices/",
-              badge: { text: "WIP", variant: "caution" },
             },
             {
               label: "Flashing Firmware",
