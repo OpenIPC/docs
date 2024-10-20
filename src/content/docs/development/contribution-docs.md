@@ -5,9 +5,8 @@ description: A guide to help anyone contribute to OpenIPC's docs.
 
 # Contributing to the OpenIPC Documentation
 
-Thank you for contributing to the OpenIPC documentation! This guide will walk you through two main ways to contribute: **adding a new page** and **editing an existing page**. There’s also a section for setting up a local development environment if you want to test the site locally. 
+Thank you for contributing to the OpenIPC documentation! This guide will walk you through two main ways to contribute: **adding a new page** and **editing an existing page**. There’s also a section for setting up a local development environment if you want to test the site locally.
 
-For local development, we use a `.node-version` file to ensure the correct version of Node.js is used. If you want to test your changes locally, you will need to install Node.js, Yarn, and a Node version manager.
 
 ---
 
@@ -88,7 +87,11 @@ This guide will walk you through the new feature introduced in the latest releas
 3. Enable the **New Feature** toggle.
 
 For more details, check the [official documentation](https://docs.openipc.org).
+
+This is an image [Example Image](/src/assets/images/example-image.png)
 ```
+:::caution
+Please place your image in `/src/assets/images`so that you can use it like this `[Example Image](/src/assets/images/example-image.png)`
 
 ### 7. Add Your Page to the Sidebar Navigation (If Required)
 
@@ -142,7 +145,7 @@ git push origin add-new-page
 - Go to the [OpenIPC documentation site](https://docs.openipc.org).
 - Find the page that you want to edit and click the **Edit page** button, as shown below:
 
-![Edit Page Button](file-N2M9hUoQnicS6Iiuy7xPiO68)
+![Edit Page Button](/src/assets/images/edit-a-page-1.png)
 
 This will take you directly to the corresponding markdown file in the GitHub repository.
 
@@ -151,7 +154,7 @@ You’ll be taken to the GitHub editor, where you can make changes directly to t
 
 For example:
 
-![Editing the Page in GitHub](file-ma4rgPGbVYvpsTFMBI7zqjX0)
+![Editing the Page in GitHub](/src/assets/images/edit-a-page-2.png)
 
 ### 3. Propose Your Changes
 Once you've made your edits:
@@ -159,7 +162,7 @@ Once you've made your edits:
 - Add a short commit message that describes the update.
 - Choose whether you want to commit directly to the main branch or create a new branch for the changes.
 
-![Proposing Changes](file-5ntGecYmEj9Prak4NKMJUWtp)
+![Proposing Changes](/src/assets/images/edit-a-page-3.png)
 
 ### 4. Create a Pull Request (If Necessary)
 If you've created a new branch, click **Propose changes** to start a Pull Request (PR). In the PR description, explain what changes you made and why.
