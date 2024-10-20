@@ -8,8 +8,6 @@ description: A guide to help anyone contribute to OpenIPC's docs.
 Thank you for contributing to the OpenIPC documentation! This guide will walk you through two main ways to contribute: **adding a new page** and **editing an existing page**. There’s also a section for setting up a local development environment if you want to test the site locally.
 
 
----
-
 ## Adding a New Page
 
 ### 1. Clone the Repository
@@ -52,6 +50,7 @@ Use the following table to determine where to add your new page based on its con
 :::danger
 Please make sure the name of the file is in snake-case (no uppercase letters and uses '-'). This will become later the url of the page.  
 Do not forget to add the '.md' extension, so the site knows how to handle the file.
+:::
 
 ### 5. Add Frontmatter to Your Page
 At the top of the new markdown file, include the required frontmatter. This helps Starlight process the page correctly.
@@ -92,6 +91,7 @@ This is an image [Example Image](/src/assets/images/example-image.png)
 ```
 :::caution
 Please place your image in `/src/assets/images`so that you can use it like this `[Example Image](/src/assets/images/example-image.png)`
+:::
 
 ### 7. Add Your Page to the Sidebar Navigation (If Required)
 

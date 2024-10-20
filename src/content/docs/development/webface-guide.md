@@ -1,6 +1,6 @@
 ---
 title: Web Interface Developer's Guide
-description: ???
+description: A guide to developing the OpenIPC web interface.
 ---
 
 **slogan:** _document it, baby. ur mom._
