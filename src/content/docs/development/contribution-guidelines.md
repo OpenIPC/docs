@@ -1,12 +1,9 @@
 ---
-title: Contributing to the docs
+title: Contributing to the OpenIPC Documentation
 description: A guide to help anyone contribute to OpenIPC's docs.
 ---
 
-# Contributing to the OpenIPC Documentation
-
 Thank you for contributing to the OpenIPC documentation! This guide will walk you through two main ways to contribute: **adding a new page** and **editing an existing page**. There’s also a section for setting up a local development environment if you want to test the site locally.
-
 
 ## Adding a New Page
 
