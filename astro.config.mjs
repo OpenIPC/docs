@@ -90,11 +90,15 @@ export default defineConfig({
 						{
 							label: "Contribution Guidelines",
 							link: "/development/contribution-guidelines/",
-							badge: { text: "WIP", variant: "caution" },
 						},
 						{
 							label: "Projects & Applications",
 							link: "/development/projects-applications/",
+							badge: { text: "WIP", variant: "caution" },
+						},
+						{
+							label: "Webface Guide",
+							link: "/development/webface-guide/",
 							badge: { text: "WIP", variant: "caution" },
 						},
 					],
