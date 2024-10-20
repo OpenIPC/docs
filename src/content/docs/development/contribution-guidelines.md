@@ -84,10 +84,10 @@ This guide will walk you through the new feature introduced in the latest releas
 
 For more details, check the [official documentation](https://docs.openipc.org).
 
-This is an image [Example Image](/src/assets/images/example-image.png)
+This is an image [Example Image](../../../images/example-image.png)
 ```
 :::caution
-Please place your image in `/src/assets/images`so that you can use it like this `[Example Image](/src/assets/images/example-image.png)`
+Please place your image in `/src/assets/images`so that you can use it like this `[Example Image](../../../images/example-image.png)`
 :::
 
 ### 7. Add Your Page to the Sidebar Navigation (If Required)
