@@ -40,11 +40,9 @@ Here is a good [getting started](https://wiki.radxa.com/Zero/getting_started) if
 
 ## The result
 
-![Dog with Radxa based GS](https://github.com/user-attachments/assets/43e8552e-9d24-4d7b-9120-cd2fc08a9934)
-
+<img src="https://github.com/user-attachments/assets/43e8552e-9d24-4d7b-9120-cd2fc08a9934" alt="drawing" width="200"/>
 
 ## Buy a device
 
 - [Radxa Zero 3W](https://radxa.com/products/zeros/zero3w/#buy)
 - [AliExpress](https://www.aliexpress.us/item/3256807428419499.html)
-- 
