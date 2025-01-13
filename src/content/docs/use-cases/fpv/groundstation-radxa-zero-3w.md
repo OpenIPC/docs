@@ -4,8 +4,11 @@ description: How to make a Radxa ZERO 3W work with OpenIPC
 version: 1.9.1
 ---
 
-### Radxa as OpenIPC GroundStation
-![fpv-logo](https://github.com/user-attachments/assets/9da265e7-59a7-407d-871f-4f18930f8ec2)
+OpenIPC FPV ground station
+--------------------------
+<p align="center">
+  <img src="https://github.com/OpenIPC/wiki/blob/master/images/fpv-logo.jpg?raw=true" alt="Logo"/>
+</p>
 Here is a good [getting started](https://wiki.radxa.com/Zero/getting_started) if you are not familiar with Radxa.
 
 ## Enclosure Models
