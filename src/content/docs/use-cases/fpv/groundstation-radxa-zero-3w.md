@@ -4,6 +4,9 @@ description: How to make a Radxa ZERO 3W work with OpenIPC
 version: 1.9.1
 ---
 
+### Radxa OpenIPC Ground Station
+[Radxa 101](https://wiki.radxa.com/Zero/getting_started)
+
 ## Enclosure Models
 
 1. [OpenIPC VRX Enclosure](https://www.printables.com/model/1051224-openipc-vrx-enclosure)
@@ -21,7 +24,7 @@ version: 1.9.1
 
 - Install [PUTTY](https://www.putty.org/)
 - Optionall Install an OpenIPC Configurator
-    - [Windows OpenIPC Configurator Releases](https://github.com/OpenIPC/configurator/releases/)
+    - [Windows OpenIPC Configurator](https://github.com/OpenIPC/configurator/releases/)
     - [Multi-Platform OpenIPC Configurator](https://github.com/OpenIPC/openipc-configurator)
 - Download lastest [image](https://openipc.org/cameras/vendors/hisilicon/socs/hi3536dv100/download_full_image?flash_size=16&flash_type=nor&fw_release=fpv)
 
