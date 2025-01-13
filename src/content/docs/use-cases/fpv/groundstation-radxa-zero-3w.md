@@ -3,11 +3,6 @@ title: GroundStation on Radxa ZERO 3W
 description: How to make a Radxa ZERO 3W work with OpenIPC
 version: 1.9.1
 ---
-<p style="text-align: center;">OpenIPC FPV Ground Station</p>
-<p align="center">
-  <img src="https://github.com/OpenIPC/wiki/blob/master/images/fpv-logo.jpg?raw=true" alt="Logo"/>
-</p>
-Here is a good [getting started](https://wiki.radxa.com/Zero/getting_started) if you are not familiar with Radxa.
 
 ## Enclosure Models
 
@@ -32,8 +27,7 @@ Here is a good [getting started](https://wiki.radxa.com/Zero/getting_started) if
 
 ## Flashing
 
-* SD Card
-[See 'getting started'](https://wiki.radxa.com/Zero/getting_started)
+* SD Card see [getting started](https://wiki.radxa.com/Zero/getting_started)
   - Tools like [balenaEtcher](https://etcher.balena.io/) or [rufus](https://rufus.ie/en/) can write an image to media storage.
   - Tools like [RaspberryPI Imager](https://www.raspberrypi.com/software/) or Win32 Disk Imager can create backup images of media storage.
 * EMMC
