@@ -70,14 +70,14 @@ To record DVR, push the button once. The stream will start and DVR will begin re
 
 DVR is saved to the Videos folder in your home directory. DVR can be accessed either at /home/radxa/Videos or via a media server. Connect your groundstation to your home network and it can be accessed via a web browser at x.x.x.x:8080 -- replace x.x.x.x with your groundstation's local ip address.
 
-Connect Led long lead to +5v, Led short lead via a 1k resistor to GPIOAO_2 (The other BLUE pin on Radxa),
+Connect Led long lead to +5v, Led short lead via a 1k resistor to GPIOAO_2.
 
 ```bash
 sudo gpioset gpiochip4 11=0      # turn LED on
 sudo gpioset gpiochip4 11=1      # turn LED off (actually it is very                             # simply lit because i guess logic level 0 is not 0 volts)
 ```
 
-Circuit wiring: +5v —> +Led- —-> 1k resistor —> pin 28 on Radxa z3w (aka the other blue pin)
+Circuit wiring: +5v —> +Led- —-> 1k resistor —> pin 28 on Radxa z3w
 
 <hr>
 
