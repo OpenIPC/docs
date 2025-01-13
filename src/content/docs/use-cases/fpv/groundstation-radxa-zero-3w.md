@@ -31,6 +31,7 @@ Here is a good [getting started](https://wiki.radxa.com/Zero/getting_started) if
 - Download lastest [image](https://openipc.org/cameras/vendors/hisilicon/socs/hi3536dv100/download_full_image?flash_size=16&flash_type=nor&fw_release=fpv)
 
 ## Flashing
+
 * SD Card
 [See 'getting started'](https://wiki.radxa.com/Zero/getting_started)
   - Tools like [balenaEtcher](https://etcher.balena.io/) or [rufus](https://rufus.ie/en/) can write an image to media storage.
