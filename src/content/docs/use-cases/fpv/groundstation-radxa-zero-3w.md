@@ -33,6 +33,8 @@ version: 1.9.1
 * SD Card see [getting started](https://wiki.radxa.com/Zero/getting_started)
   - Tools like [balenaEtcher](https://etcher.balena.io/) or [rufus](https://rufus.ie/en/) can write an image to media storage.
   - Tools like [RaspberryPI Imager](https://www.raspberrypi.com/software/) or Win32 Disk Imager can create backup images of media storage.
+  - Radxa provided [tools](https://dl.radxa.com/tools/)
+
 * EMMC
 [How to flash the image to your onboard emmc](https://github.com/OpenIPC/sbc-groundstations/blob/master/radxa_pi_zero_3w/flashing_to_the_onboard_memory.md)
 
@@ -58,6 +60,29 @@ or access to serial console, please check [here](https://wiki.radxa.com/Zero/dev
 - Step 7 - Test the system. Run wfb-cli gs and plug in your camera. Make sure you are properly getting video and telemetry packets. Hit CTRL-C to exit the wfb-cli. Run sudo systemctl start openipc.service and the display connected to the radxa should change to your video feed. Press your DVR button. The stream should stop (the screen will go black for a second) and a new stream being recorded should start. Press the dvr button again to stop the saving stream and go back to the display stream. (Again, the stream should go black for a second. If it doesn't, press the button again) Confirm there is a .mp4 video file in /media by going to x.x.x.x:8080 in a browser, replacing x.x.x.x with your radxa's ip address. . Run sudo systemctl stop openipc.service to stop testing.
 - Step 8 - Last and final step. Once you have confirmed the system is working and you have set your desired settings, run sudo systemctl enable openipc.service to have the stream begin on boot.
 
+## GPIO Buttons
+- Connect a button or switch to 3.3v and physical pins 16/18 to increase/decrease your vrx channel respectively. 
+- Connect a button or switch to physical pin 38 and 3.3v to toggle your vrx bandwidth between 20MHz and 40Mhz. 
+- Connect a button or switch to join 3.3v and pin 32 to start/stop recordings.
+![402592117-6b524a5a-37d8-4bc0-8bdd-e3b15b33ddf5](https://github.com/user-attachments/assets/83bf17f5-7504-411e-9544-41adf2a300bb)
+
+To record DVR, push the button once. The stream will start and DVR will begin recording. When finished, push the button once to stop the recording and save the file.
+
+DVR is saved to the Videos folder in your home directory. DVR can be accessed either at /home/radxa/Videos or via a media server. Connect your groundstation to your home network and it can be accessed via a web browser at x.x.x.x:8080 -- replace x.x.x.x with your groundstation's local ip address.
+
+Connect Led long lead to +5v, Led short lead via a 1k resistor to GPIOAO_2 (The other BLUE pin on Radxa),
+
+```bash
+sudo gpioset gpiochip4 11=0      # turn LED on
+sudo gpioset gpiochip4 11=1      # turn LED off (actually it is very                             # simply lit because i guess logic level 0 is not 0 volts)
+```
+
+Circuit wiring: +5v —> +Led- —-> 1k resistor —> pin 28 on Radxa z3w (aka the other blue pin)
+
+<hr>
+
+A note about the DVR recording in this image. To ease the strain on the processor, we record to to a ts file rather than mp4 or mkv. As a result, there is no "smear" effect recorded, the uncaptured frames are simply dropped. You may notice jumps in your recording where there was no frame information.
+
 ## Result
 
 <img src="https://github.com/user-attachments/assets/43e8552e-9d24-4d7b-9120-cd2fc08a9934" alt="drawing" width="200"/>
@@ -66,3 +91,6 @@ or access to serial console, please check [here](https://wiki.radxa.com/Zero/dev
 
 - [Radxa Zero 3W](https://radxa.com/products/zeros/zero3w/#buy)
 - [AliExpress](https://www.aliexpress.us/item/3256807428419499.html)
+
+## RubyFPV
+see [RubyFPV Hardware](https://rubyfpv.com/hardware.php)
