@@ -36,11 +36,16 @@ version: 1.9.1
 * EMMC
 [How to flash the image to your onboard emmc](https://github.com/OpenIPC/sbc-groundstations/blob/master/radxa_pi_zero_3w/flashing_to_the_onboard_memory.md)
 
-## The result
+## Setup
+Note: for RubyFPV you will either need a USB network dongle 
+![fpv-radxa-usbc-lan](https://github.com/user-attachments/assets/6fe0c218-b4c2-4041-a676-ebb490743a85)
+or access to serial console, please check [here](https://wiki.radxa.com/Zero/dev/serial-console) on how to do that.
+
+## Result
 
 <img src="https://github.com/user-attachments/assets/43e8552e-9d24-4d7b-9120-cd2fc08a9934" alt="drawing" width="200"/>
 
-## Buy a device
+## Where to buy
 
 - [Radxa Zero 3W](https://radxa.com/products/zeros/zero3w/#buy)
 - [AliExpress](https://www.aliexpress.us/item/3256807428419499.html)
