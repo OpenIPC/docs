@@ -49,13 +49,19 @@ Please perform the following steps.
 
     Step 1 - Flash the image to either your onboard emmc or a micro SD card. Connect a screen and wireless cards to your radxa.
 
-    Step 2 - Re-plug in your sd card to your computer and a directory called /config should mount. Inside, navigate to the scripts folder. Set your desired screen resolution and refresh rate in the screen-mode file. Format is WxH@fps -- Common values would be 1920x1080@60, 1920x1080@120. 1280x720@60, 1280x720@120. This does not need to match your camera settings, you want to set it to either the highest framerate or highest resolution the screen is capable of.
+    Step 2 - Re-plug in your sd card to your computer and a directory called /config should mount. 
+    Inside, navigate to the scripts folder. Set your desired screen resolution and refresh rate in the screen-mode file. 
+    Format is WxH@fps -- Common values would be 1920x1080@60, 1920x1080@120. 1280x720@60, 1280x720@120. 
+    This does not need to match your camera settings, 
+        you want to set it to either the highest framerate or highest resolution the screen is capable of.
 
     For smooth DVR playback, set the dvr-fps inside the rec-fps file to the fps at which your camera is shooting. e.g. 60, 90, 120
 
     If you are using ground-based msposd, set your osd file to ground now.
 
-    Step 3 - Boot the system. If all your settings are correct and you have a wireless card attached to the usb for wfb-ng, then the openipc.service will begin.
+    Step 3 - Boot the system. 
+    
+    If all your settings are correct and you have a wireless card attached to the usb for wfb-ng, then the openipc.service will begin.
 
 note AP mode may not work the very first time you boot the system. Give the system a reboot and things will work.
 
