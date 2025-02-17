@@ -82,25 +82,26 @@ Enable in the configurator with the best camera settings, and it will adapt the 
 ## Optionals
 
 Note: openipc.service fails without wifi adapters, unplug your adapters to be able to login to radxa:
-Username: radxa
-Password: radxa
+- Username: radxa
+- Password: radxa
 
-Changing password to radxa:
+Changing password to radxa (for security):
 Once logged into the radxa type 'passwd' to change password for the user.
 
 
 SSH into camera:
 Use the onboard wi-fi to connect to your home network: (note - if you are running your fpv system on the 5.8ghz channels, it would be ideal to connect the onboard wifi to a 2.4ghz network to avoid any possible interference.)
-Method 1: Enter nmtui, go down to Activate a connection and activate one of the detected wifi networks.
-Method 2: Edit the config.txt file in /config to contain connect_wi-fi YOUR_WIFI_SSID YOUR_WIFI_PASSWORD
+- Method 1: Enter nmtui, go down to Activate a connection and activate one of the detected wifi networks.
+- Method 2: Edit the config.txt file in /config to contain connect_wi-fi YOUR_WIFI_SSID YOUR_WIFI_PASSWORD
+To check your connection after, run nmcli and your wlan0 connection should be green. Make a note of your ip address. We will need this to ssh into the system later.
+
 
 Powering radxa from GPIO Pins:
 Power ground & pin 2/4 with a good 5v source to power from GPIO.
 
-Using power USB as host port:
+Using power USB as host port (allows 2 wifi adapters without usb hub):
 Type in terminal restup and navigate to overlays. From there manage the overlays, and find the 'OTG to Host' port setting. Enable it and reboot radxa.
 
-To check your connection after, run nmcli and your wlan0 connection should be green. Make a note of your ip address. We will need this to ssh into the system later.
 ## GPIO Buttons
 - Connect a button or switch to 3.3v and physical pins 16/18 to increase/decrease your vrx channel respectively. 
 - Connect a button or switch to physical pin 38 and 3.3v to toggle your vrx bandwidth between 20MHz and 40Mhz. 
