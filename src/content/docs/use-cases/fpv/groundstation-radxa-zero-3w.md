@@ -1,7 +1,7 @@
 ---
 title: GroundStation on Radxa ZERO 3W
 description: How to make a Radxa ZERO 3W work with OpenIPC
-version: 1.9.6
+version: 1.9.7
 ---
 
 ### Radxa OpenIPC Ground Station
@@ -19,6 +19,7 @@ version: 1.9.6
 8. [Radxa Zero 3W Case for OpenIPC](https://www.printables.com/model/1054879-radxa-zero-3w-case-for-openipc)
 9. [OpenIPC VRX Case on Thingiverse](https://www.thingiverse.com/thing:6680584)
 10. [OpenIPC Radxa Zero 3W HDZero Rail Mount](https://www.printables.com/model/811132-openipc-radxa-zero-3w-hdzero-goggle-case-rail-moun/files)
+11. [iSpy Another OpenIPC VRX](https://www.printables.com/model/1196394-ispy-another-openipc-sbc-vrx-case)
 
 ## Prerequisites 
 
@@ -65,9 +66,41 @@ Please perform the following steps.
 
 note AP mode may not work the very first time you boot the system. Give the system a reboot and things will work.
 
+This image has support for AP mode on the radxa groundstation. 
+Long-press the 40MHz_Toggle button, gpio_38, and the onboard wi-fi will enter AP mode and broadcast a wireless network called 'RadxaGroundstation' with password 'radxaopenipc'. 
+Connect to this network and navigate in a browser to 'radxa-zero3.local' or '192.168.4.1:5000' to enter the webUI where you can access DVR files, change groundstation settings, and change camera settings.
+
 DVR is saved to the media folder in your root directory. DVR can be accessed either at /media or via the AP mode webUI.
 This image has support for groundstation-side rendering of MSPOSD over the wfb-ng tunnel. To enable this functionality, go into /config/scripts/osd and change from air to ground. You must enable the MSPOSD forwarding on the camera for this to work.
 
+## Adaptive Link
+
+txprofiles.conf contians the profiles used in the adpative link setup.
+
+Enable in the configurator with the best camera settings, and it will adapt the signal as the rf signal decreases.
+
+## Optionals
+
+Note: openipc.service fails without wifi adapters, unplug your adapters to be able to login to radxa:
+Username: radxa
+Password: radxa
+
+Changing password to radxa:
+Once logged into the radxa type 'passwd' to change password for the user.
+
+
+SSH into camera:
+Use the onboard wi-fi to connect to your home network: (note - if you are running your fpv system on the 5.8ghz channels, it would be ideal to connect the onboard wifi to a 2.4ghz network to avoid any possible interference.)
+Method 1: Enter nmtui, go down to Activate a connection and activate one of the detected wifi networks.
+Method 2: Edit the config.txt file in /config to contain connect_wi-fi YOUR_WIFI_SSID YOUR_WIFI_PASSWORD
+
+Powering radxa from GPIO Pins:
+Power ground & pin 2/4 with a good 5v source to power from GPIO.
+
+Using power USB as host port:
+Type in terminal restup and navigate to overlays. From there manage the overlays, and find the 'OTG to Host' port setting. Enable it and reboot radxa.
+
+To check your connection after, run nmcli and your wlan0 connection should be green. Make a note of your ip address. We will need this to ssh into the system later.
 ## GPIO Buttons
 - Connect a button or switch to 3.3v and physical pins 16/18 to increase/decrease your vrx channel respectively. 
 - Connect a button or switch to physical pin 38 and 3.3v to toggle your vrx bandwidth between 20MHz and 40Mhz. 
@@ -94,6 +127,15 @@ A note about the DVR recording in this image. To ease the strain on the processo
 ## Result
 
 <img src="https://github.com/user-attachments/assets/43e8552e-9d24-4d7b-9120-cd2fc08a9934" alt="drawing" width="200"/>
+
+v1.9.7 Release Notes:
+
+    Support for adaptive_link has been added. More information can be found at sickgreg/OpenIPC-Adaptive-Link
+
+    RSSI grapher has been added to the webUI.
+
+    An updated driver for the 8821au is now included.
+
 
 ## Where to buy
 
