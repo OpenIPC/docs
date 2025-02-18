@@ -75,7 +75,7 @@ This image has support for groundstation-side rendering of MSPOSD over the wfb-n
 
 ## Adaptive Link
 
-txprofiles.conf contians the profiles used in the adpative link setup.
+/etc/txprofiles.conf contains the profiles used in the adpative link setup.
 
 Enable in the configurator with the best camera settings, and it will adapt the signal as the rf signal decreases.
 
