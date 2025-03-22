@@ -92,9 +92,7 @@ This image has support for groundstation-side rendering of MSPOSD over the wfb-n
 
 Adjust your channel as needed.
 
-For some reason the 40mhz radxa tunnel will connect to 20mhz camera streams.
-
-It is possible to overclock your radxa for higher bitrate performance.
+(FYI the 40mhz radxa tunnel will connect to 20mhz camera streams.)
 
 ## GPIO Buttons
 - Connect a button or switch to 3.3v and physical pins 16/18 to increase/decrease your vrx channel respectively. 
@@ -125,20 +123,22 @@ Note: openipc.service fails without wifi adapters, unplug your adapters to be ab
 - Username: radxa
 - Password: radxa
 
-Changing password to radxa (for security):
-Once logged into the radxa type 'passwd' to change password for the user.
-
 SSH into camera:
 Use the onboard wi-fi to connect to your home network: (note - if you are running your fpv system on the 5.8ghz channels, it would be ideal to connect the onboard wifi to a 2.4ghz network to avoid any possible interference.)
 - Method 1: Enter nmtui, go down to Activate a connection and activate one of the detected wifi networks.
 - Method 2: Edit the config.txt file in /config to contain connect_wi-fi YOUR_WIFI_SSID YOUR_WIFI_PASSWORD
 To check your connection after, run nmcli and your wlan0 connection should be green. Make a note of your ip address. We will need this to ssh into the system later.
 
+Changing password to radxa (for security):
+Once logged into the radxa type 'passwd' to change password for the user.
+
 Powering radxa from GPIO Pins:
-Power ground & pin 2/4 with a good 5v source to power from GPIO.
+Wire any ground pin & pin 2/4 with 5v from at least a 1a power source.
 
 Using power USB as host port (allows 2 wifi adapters without usb hub):
 Type in terminal restup and navigate to overlays. From there manage the overlays, and find the 'OTG to Host' port setting. Enable it and reboot radxa.
+
+It is possible to overclock your radxa for higher bitrate performance.
 
 ## About Adaptive Link
 
