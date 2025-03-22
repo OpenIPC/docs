@@ -23,7 +23,8 @@ version: 1.9.9
 12. [The Crown](https://www.printables.com/model/1233920-the-crown-radxa-sbc-openipc-ground-station-3x-eu2)
 13. [Radxa Zero 3W OpenIPC](https://www.printables.com/model/1086989-radxa-zero-3w-openipc)
 14. [OpenIPC GS Radxa zero VRX Case](https://www.printables.com/model/1109931-openipc-gs-radxa-zero-vrx-case)
-15. [OpenIPC Radxa Zero 3W VRX case](https://www.printables.com/model/1238633-openipc-radxa-zero-3w-vrx-case-3x-eu-rx-cards-w-hd)_
+15. [OpenIPC Radxa Zero 3W VRX case](https://www.printables.com/model/1238633-openipc-radxa-zero-3w-vrx-case-3x-eu-rx-cards-w-hd)
+16. {OpenIPC Ruby_FPV GS Radxa zerro 3w based}(https://www.printables.com/model/1238753-openipc-ruby_fpv-gs-radxa-zerro-3w-based)
 
 ## Prerequisites 
 
