@@ -1,7 +1,7 @@
 ---
 title: GroundStation on Radxa ZERO 3W
 description: How to make a Radxa ZERO 3W work with OpenIPC
-version: 1.9.7
+version: 1.9.9
 ---
 
 ### Radxa OpenIPC Ground Station
@@ -20,87 +20,81 @@ version: 1.9.7
 9. [OpenIPC VRX Case on Thingiverse](https://www.thingiverse.com/thing:6680584)
 10. [OpenIPC Radxa Zero 3W HDZero Rail Mount](https://www.printables.com/model/811132-openipc-radxa-zero-3w-hdzero-goggle-case-rail-moun/files)
 11. [iSpy Another OpenIPC VRX](https://www.printables.com/model/1196394-ispy-another-openipc-sbc-vrx-case)
+12. [The Crown](https://www.printables.com/model/1233920-the-crown-radxa-sbc-openipc-ground-station-3x-eu2)
+13. [Radxa Zero 3W OpenIPC](https://www.printables.com/model/1086989-radxa-zero-3w-openipc)
+14. [OpenIPC GS Radxa zero VRX Case](https://www.printables.com/model/1109931-openipc-gs-radxa-zero-vrx-case)
+15. [OpenIPC Radxa Zero 3W VRX case](https://www.printables.com/model/1238633-openipc-radxa-zero-3w-vrx-case-3x-eu-rx-cards-w-hd)_
 
 ## Prerequisites 
 
+- Download lastest [image](https://github.com/OpenIPC/sbc-groundstations/releases/latest)
 - Install [PUTTY](https://www.putty.org/)
-- Optionall Install an OpenIPC Configurator
-    - [Windows OpenIPC Configurator](https://github.com/OpenIPC/configurator/releases/)
+- Optionally Install an OpenIPC Configurator
     - [Multi-Platform OpenIPC Configurator](https://github.com/OpenIPC/openipc-configurator)
-- Download lastest [image](https://openipc.org/cameras/vendors/hisilicon/socs/hi3536dv100/download_full_image?flash_size=16&flash_type=nor&fw_release=fpv)
+    - [Windows OpenIPC Configurator](https://github.com/OpenIPC/configurator/releases/)
 
-## Flashing
+## STEP 1: Flashing
 
-* SD Card see [getting started](https://wiki.radxa.com/Zero/getting_started)
-  - Tools like [balenaEtcher](https://etcher.balena.io/) or [rufus](https://rufus.ie/en/) can write an image to media storage.
-  - Tools like [RaspberryPI Imager](https://www.raspberrypi.com/software/) or Win32 Disk Imager can create backup images of media storage.
+### SD Card
+* See [getting started](https://wiki.radxa.com/Zero/getting_started)
+  - Tools like [balenaEtcher](https://etcher.balena.io/) or [rufus](https://rufus.ie/en/) can write an image an sd card.
   - Radxa provided [tools](https://dl.radxa.com/tools/)
 
-* EMMC
-[How to flash the image to your onboard emmc](https://github.com/OpenIPC/sbc-groundstations/blob/master/radxa_pi_zero_3w/flashing_to_the_onboard_memory.md)
+### EMMC
+* 1.9.9 image is now able to flash the image to your onboard emmc.
+  - Flash the radxa_1-9-9_emmc-flasher image to an sd card and boot,
+  - Then press the MHZ_TOGGLE gpio button (pin 38) once to begin flashing the image to your onboard emmc.
+  - Be patient, the total procedure should take around 3-5 minutes.
 
-## Setup Process
-Note: for RubyFPV you will either need a USB network dongle
+## STEP 2: Setup
 
-![fpv-radxa-usbc-lan](https://github.com/user-attachments/assets/6fe0c218-b4c2-4041-a676-ebb490743a85)
+- Connect a screen and wireless adapter(s) to radxa.
 
-or access to serial console, please check [here](https://wiki.radxa.com/Zero/dev/serial-console) on how to do that.
+### SD Card
+* Edit the settings files like a usb drive:
+    - Plug in your sd card to your computer and a directory called /config should mount.
+    - Inside, navigate to the scripts folder.
+      
+    - Set your desired screen resolution and refresh rate in the screen-mode file. 
+        - Format is WxH@fps -- Common values would be 1920x1080@60, 1920x1080@120. 1280x720@60, 1280x720@120. (You can do higher camera framerate than goggles are set to.)
+        - You want to set it to either the highest framerate or highest resolution the screen is capable of.
 
-Please perform the following steps.
+    - For smoother DVR playback, set the dvr-fps inside the rec-fps file to the fps at which your camera is shooting. e.g. 60, 90, 120
 
-    Step 1 - Flash the image to either your onboard emmc or a micro SD card. Connect a screen and wireless cards to your radxa.
+    - If you are using ground-based msposd, set your osd file to ground now.
 
-    Step 2 - Re-plug in your sd card to your computer and a directory called /config should mount. 
-    Inside, navigate to the scripts folder. Set your desired screen resolution and refresh rate in the screen-mode file. 
-    Format is WxH@fps -- Common values would be 1920x1080@60, 1920x1080@120. 1280x720@60, 1280x720@120. 
-    This does not need to match your camera settings, 
-        you want to set it to either the highest framerate or highest resolution the screen is capable of.
+### EMMC
+* AP Mode
+    - Default screen-mode is 1920x1080@60. Granted a compadible screen is connected (& wifi adapters)... The openIPC service will start
+    - Long-press the 40MHz_Toggle button, gpio_38, and the onboard wi-fi will enter AP mode and broadcast a wireless network called 'RadxaGroundstation' with password 'radxaopenipc'. 
+    - Connect to this network and navigate in a browser to 'radxa-zero3.local' or '192.168.4.1:5000' to enter the webUI where you can access DVR files, change groundstation settings, and change camera settings.
+    - Change the screen-mode, OSD, & rec-fps settings accordingly.
+      
+* Keyboard Setup
+    - Without wifi adapters connected (Or if connected screen is not 1080@60fps compadible...) the openIPC service will not start
+    - Connect a keyboard to the device.
+    - Follow the details in the 'Optionals' tab below regarding logging in & setting up a home network to allow for remote connection.
+    - While keyboard is connected to device, you can navigate to /config/scripts/ and edits the files accordingly. (Or do so from SSH.)
 
-    For smooth DVR playback, set the dvr-fps inside the rec-fps file to the fps at which your camera is shooting. e.g. 60, 90, 120
+* DVR Recordings
+    - DVR is saved to /media on the emmc.
+    - If you want to have onboard emmc and have videos saved to an empty sd card, mount the sd card to /media in fstab.
 
-    If you are using ground-based msposd, set your osd file to ground now.
+## Step 3: Boot the system. 
 
-    Step 3 - Boot the system. 
-    
-    If all your settings are correct and you have a wireless card attached to the usb for wfb-ng, then the openipc.service will begin.
+If all your settings are correct and you have a wireless card attached to the usb for wfb-ng, then the openipc.service will begin.
 
-note AP mode may not work the very first time you boot the system. Give the system a reboot and things will work.
-
-This image has support for AP mode on the radxa groundstation. 
-Long-press the 40MHz_Toggle button, gpio_38, and the onboard wi-fi will enter AP mode and broadcast a wireless network called 'RadxaGroundstation' with password 'radxaopenipc'. 
-Connect to this network and navigate in a browser to 'radxa-zero3.local' or '192.168.4.1:5000' to enter the webUI where you can access DVR files, change groundstation settings, and change camera settings.
+Note AP mode may not work the very first time you boot the system. Give the system a reboot and things will work.
 
 DVR is saved to the media folder in your root directory. DVR can be accessed either at /media or via the AP mode webUI.
-This image has support for groundstation-side rendering of MSPOSD over the wfb-ng tunnel. To enable this functionality, go into /config/scripts/osd and change from air to ground. You must enable the MSPOSD forwarding on the camera for this to work.
 
-## Adaptive Link
+This image has support for groundstation-side rendering of MSPOSD over the wfb-ng tunnel. To enable this functionality, go into /config/scripts/osd and change from air to ground. You must enable the MSPOSD forwarding (or GROUND osd) on the camera for this to work.
 
-/etc/txprofiles.conf contains the profiles used in the adpative link setup.
+Adjust your channel as needed.
 
-Enable in the configurator with the best camera settings, and it will adapt the signal as the rf signal decreases.
+For some reason the 40mhz radxa tunnel will connect to 20mhz camera streams.
 
-## Optionals
-
-Note: openipc.service fails without wifi adapters, unplug your adapters to be able to login to radxa:
-- Username: radxa
-- Password: radxa
-
-Changing password to radxa (for security):
-Once logged into the radxa type 'passwd' to change password for the user.
-
-
-SSH into camera:
-Use the onboard wi-fi to connect to your home network: (note - if you are running your fpv system on the 5.8ghz channels, it would be ideal to connect the onboard wifi to a 2.4ghz network to avoid any possible interference.)
-- Method 1: Enter nmtui, go down to Activate a connection and activate one of the detected wifi networks.
-- Method 2: Edit the config.txt file in /config to contain connect_wi-fi YOUR_WIFI_SSID YOUR_WIFI_PASSWORD
-To check your connection after, run nmcli and your wlan0 connection should be green. Make a note of your ip address. We will need this to ssh into the system later.
-
-
-Powering radxa from GPIO Pins:
-Power ground & pin 2/4 with a good 5v source to power from GPIO.
-
-Using power USB as host port (allows 2 wifi adapters without usb hub):
-Type in terminal restup and navigate to overlays. From there manage the overlays, and find the 'OTG to Host' port setting. Enable it and reboot radxa.
+It is possible to overclock your radxa for higher bitrate performance.
 
 ## GPIO Buttons
 - Connect a button or switch to 3.3v and physical pins 16/18 to increase/decrease your vrx channel respectively. 
@@ -125,18 +119,34 @@ Circuit wiring: +5v —> +Led- —-> 1k resistor —> pin 28 on Radxa z3w
 
 A note about the DVR recording in this image. To ease the strain on the processor, we record to to a ts file rather than mp4 or mkv. As a result, there is no "smear" effect recorded, the uncaptured frames are simply dropped. You may notice jumps in your recording where there was no frame information.
 
+## Optionals
+
+Note: openipc.service fails without wifi adapters, unplug your adapters to be able to login to radxa:
+- Username: radxa
+- Password: radxa
+
+Changing password to radxa (for security):
+Once logged into the radxa type 'passwd' to change password for the user.
+
+SSH into camera:
+Use the onboard wi-fi to connect to your home network: (note - if you are running your fpv system on the 5.8ghz channels, it would be ideal to connect the onboard wifi to a 2.4ghz network to avoid any possible interference.)
+- Method 1: Enter nmtui, go down to Activate a connection and activate one of the detected wifi networks.
+- Method 2: Edit the config.txt file in /config to contain connect_wi-fi YOUR_WIFI_SSID YOUR_WIFI_PASSWORD
+To check your connection after, run nmcli and your wlan0 connection should be green. Make a note of your ip address. We will need this to ssh into the system later.
+
+Powering radxa from GPIO Pins:
+Power ground & pin 2/4 with a good 5v source to power from GPIO.
+
+Using power USB as host port (allows 2 wifi adapters without usb hub):
+Type in terminal restup and navigate to overlays. From there manage the overlays, and find the 'OTG to Host' port setting. Enable it and reboot radxa.
+
+## About Adaptive Link
+
+This service will only trigger when enables on the camera for bidirectional link.
+
 ## Result
 
 <img src="https://github.com/user-attachments/assets/43e8552e-9d24-4d7b-9120-cd2fc08a9934" alt="drawing" width="200"/>
-
-v1.9.7 Release Notes:
-
-    Support for adaptive_link has been added. More information can be found at sickgreg/OpenIPC-Adaptive-Link
-
-    RSSI grapher has been added to the webUI.
-
-    An updated driver for the 8821au is now included.
-
 
 ## Where to buy
 
