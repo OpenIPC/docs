@@ -64,7 +64,7 @@ version: 1.9.9
 
     - If you are using ground-based msposd, set your osd file to ground now.
 
-### EMMC
+### EMMC/SD Card
 * AP Mode
     - Default screen-mode is 1920x1080@60. Granted a compadible screen is connected (& wifi adapters)... The openIPC service will start
     - Long-press the 40MHz_Toggle button, gpio_38, and the onboard wi-fi will enter AP mode and broadcast a wireless network called 'RadxaGroundstation' with password 'radxaopenipc'. 
@@ -77,9 +77,10 @@ version: 1.9.9
     - Follow the details in the 'Optionals' tab below regarding logging in & setting up a home network to allow for remote connection.
     - While keyboard is connected to device, you can navigate to /config/scripts/ and edits the files accordingly. (Or do so from SSH.)
 
-* DVR Recordings
+* EMMC DVR Recordings
     - DVR is saved to /media on the emmc.
     - If you want to have onboard emmc and have videos saved to an empty sd card, mount the sd card to /media in fstab.
+    - [See more](https://github.com/OpenIPC/sbc-groundstations/wiki/How-to-save-DVR-files-to-the-SD-card-slot-(for-emmc-only))
 
 ## Step 3: Boot the system. 
 
