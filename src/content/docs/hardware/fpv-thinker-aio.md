@@ -1,5 +1,5 @@
 ---
-title: "OpenIPC Thinker Air Unit"
+title: "FPV OpenIPC Thinker Air Unit"
 description: "OpenIPC Thinker Technical notes & installation"
 ---
 
@@ -78,10 +78,10 @@ For proper communication, connect TX to RX and RX to TX between your flight cont
 You will need to connect the black lead of the cable to the module's GND pad, the red lead to its power input (either +5V, +3.3V, VIN, or VCC), the yellow lead to the USB DP (or D+) pad, and the blue lead to the USB DM (or D-) pad.
 4. If the USB cable’s leads are colored differently, refer to the connectivity diagram below.
 For proper communication, ensure that D+ is connected to D+ and D- is connected to D- between the WiFi module and the Thinker.
-  
+
 #### Replacing The Camera Module
 
-1. Your Thinker AIO unit comes with an IMX335 camera module pre-installed.**If you do not intend to replace the camera module with a different model, you can skip the remainder of this step.**
+1. Your Thinker AIO unit comes with an IMX335 camera module pre-installed. **If you do not intend to replace the camera module with a different model, you can skip the remainder of this step.**
 2. To replace the camera module, start by removing the aluminium heat sink. Unscrew the 4 screws securing the heat sink, then gently separate it from the circuit board.
 (Do not remove the thermal putty from the heat sink, as it does not need to be replaced when reseating the heat sink and cannot be substituted with thermal paste.)
 3. Carefully disconnect the old camera module from the unit and attach the replacement module. Then, reposition the heat sink and secure it to the circuit board by fastening the mounting screws.
@@ -98,26 +98,26 @@ For proper communication, ensure that D+ is connected to D+ and D- is connected 
 
 | Pin Name    | Dir  | Description                                                    |
 |-------------|------|----------------------------------------------------------------|
-| **RJ45 / UART0 Header**                                                             |
+| **RJ45 / UART0 Header**                                                         | | |
 | UART0 RX    | In   | UART0 receive line                                             |
 | UART0 TX    | Out  | UART0 transmit line                                            |
 | RJ45 TX+    | Out  | Ethernet TX+                                                   |
 | RJ45 TX-    | Out  | Ethernet TX-                                                   |
 | RJ45 RX+    | In   | Ethernet RX+                                                   |
 | RJ45 RX-    | In   | Ethernet RX-                                                   |
-| **USB Header**                                                                      |
+| **USB Header**                                                                  | | |
 | Vd          | Out  | Ext. WiFi Module Power output                                  |
 | DM          | I/O  | Ext. WiFi Module USB Data-                                     |
 | DP          | I/O  | Ext. WiFi Module USB Data+                                     |
 | GND         | —    | Ground                                                         |
-| **Power / UART2 Header**                                                            |
+| **Power / UART2 Header**                                                        | | |
 | Vcc         | In   | Power input                                                    |
 | Vcc         | In   | Power input (duplicate pin, join wires)                        |
 | RX          | In   | UART2 receive line (to FC)                                     |
 | TX          | Out  | UART2 transmit line (to FC)                                    |
 | GND         | —    | Ground                                                         |
 | GND         | —    | Ground (duplicate pin, join wires)                             |
-| **UART1 Solder Pads**                                                               |
+| **UART1 Solder Pads**                                                           | | |
 | RX          | In   | UART1 receive line                                             |
 | TX          | Out  | UART1 transmit line                                            |
 
