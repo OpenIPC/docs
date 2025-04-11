@@ -1,0 +1,15 @@
+---
+const { lightSrc, darkSrc, alt } = Astro.props;
+---
+
+<span class="theme-image">
+  <img class="light" src={lightSrc} alt={alt} />
+  <img class="dark" src={darkSrc} alt={alt} />
+</span>
+
+<style>
+  .theme-image { position: relative }
+  .theme-image .dark { display: none }
+  :global([data-theme="dark"]) .theme-image .light { display: none }
+  :global([data-theme="dark"]) .theme-image .dark { display: block }
+</style>
