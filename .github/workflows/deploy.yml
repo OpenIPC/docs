@@ -23,7 +23,7 @@ jobs:
       - name: Enable Corepack before setting up Node
         run: corepack enable
       - name: Install, build, and upload your site
-        uses: withastro/action@v1
+        uses: withastro/action@v4
         with:
           path: . # The root location of your Astro project inside the repository. (optional)
           node-version: 18 # The specific version of Node that should be used to build your site. Defaults to 18. (optional)
@@ -36,8 +36,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Upload tests output
-        uses: actions/upload-artifact@v4
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
