@@ -1,0 +1,62 @@
+---
+title: "RTL8812EU"
+description: "RTL8812EU documentation page for OpenIPC wiki"
+---
+
+RTL8812EU is new, cheap, widely used WiFi chip. Which can be found on wide variety of WiFi adapters.
+This WiFi chip was released not a long ago, driver capabilities are limited for now, so 5MHz, 10MHz, 20MHz transmit modes is supported right now. On this page you can find information about known WiFi adapters with this chip.
+Please read general info about WiFi adapters here.
+
+## BL-M8812EU2
+LB-LINK BL-M8812EU2 is cheap, powerful WiFi adapter, which can be found on [Runcam WiFiLink 1](/hardware/runcam/vtx/runcam-wifilink-v1/).
+### Layout
+Top view
+![image](/src/assets/images/bl-m8812eu2-top.png)
+
+Bottom view (with pin numbers)
+<ThemeImage
+  lightSrc="/src/assets/images/bl-m8812eu2-bottom-light.png"
+  darkSrc="/src/assets/images/bl-m8812eu2-bottom-dark.png"
+  alt="WiFi adapter image"
+/>
+
+### Pinout
+| Pin number  | Function        |
+|:-----------:|:---------------:|
+| 1           | GND             |
+| 2           | USB2.0 D+       |
+| 3           | USB2.0 D-       |
+| 4           | GND             |
+| 5           | RESET           |
+| 6           | 5v power input  |
+| 7           | 5v power input  |
+| 8           | GND             |
+
+### Specifications
+| Host interface      | USB 2.0  |
+|:-------------------:|:--------:|
+| Power Supply        | DC 5.0V +-0.25V @ 1800mA (MAX) |
+| Antenna connection  | IPEX x2                        |
+| Power output        | ≤29dBm(≤800mW)                 |
+| Supported modes     | 5MHz, 10MHz, 20MHz, 40MHz(receive only)                     |
+
+## Runcam custom RTL8812EU
+Runcam custom RTL8812EU is custom adapter made by Runcam for their devices, such as [WiFiLink 2](/hardware/runcam/vtx/runcam-wifilink-v2/) and [WiFiLink-RX](/hardware/runcam/vrx/runcam-wifilink-rx/).
+### Layout
+<ThemeImage
+  lightSrc="/src/assets/images/rtl8812eu-custom-runcam-top-light.png"
+  darkSrc="/src/assets/images/rtl8812eu-custom-runcam-top-dark.png"
+  alt="Motherboard up image"
+/>
+
+### Pinout
+On photo above.
+
+### Specifications
+| Host interface      | USB 2.0  |
+|:-------------------:|:--------:|
+| Power Supply        | DC 5.0V |
+| Antenna connection  | IPEX x2                        |
+| Power output        | ≤28dBm(FCC), ≤20dBm(CE) / ≤630mW(FCC), ≤100mW(CE)                 |
+| Supported modes     | 5MHz, 10MHz, 20MHz, 40MHz(receive only)                  |
+
