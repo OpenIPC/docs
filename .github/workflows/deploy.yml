@@ -18,8 +18,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Upload tests output
-        uses: actions/upload-artifact@v4
       - name: Checkout your repository using git
         uses: actions/checkout@v4
       - name: Enable Corepack before setting up Node
@@ -29,8 +27,7 @@ jobs:
         with:
           path: . # The root location of your Astro project inside the repository. (optional)
           node-version: 18 # The specific version of Node that should be used to build your site. Defaults to 18. (optional)
-          package-manager: yarn@latest # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
-                
+          package-manager: yarn@latest # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)                
 
   deploy:
     needs: build
@@ -39,6 +36,8 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Upload tests output
+        uses: actions/upload-artifact@v4
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
