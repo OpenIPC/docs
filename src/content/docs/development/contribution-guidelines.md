@@ -85,9 +85,19 @@ This guide will walk you through the new feature introduced in the latest releas
 For more details, check the [official documentation](https://docs.openipc.org).
 
 This is an image [Example Image](../../../images/example-image.png)
+This is an image with unreadable text in a dark theme 
+(changes the image depending on the selected theme)
+<ThemeImage
+  lightSrc="/src/assets/images/example-image-light.png"
+  darkSrc="/src/assets/images/example-image-dark.png"
+  alt="Example image"
+/>
 ```
 :::caution
-Please place your image in `/src/assets/images`so that you can use it like this `[Example Image](../../../images/example-image.png)`
+Please place your image in `/src/assets/images`so that you can use it like this `[Example Image](/src/assets/images/example-image.png)` while using `yarn dev`. Before PR request add `https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main` before every image like this `[Example Image](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/example-image.png)`
+:::
+:::caution
+To make ThemeImage work, add `import ThemeImage from '/src/components/ThemeImage.astro'` right after Frontmatter. If you forget to do this, `yarn dev` won't see any problems, but the site won't work, so do a `yarn build` before PR to check if everything is ok.
 :::
 
 ### 7. Add Your Page to the Sidebar Navigation (If Required)
