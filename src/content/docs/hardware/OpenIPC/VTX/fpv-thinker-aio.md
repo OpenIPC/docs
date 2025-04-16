@@ -12,7 +12,7 @@ Two variants of the unit are available:
 
 [^1]: RTL8731BU, typical peak TX power is 50mW @ 5G, 125mW @ 2.4G
 
-![image: Thinker Air Unit Kit](/src/assets/images/aio-thinker/thinker-webshop-photo.jpg "Thinker Air Unit Kit")
+![image: Thinker Air Unit Kit](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/aio-thinker/thinker-webshop-photo.jpg "Thinker Air Unit Kit")
 
 ### Specifications
 
@@ -94,7 +94,7 @@ For proper communication, ensure that D+ is connected to D+ and D- is connected 
 
 #### System Connectivity & Physical Specifications
 
-![image: Thinker Connectivity & User-Accessible Components](/src/assets/images/aio-thinker/thinker-connectivity.png "Thinker Connectivity & User-Accessible Components")
+![image: Thinker Connectivity & User-Accessible Components](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/aio-thinker/thinker-connectivity.png "Thinker Connectivity & User-Accessible Components")
 
 | Pin Name    | Dir  | Description                                                    |
 |-------------|------|----------------------------------------------------------------|
@@ -121,7 +121,7 @@ For proper communication, ensure that D+ is connected to D+ and D- is connected 
 | RX          | In   | UART1 receive line                                             |
 | TX          | Out  | UART1 transmit line                                            |
 
-![image: Thinker PCB And Heats Sink Dimensions](/src/assets/images/aio-thinker/thinker-dimensions.png "Thinker PCB And Heat Sink Dimensions")
+![image: Thinker PCB And Heats Sink Dimensions](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/aio-thinker/thinker-dimensions.png "Thinker PCB And Heat Sink Dimensions")
 
 #### *Installation Tips and Precautions*
 
@@ -176,7 +176,7 @@ There are several ways to update the firmware on your Thinker Air Unit, but the 
 
 The latest standard firmware can be downloaded [here](https://github.com/OpenIPC/builder/releases/download/latest/ssc338q_fpv_openipc-thinker-aio-nor.tgz). This version (`ssc338q_fpv_openipc-thinker-aio-nor`) includes drivers for **RTL8812AU** and **RTL873xBU** WiFi modules.
 
-If you're using an **RTL8812EU** module, use [this alternate firmware](https://github.com/OpenIPC/builder/releases/download/latest/ssc338q_fpv_openipc-urllc-aio-nor.tgz)  (`ssc338q_fpv_openipc-urllc-aio-nor`).
+If you're using an [**RTL8812EU**](/use-cases/fpv/net-cards/rtl8812eu) module, use [this alternate firmware](https://github.com/OpenIPC/builder/releases/download/latest/ssc338q_fpv_openipc-urllc-aio-nor.tgz)  (`ssc338q_fpv_openipc-urllc-aio-nor`).
 
 #### Advanced Configuration
 
