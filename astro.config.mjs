@@ -81,7 +81,7 @@ export default defineConfig({
 					label: "Software",
 					badge: { text: "WIP", variant: "caution" },
 					autogenerate: {
-						directory: "/hardware",
+						directory: "/software",
 					},
 				},
 				{
