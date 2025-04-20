@@ -9,7 +9,7 @@ This is a guide on how to flash the Runcam VRX's internal EMMC memory with Ruby 
 
 1. Download the firmware from https://rubyfpv.com/downloads.php
 
-![RuncamVRX1](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/RuncamVRX1.jpg)
+![RuncamVRX1](https://raw.githubusercontent.com/MattsCheapRC/docs/blob/main/src/assets/images/RuncamVRX1.jpg)
 
 
 2. You will need RKDevtool and the driver. You can get them here: https://chipsee.com/docs/PCs/ARM/RK3568/Manuals/Software/Buildroot_Linux_Qt_5_15.html?srsltid=AfmBOoqwVNDxG6CyfUQU13LUY4l1JzBCPZu-VdtFjQS_MgFvvfeG2lgK
