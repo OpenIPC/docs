@@ -4,7 +4,7 @@ description: "Here is how to install alink on your Runcam VTX"
 ---
 import ThemeImage from '/src/components/ThemeImage.astro'
 
-**WARNING: Adaptive link is an experimental feature that requires heavy testing by the user themselves.**
+:::caution Adaptive link is an experimental feature that requires heavy testing by the user themselves. :::
 
 
 **What is adaptive link (alink)?**
@@ -24,17 +24,27 @@ Detailed and technical information can be found here: https://github.com/OpenIPC
  
 2. You will then need to download the app WinSCP from the internet.
 
-3. Make sure file protocol is set to SCP, plug in your VTX to the LAN port on your computer and enter the IP address to connect. By default this is 192.168.1.10.
+3. Make sure file protocol is set to SCP, plug in your VTX to the LAN port on your computer and enter the IP address to connect. By default this is 192.168.1.10
+
+ ![runcamalink1](https://raw.githubusercontent.com/MattsCheapRC/docs/refs/heads/main/src/assets/images/runcamalink1.jpg)
 
 4. In the pop-up dialog box enter the username "root" and the password "12345".
 
+![runcamalink2](https://raw.githubusercontent.com/MattsCheapRC/docs/refs/heads/main/src/assets/images/runcamalink2.jpg)
+
 5. Navigate to the etc folder in the vtx.
+
+![runcamalink3](https://raw.githubusercontent.com/MattsCheapRC/docs/refs/heads/main/src/assets/images/runcamalink3.jpg)
 
 6. In the etc folder open alink.conf.
 
 7. Here you can change your OSD settings for alink (this will display information at the top for testing purposes such as signal strength, bitrate, VTX temp and CPU load). You can also change the text size.
 
+![runcamalink5](https://raw.githubusercontent.com/MattsCheapRC/docs/refs/heads/main/src/assets/images/runcamalink5.jpg)
+
 8. Next you need to go into txprofiles.conf here is where you will enter the tx profile you actually want to use. What settings will be set based on signal strength.
+
+![runcamalink6](https://raw.githubusercontent.com/MattsCheapRC/docs/refs/heads/main/src/assets/images/runcamalink6.jpg)
    
 9. This part will require testing on the part of the user who wishes to use alink. Right now as of April 2025 there are no "perfect" settings for the Runcam WifiLink. A good start is Greg's alink profiles here: https://github.com/OpenIPC/adaptive-link/tree/main/txprofiles
 
