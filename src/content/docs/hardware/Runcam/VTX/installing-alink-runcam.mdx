@@ -1,0 +1,44 @@
+---
+title: "How to install bidirectional adaptive link on Runcam VTX"
+description: "Here is how to install alink on your Runcam VTX"
+---
+import ThemeImage from '/src/components/ThemeImage.astro'
+
+**WARNING: Adaptive link is an experimental feature that requires heavy testing by the user themselves.**
+
+
+**What is adaptive link (alink)?**
+
+A wireless link can handle higher data-rates over short distances with strong signal than long distances and weak signal conditions.
+By default OpenIPC WFB-ng will be set to 4Mbps. The user is able to select what ever bitrate they wish. But not all bitrates are suitable 
+for every signal strength as range increases or drones go behind objects that block signal.
+
+Without getting into too much detail this means we can run high bitrates with good signal strength and low bitrates with low signal strength 
+instead of having to just choose one bitrate and stick to it.
+
+Detailed and technical information can be found here: https://github.com/OpenIPC/adaptive-link
+
+**How to install alink on Runcam WifiLink VTX**
+
+1. First update your VTX to the latest firmware. The factory firmware as of writing this guide in April 2025 does not come preinstalled with alink.
+ 
+2. You will then need to download the app WinSCP from the internet.
+
+3. Make sure file protocol is set to SCP, plug in your VTX to the LAN port on your computer and enter the IP address to connect. By default this is 192.168.1.10.
+
+4. In the pop-up dialog box enter the username "root" and the password "12345".
+
+5. Navigate to the etc folder in the vtx.
+
+6. In the etc folder open alink.conf.
+
+7. Here you can change your OSD settings for alink (this will display information at the top for testing purposes such as signal strength, bitrate, VTX temp and CPU load). You can also change the text size.
+
+8. Next you need to go into txprofiles.conf here is where you will enter the tx profile you actually want to use. What settings will be set based on signal strength.
+   
+9. This part will require testing on the part of the user who wishes to use alink. Right now as of April 2025 there are no "perfect" settings for the Runcam WifiLink. A good start is Greg's alink profiles here: https://github.com/OpenIPC/adaptive-link/tree/main/txprofiles
+
+10. Open up rc.local and paste alink_drone & before exit 0.  
+
+alink is now ready to go.
+
