@@ -46,16 +46,20 @@ export default defineConfig({
 				},
 				{
 					label: "Use Cases",
+					
 					items: [
 						{
 							label: "FPV (First Person View)",
+							collapsed: true,
 							autogenerate: {
+							collapsed: true,
 								directory: "/use-cases/fpv",
 							},
 							badge: { text: "WIP", variant: "caution" },
 						},
 						{
 							label: "Home Automation",
+							collapsed: true,
 							autogenerate: {
 								directory: "/use-cases/home-automation",
 							},
@@ -63,6 +67,7 @@ export default defineConfig({
 						},
 						{
 							label: "Video Surveillance",
+							collapsed: true,
 							autogenerate: {
 								directory: "/use-cases/video-surveillance",
 							},
@@ -74,11 +79,13 @@ export default defineConfig({
 					label: "Hardware",
 					badge: { text: "WIP", variant: "caution" },
 					autogenerate: {
+					collapsed: true,
 						directory: "/hardware",
 					},
 				},
 				{
 					label: "Software",
+					
 					badge: { text: "WIP", variant: "caution" },
 					autogenerate: {
 						directory: "/software",
@@ -86,6 +93,7 @@ export default defineConfig({
 				},
 				{
 					label: "Development",
+					
 					items: [
 						{
 							label: "Contribution Guidelines",
@@ -105,6 +113,7 @@ export default defineConfig({
 				},
 				{
 					label: "Resources",
+					
 					items: [
 						{
 							label: "Frequently Asked Questions",
@@ -120,6 +129,7 @@ export default defineConfig({
 				},
 				{
 					label: "Reference",
+					
 					autogenerate: {
 						directory: "reference",
 					},
