@@ -28,7 +28,12 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: "Getting Started",
+					collapsed: true,
 					items: [
+					    {
+					        label: "Homepage",
+					        link: "/getting-started/homepage",
+					    },
 						{
 							label: "About the Project",
 							link: "/getting-started/introduction/",
@@ -46,7 +51,7 @@ export default defineConfig({
 				},
 				{
 					label: "Use Cases",
-					
+					collapsed: true,
 					items: [
 						{
 							label: "FPV (First Person View)",
@@ -77,6 +82,7 @@ export default defineConfig({
 				},
 				{
 					label: "Hardware",
+					collapsed: true,
 					badge: { text: "WIP", variant: "caution" },
 					autogenerate: {
 					collapsed: true,
@@ -85,7 +91,7 @@ export default defineConfig({
 				},
 				{
 					label: "Software",
-					
+					collapsed: true,
 					badge: { text: "WIP", variant: "caution" },
 					autogenerate: {
 						directory: "/software",
@@ -93,7 +99,7 @@ export default defineConfig({
 				},
 				{
 					label: "Development",
-					
+					collapsed: true,
 					items: [
 						{
 							label: "Contribution Guidelines",
@@ -113,7 +119,7 @@ export default defineConfig({
 				},
 				{
 					label: "Resources",
-					
+					collapsed: true,
 					items: [
 						{
 							label: "Frequently Asked Questions",
@@ -129,8 +135,9 @@ export default defineConfig({
 				},
 				{
 					label: "Reference",
-					
+					collapsed: true,
 					autogenerate: {
+					collapsed: true,
 						directory: "reference",
 					},
 					badge: { text: "WIP", variant: "caution" },
@@ -142,5 +149,8 @@ export default defineConfig({
 			],
 		}),
 		tailwind({ applyBaseStyles: false }),
-	]
+	],
+	redirects: {
+    "/": "/getting-started/homepage",
+  }
 });
