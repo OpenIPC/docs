@@ -89,3 +89,78 @@ For advanced setup guide please read this [article](/use-cases/fpv/advanced-setu
     - Power cycle your android device and VTX.
 ### Basic setup summary
 After basic setup you will get cheapest modern digital FPV system, but you`ll not see OSD, to setup OSD you need to read [advanced setup article](/use-cases/fpv/advanced-setup/). If you want to read instruction from manufacturer, please read [this](https://store-m8o52p.mybigcommerce.com/product_images/img_runcam_wifilink/runcam-wifilink-manual-en.pdf).
+
+## How to flash UART to Runcam v1 
+
+### You will need
+- FTDI FT232RL
+- miniUSB - USB cable
+- A few wires
+
+### Software 
+- Download and install **Putty**
+- Download and install **Tftpd64**
+
+---
+
+### Steps to flash the firmware
+
+1. Open **CMD** or the **Windows Console**, enter the command:
+   ```bash
+   ipconfig
+   ```
+   ![image](/src/assets/images/runcamv1ip.png)
+   and find your **IPv4 address**.
+
+2. Start **Tftpd64**.
+![image](/src/assets/images/tftpd.png)
+
+   [Instruction page link](https://openipc.org/cameras/vendors/sigmastar/socs/ssc338q?locale=en)
+
+3. Generate a **MAC address**, and in the **TFTP server** field enter the previously found IP address (your PC IP).
+
+4. Click **Generate Instructions**.
+
+5. Make sure you have:
+![image](/src/assets/images/ftdi.png)
+   - **RX** connected to **TX**,  
+   - **TX** connected to **RX**,  
+   - **GND** to **GND** on the board.
+![image](/src/assets/images/runcamv1uart.png)
+6. Solder the FTDI outputs to the UART pins.
+
+7. Open **Device Manager**, insert the USB FTDI, and see which port it is (e.g., **COM3** or another).
+
+8. After you know the **COM port**, open the Windows console and enter:
+   ```bash
+   putty.exe -serial COM3 -sercfg 115200,8,n,1,N
+   ```
+
+9. The **Putty** window will open.
+
+10. **Connect power** to both the USB FTDI and the Runcam v1.
+
+11. If you did everything correctly, when you turn on the power, you should see the boot process in the open **Putty** window.
+
+![image](/src/assets/images/runcamv1putty.png)
+
+12. Return to the site with instructions:  
+    [https://openipc.org/cameras/vendors/sigmastar/socs/ssc338q](https://openipc.org/cameras/vendors/sigmastar/socs/ssc338q)
+   
+
+13. Open the folder where **Tftpd64** is installed and place the **.bin firmware file** there.  
+![image](/src/assets/images/runcamv1tftp1.png)
+
+14. Follow the commands one by one as shown on the site.
+
+![image](/src/assets/images/runcamv1firmware.png)
+
+15. **If your download fails after the third command**, check the TFTP server settings.
+
+16. **IP address example**:
+    - If your router is in the `192.168.0.1` subnet:
+      - Set the first device IP to `192.168.0.123`
+      - Set your computer IP to `192.168.0.40`
+      (this is just an example)
+
+17. After successful flashing, you can flash **Wifilink firmware** through any [Multiconfigurator](https://github.com/OpenIPC/openipc-configurator/releases/).
