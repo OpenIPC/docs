@@ -1,0 +1,40 @@
+---
+title: "RTL873xBU"
+description: "RTL873xBU documentation page for OpenIPC wiki"
+---
+import ThemeImage from '/src/components/ThemeImage.astro'
+
+RTL8731BU and RTL8733BU are very small WiFi chips, so RTL873xBU-based net cards are really small, because of that they are extremely popular for tinywhoops. But RTL873xBU-based net cards **AREN'T SUITABLE FOR LONG RANGE AND RX USE**. 5MHz, 10MHz, 20MHz, 40MHz modes are supported.
+:::caution
+40MHz mode supported by driver, **your** net card might not support this mode. Please contact seller before buying net card. Please add your net card to list of RTL873xBU-based NICs below.
+:::
+:::caution
+If you don't receive image after switching on 40MHz mode, please read this [article](/use-cases/fpv/unbrick-eu-bu/) to fix your issue.
+:::
+
+
+## BL-M8731BU3
+
+### Layout
+Top
+![image](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/bl-m8731bu3-top.png)
+Bottom
+![image](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/bl-m8731bu3-bottom.png)
+
+### Pinout
+![image](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/bl-m8731bu3-pinout-light.png)
+| Pin number  | Function        |
+|:-----------:|:---------------:|
+| 1           | GND             |
+| 2           | NC              |
+| 3           | VDD 3.3V        |
+| 4           | DM-             |
+| 5           | DP+             |
+| 6           | GND             |
+### Specifications
+| Host interface      | USB 2.0  |
+|:-------------------:|:--------:|
+| Power Supply        | DC 3.3V                        |
+| Antenna connection  | IPEX                           |
+| Power output        | ≤17dBm(≤50mW)@5G   ≤21dBm(≤125mW)@2.4G          |
+| Supported modes     | 5MHz, 10MHz, 20MHz, 40MHz                    |
