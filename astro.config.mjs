@@ -28,7 +28,12 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: "Getting Started",
+					collapsed: true,
 					items: [
+					    {
+					        label: "Homepage",
+					        link: "/getting-started/homepage",
+					    },
 						{
 							label: "About the Project",
 							link: "/getting-started/introduction/",
@@ -46,16 +51,20 @@ export default defineConfig({
 				},
 				{
 					label: "Use Cases",
+					collapsed: true,
 					items: [
 						{
 							label: "FPV (First Person View)",
+							collapsed: true,
 							autogenerate: {
+							collapsed: true,
 								directory: "/use-cases/fpv",
 							},
 							badge: { text: "WIP", variant: "caution" },
 						},
 						{
 							label: "Home Automation",
+							collapsed: true,
 							autogenerate: {
 								directory: "/use-cases/home-automation",
 							},
@@ -63,6 +72,7 @@ export default defineConfig({
 						},
 						{
 							label: "Video Surveillance",
+							collapsed: true,
 							autogenerate: {
 								directory: "/use-cases/video-surveillance",
 							},
@@ -72,13 +82,16 @@ export default defineConfig({
 				},
 				{
 					label: "Hardware",
+					collapsed: true,
 					badge: { text: "WIP", variant: "caution" },
 					autogenerate: {
+					collapsed: true,
 						directory: "/hardware",
 					},
 				},
 				{
 					label: "Software",
+					collapsed: true,
 					badge: { text: "WIP", variant: "caution" },
 					autogenerate: {
 						directory: "/software",
@@ -86,6 +99,7 @@ export default defineConfig({
 				},
 				{
 					label: "Development",
+					collapsed: true,
 					items: [
 						{
 							label: "Contribution Guidelines",
@@ -105,6 +119,7 @@ export default defineConfig({
 				},
 				{
 					label: "Resources",
+					collapsed: true,
 					items: [
 						{
 							label: "Frequently Asked Questions",
@@ -120,7 +135,9 @@ export default defineConfig({
 				},
 				{
 					label: "Reference",
+					collapsed: true,
 					autogenerate: {
+					collapsed: true,
 						directory: "reference",
 					},
 					badge: { text: "WIP", variant: "caution" },
@@ -132,5 +149,8 @@ export default defineConfig({
 			],
 		}),
 		tailwind({ applyBaseStyles: false }),
-	]
+	],
+	redirects: {
+    "/": "/getting-started/homepage",
+  }
 });
