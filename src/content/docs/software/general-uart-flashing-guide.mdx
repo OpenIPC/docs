@@ -1,0 +1,133 @@
+---
+title: "General UART Flashing Guide"
+description: "Universal guide for flashing firmware over UART using FTDI and TFTP methods."
+---
+
+import ThemeImage from '/src/components/ThemeImage.astro'
+
+## How to flash UART to Runcam v1 
+
+### You will need
+
+- FTDI FT232RL  
+- miniUSB - USB cable  
+- A few wires
+
+### Software
+
+- Download and install [**Putty**](https://www.putty.org/)
+- Download and install [**Tftpd64**](https://tftpd32.jounin.net/)
+
+---
+
+### Steps to flash the firmware
+
+1. Open **CMD** or the **Windows Console**, enter the command:
+
+   ```bash
+   ipconfig
+   ```
+
+   <ThemeImage 
+     lightSrc="/src/assets/images/runcamv1ip.png"
+     darkSrc="/src/assets/images/runcamv1ip.png"
+     alt="ipconfig output"
+   />
+
+   Locate your **IPv4 address**.
+
+2. Start **Tftpd64**:
+
+   <ThemeImage 
+     lightSrc="/src/assets/images/tftpd.png"
+     darkSrc="/src/assets/images/tftpd.png"
+     alt="Tftpd64"
+   />
+
+   [Instruction page link](https://openipc.org/cameras/vendors/sigmastar/socs/ssc338q?locale=en)
+
+3. Generate a **MAC address**, and enter your IPv4 as the **TFTP server** address.
+
+4. Click **Generate Instructions**.
+
+5. Check your FTDI wiring:
+
+   <ThemeImage
+     lightSrc="/src/assets/images/ftdi.png"
+     darkSrc="/src/assets/images/ftdi.png"
+     alt="FTDI wiring"
+   />
+
+   - **RX** → **TX**  
+   - **TX** → **RX**  
+   - **GND** → **GND**
+
+:::danger
+Double-check the UART wiring before powering the board. Incorrect connections may damage components.
+:::
+
+:::tip
+Identify the appropriate UART interface as specified in the hardware documentation.
+:::
+
+6. Solder the FTDI outputs to the UART pads.
+
+7. Open **Device Manager**, insert the USB FTDI, and find its **COM port**.
+
+8. Open Putty with the correct port:
+
+   ```bash
+   putty.exe -serial COM3 -sercfg 115200,8,n,1,N
+   ```
+
+9. The **Putty** window will open.
+
+10. Connect power to both the **FTDI USB** and **Runcam v1**.
+
+:::tip
+Always open Putty **before** powering the device to capture the boot log.
+:::
+
+11. If everything is connected correctly, boot logs will appear in the Putty terminal.
+
+   <ThemeImage 
+     lightSrc="/src/assets/images/runcamv1putty.png"
+     darkSrc="/src/assets/images/runcamv1putty.png"
+     alt="Putty UART output"
+   />
+
+<br />
+
+12. Go to: [https://openipc.org/cameras/vendors/sigmastar/socs/ssc338q](https://openipc.org/cameras/vendors/sigmastar/socs/ssc338q)
+
+13. Place the downloaded firmware `.bin` into the TFTP folder:
+
+   <ThemeImage 
+     lightSrc="/src/assets/images/runcamv1tftp1.png"
+     darkSrc="/src/assets/images/runcamv1tftp1.png"
+     alt="TFTP firmware file"
+   />
+
+   <br />
+
+14. Follow the instructions **line by line** (don’t paste multiple lines at once):
+
+   <ThemeImage 
+     lightSrc="/src/assets/images/runcamv1firmware.png"
+     darkSrc="/src/assets/images/runcamv1firmware.png"
+     alt="Firmware flashing command"
+   />
+
+<br />
+
+15. **If your download fails after the third command**, check the TFTP server settings.
+
+:::tip
+Make sure no firewall or antivirus is blocking TFTP server communication.
+:::
+
+16. **Example IP setup (if your router is on 192.168.0.1):**
+   - Device IP: `192.168.0.123`
+   - PC IP: `192.168.0.40`
+
+17. Once UART bootloader works, you can flash **Wifilink firmware** via the [Multiconfigurator](https://github.com/OpenIPC/openipc-configurator/releases/)
