@@ -1,0 +1,47 @@
+---
+title: "RTL8812AU"
+description: "RTL8812AU documentation page for OpenIPC wiki"
+---
+import ThemeImage from '/src/components/ThemeImage.astro'
+
+The RTL8812AU is an old, expensive, but proven WiFi chip that can be found in a lot of network cards. AU based NICs have exceptional community support so that 5Mhz, 10MHz, 20MHz and 40MHz can receive and transmit! So AU based equipment can achieve exceptional bitrates, as for example on 21-04-2025 52Mbps was achieved in total (36Mbps video).  On this page you can find information about known WiFi adapters with this chip.
+
+## BL-R8812AF1
+LB-LINK BL-R8812AF1 is small size, low power net card. It is very popular choice for toothpick builds. This net card can be found on EMAX Wyvern Link VTX Alpha 100mW.
+![image](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/bl-r8812af1-top.png)
+<ThemeImage
+  lightSrc="https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/bl-r8812af1-bottom-light.png"
+  darkSrc="https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/bl-r8812af1-bottom-dark.png"
+  alt="WiFi adapter image"
+/>
+### Pinout
+| Pin number  | Function        |
+|:-----------:|:---------------:|
+| 1           | PDN             |
+| 2           | VDD(3.3V)       |
+| 3           | DM-             |
+| 4           | DP+             |
+| 5           | GND             |
+| 6           | LED             |
+
+### Specifications
+| Host interface      | USB 2.0  |
+|:-------------------:|:--------:|
+| Power Supply        | DC 3.3V +-10%                  |
+| Antenna connection  | IPEX x2                        |
+| Power output        | ≤20dBm(≤100mW)                 |
+| Supported modes     | 5MHz, 10MHz, 20MHz, 40MHz      |
+
+## WiFiLink-G set net card
+
+This is net card that you can get when buying WiFiLink-G set. It is low power so it is popular for Android GS use.
+
+![image](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/rtl8812au-wifilink-g-adapter.png)
+### Specifications
+| Host interface      | USB 3.0  |
+|:-------------------:|:--------:|
+| Power Supply        | DC 5V                          |
+| Antenna connection  | RP-SMA x2                      |
+| Power output        | NA                             |
+| Supported modes     | 5MHz, 10MHz, 20MHz, 40MHz      |
+

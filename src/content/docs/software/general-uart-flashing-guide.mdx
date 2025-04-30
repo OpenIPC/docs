@@ -1,0 +1,103 @@
+---
+title: "General UART Flashing Guide"
+description: "Universal guide for flashing firmware over UART using FTDI and TFTP methods."
+---
+
+## How to Flash Firmware via UART
+
+### You will need
+
+- FTDI FT232RL  
+- miniUSB - USB cable  
+- A few wires
+
+### Software
+
+- Download and install [**Putty**](https://www.putty.org/)
+- Download and install [**Tftpd64**](https://tftpd32.jounin.net/)
+
+---
+
+### Steps to flash the firmware
+
+1. Open **CMD** or the **Windows Console**, enter the command:
+
+   ```bash
+   ipconfig
+   ```
+
+   ![ipconfig output](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/runcamv1ip.png)
+
+   Locate your **IPv4 address**.
+
+2. Start **Tftpd64**:
+
+   ![Tftpd64](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/tftpd.png)
+
+   [Instruction page link](https://openipc.org/cameras/vendors/sigmastar/socs/ssc338q?locale=en)
+
+3. Generate a **MAC address**, and enter your IPv4 as the **TFTP server** address.
+
+4. Click **Generate Instructions**.
+
+5. Check your FTDI wiring:
+
+   ![FTDI wiring](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/ftdi.png)
+
+   - **RX** → **TX**  
+   - **TX** → **RX**  
+   - **GND** → **GND**
+
+:::danger
+Double-check the UART wiring before powering the board. Incorrect connections may damage components.
+:::
+
+:::tip
+Identify the appropriate UART interface as specified in the hardware documentation.
+:::
+
+6. Solder the FTDI outputs to the UART pads.
+
+7. Open **Device Manager**, insert the USB FTDI, and find its **COM port**.
+
+8. Open Putty with the correct port:
+
+   ```bash
+   putty.exe -serial COM3 -sercfg 115200,8,n,1,N
+   ```
+
+9. The **Putty** window will open.
+
+10. Connect power to both the **FTDI USB** and **Air Unit**.
+
+:::tip
+Always open Putty **before** powering the device to capture the boot log.
+:::
+
+11. If everything is connected correctly, boot logs will appear in the Putty terminal.
+
+   ![Putty UART output](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/runcamv1putty.png)
+
+12. Go to: [https://openipc.org/cameras/vendors/](https://openipc.org/cameras/vendors/)
+
+    Select the firmware that matches your device and click **"Generate an installation guide"**
+
+13. Place the downloaded firmware `.bin` into the TFTP folder:
+
+   ![TFTP firmware file](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/runcamv1tftp1.png)
+
+14. Follow the instructions **line by line** (don’t paste multiple lines at once):
+
+   ![Firmware flashing command](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/runcamv1firmware.png)
+
+15. **If your download fails after the third command**, check the TFTP server settings.
+
+:::tip
+Make sure no firewall or antivirus is blocking TFTP server communication.
+:::
+
+16. **Example IP setup (if your router is on 192.168.0.1):**
+   - Device IP: `192.168.0.123`
+   - PC IP: `192.168.0.40`
+
+17. After installing the standard OpenIPC firmware, you can effortlessly flash any compatible FPV firmware using the [Multiconfigurator](https://github.com/OpenIPC/openipc-configurator/releases/) depending on your device.
