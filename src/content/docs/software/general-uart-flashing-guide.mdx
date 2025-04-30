@@ -3,8 +3,6 @@ title: "General UART Flashing Guide"
 description: "Universal guide for flashing firmware over UART using FTDI and TFTP methods."
 ---
 
-import ThemeImage from '/src/components/ThemeImage.astro'
-
 ## How to Flash Firmware via UART
 
 ### You will need
@@ -28,21 +26,13 @@ import ThemeImage from '/src/components/ThemeImage.astro'
    ipconfig
    ```
 
-   <ThemeImage 
-     lightSrc="/src/assets/images/runcamv1ip.png"
-     darkSrc="/src/assets/images/runcamv1ip.png"
-     alt="ipconfig output"
-   />
+   ![ipconfig output](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/runcamv1ip.png)
 
    Locate your **IPv4 address**.
 
 2. Start **Tftpd64**:
 
-   <ThemeImage 
-     lightSrc="/src/assets/images/tftpd.png"
-     darkSrc="/src/assets/images/tftpd.png"
-     alt="Tftpd64"
-   />
+   ![Tftpd64](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/tftpd.png)
 
    [Instruction page link](https://openipc.org/cameras/vendors/sigmastar/socs/ssc338q?locale=en)
 
@@ -52,11 +42,7 @@ import ThemeImage from '/src/components/ThemeImage.astro'
 
 5. Check your FTDI wiring:
 
-   <ThemeImage
-     lightSrc="/src/assets/images/ftdi.png"
-     darkSrc="/src/assets/images/ftdi.png"
-     alt="FTDI wiring"
-   />
+   ![FTDI wiring](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/ftdi.png)
 
    - **RX** → **TX**  
    - **TX** → **RX**  
@@ -90,38 +76,19 @@ Always open Putty **before** powering the device to capture the boot log.
 
 11. If everything is connected correctly, boot logs will appear in the Putty terminal.
 
-   <ThemeImage 
-     lightSrc="/src/assets/images/runcamv1putty.png"
-     darkSrc="/src/assets/images/runcamv1putty.png"
-     alt="Putty UART output"
-   />
-
-<br />
+   ![Putty UART output](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/runcamv1putty.png)
 
 12. Go to: [https://openipc.org/cameras/vendors/](https://openipc.org/cameras/vendors/)
 
-Select the firmware that matches your device and click **"Generate an installation guide"** 
-
+    Select the firmware that matches your device and click **"Generate an installation guide"**
 
 13. Place the downloaded firmware `.bin` into the TFTP folder:
 
-   <ThemeImage 
-     lightSrc="/src/assets/images/runcamv1tftp1.png"
-     darkSrc="/src/assets/images/runcamv1tftp1.png"
-     alt="TFTP firmware file"
-   />
-
-   <br />
+   ![TFTP firmware file](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/runcamv1tftp1.png)
 
 14. Follow the instructions **line by line** (don’t paste multiple lines at once):
 
-   <ThemeImage 
-     lightSrc="/src/assets/images/runcamv1firmware.png"
-     darkSrc="/src/assets/images/runcamv1firmware.png"
-     alt="Firmware flashing command"
-   />
-
-<br />
+   ![Firmware flashing command](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/runcamv1firmware.png)
 
 15. **If your download fails after the third command**, check the TFTP server settings.
 
