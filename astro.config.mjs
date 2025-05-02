@@ -83,7 +83,6 @@ export default defineConfig({
 				{
 					label: "Hardware",
 					collapsed: true,
-					badge: { text: "WIP", variant: "caution" },
 					autogenerate: {
 					collapsed: true,
 						directory: "/hardware",
@@ -92,7 +91,6 @@ export default defineConfig({
 				{
 					label: "Software",
 					collapsed: true,
-					badge: { text: "WIP", variant: "caution" },
 					autogenerate: {
 						directory: "/software",
 					},
@@ -140,8 +138,6 @@ export default defineConfig({
 					collapsed: true,
 						directory: "reference",
 					},
-					badge: { text: "WIP", variant: "caution" },
-				},
 				{
 					label: "Team",
 					link: "/team/",
