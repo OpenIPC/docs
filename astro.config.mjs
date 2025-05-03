@@ -138,6 +138,7 @@ export default defineConfig({
 					collapsed: true,
 						directory: "reference",
 					},
+				},
 				{
 					label: "Team",
 					link: "/team/",
