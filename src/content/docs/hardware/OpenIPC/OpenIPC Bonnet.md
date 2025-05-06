@@ -34,14 +34,14 @@ The **OpenIPC Bonnet** is a compact expansion board designed to extend the capab
 
 ---
 
-## 📷 Front View Diagram
+## Front View Diagram
 
 > _[Insert front-facing image or wiring diagram of the OpenIPC Bonnet here]_  
 > _Label key connectors, power pads, and ports._
 
 ---
 
-## 📷 Back View Diagram
+## Back View Diagram
 
 > _[Insert rear-facing image or PCB layout of the OpenIPC Bonnet here]_  
 > _Highlight the USB hub, IMU, and DisplayPort bridge._
@@ -60,7 +60,7 @@ Deploy the Bonnet and Radxa Zero 3W in a weatherproof enclosure as a field relay
 
 ### 3. **All-in-One FPV Radio Controller**
 
-Integrate into a custom radio build running OpenIPC, with HDMI output, ELRS, and touchscreen or physical controls. Combines control and real-time video in a single device.
+Integrate into a custom RC radio build running OpenIPC, with HDMI output, ELRS, and touchscreen or physical controls. Combines control and real-time video in a single device.
 
 ### 4. **Goggles-Mounted VRX**
 
@@ -73,16 +73,18 @@ Pair the FPV goggles such as Meta quest 3 to create a lightweight, wearable FPV 
 ## Getting Started
 
 1. **Attach Antennas**  
-   Connect antennas to the Bonnet. There are 4 IPEX connectors.
+   Connect antennas to the Bonnet. ALWAYS connect the antennas before powering the bonnet. There are 4 IPEX connectors. The bonnet comes with 4 ipex to SMA cables.
 
 2. **Connect to SBC**  
    Plug the Bonnet into your SBC (Single board computer such as Radxa zero 3) using the 40 pin GPIO female port and the the flexible USB dock cable.
+   This step is optional if you plan to use the Bonnet with Android phone or Meta Quest VR headset.
 
    **Insert a microSD**
     Insert a SD card with a compatible OpenIPC image flashed on it. RubyFPV is also possible.
+   This step is optional if you plan to use the Bonnet with Android phone or Meta Quest VR headset.
 
 4. **Power Up**  
-   Connect a 2S–6S battery to the power input Wires. Use the diagrams above as a reference. It's recommended to use a jack or xt30 or xt60 connector. You will have to solder the connector yourself.
+   Connect a 2S–6S battery to the power input wires. Use the diagrams above as a reference. It's recommended to use a jack or xt30 or xt60 connector. You will have to solder the connector yourself.
    The Bonnet will regulate power to the SBC and peripherals. The bonnet has polarity protection, so even if you reverse the positive and ground, you will not break the Bonnet.
 
 ---
@@ -100,7 +102,7 @@ To use the DisplayPort output:
 
 The bridge automatically negotiates video parameters using EDID, so no special configuration is typically required. Once powered and connected properly, video should appear on the external display during boot.
 
-> 💡 Useful for attaching to a head-mounted display, small FPV monitor, or modern VR glasses.
+>  Useful for attaching to a head-mounted display, small FPV monitor, or modern VR glasses.
 
 
 ## Software Notes
