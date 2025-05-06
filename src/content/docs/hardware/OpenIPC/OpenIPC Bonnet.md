@@ -77,11 +77,11 @@ Pair the FPV goggles such as Meta quest 3 to create a lightweight, wearable FPV 
 
 2. **Connect to SBC**  
    Plug the Bonnet into your SBC (Single board computer such as Radxa zero 3) using the 40 pin GPIO female port and the the flexible USB dock cable.
-   This step is optional if you plan to use the Bonnet with Android phone or Meta Quest VR headset.
+ >  This step is optional if you plan to use the Bonnet with Android phone or Meta Quest VR headset.
 
-   **Insert a microSD**
+3. **Insert a microSD**
     Insert a SD card with a compatible OpenIPC image flashed on it. RubyFPV is also possible.
-   This step is optional if you plan to use the Bonnet with Android phone or Meta Quest VR headset.
+  > This step is optional if you plan to use the Bonnet with Android phone or Meta Quest VR headset.
 
 4. **Power Up**  
    Connect a 2S–6S battery to the power input wires. Use the diagrams above as a reference. It's recommended to use a jack or xt30 or xt60 connector. You will have to solder the connector yourself.
