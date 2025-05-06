@@ -1,0 +1,124 @@
+---
+title: OpenIPC Bonnet
+description: Hardware expansion board for Radxa Zero 3W and OpenIPC-based FPV systems.
+tags:
+  - hardware
+  - fpv
+  - ground-station
+  - expansion
+  - openipc
+---
+
+# OpenIPC Bonnet
+
+The **OpenIPC Bonnet** is a compact expansion board designed to extend the capabilities of small single-board computers—such as the Radxa Zero 3W—used in FPV, relay, and ground station systems. It integrates USB expansion, motion sensing, power management, and communication interfaces tailored for use with OpenIPC.
+
+## Features
+
+- **Wide Voltage Input**: 2S–6S Li-ion/LiPo input via high-efficiency two-way BEC.
+- **Power Outputs**:
+  - 5V and 3.3V regulated power rails.
+  - Integrated battery voltage monitoring.
+- **USB Hub**: Built-in 4-port USB 2.0 hub with stable device detection.
+- **Wireless**:
+  - Dual RTL8812AU Wi-Fi modules with 4x front-end modules (FEM) for extended range and bandwidth.
+- **Video Output**:
+  - HDMI-to-DisplayPort bridge for connecting low-latency external screens.
+- **User Interface**:
+  - 5-way joystick + tact switch for UI/OSD interaction.
+- **Sensors**:
+  - 6-axis IMU (gyroscope + accelerometer).
+- **Expansion Ports**:
+  - UART and I2C headers.
+- **Compact Design**: Optimized for drone, portable, and field-based use.
+
+---
+
+## 📷 Front View Diagram
+
+> _[Insert front-facing image or wiring diagram of the OpenIPC Bonnet here]_  
+> _Label key connectors, power pads, and ports._
+
+---
+
+## 📷 Back View Diagram
+
+> _[Insert rear-facing image or PCB layout of the OpenIPC Bonnet here]_  
+> _Highlight the USB hub, IMU, and DisplayPort bridge._
+
+---
+
+## Typical Use Cases
+
+### 1. **Portable VRX Ground Station**
+
+Build a portable FPV ground station (VRX ), with a SBC ( Single Board Computer such as Radxa zero 3 W ) .
+
+### 2. **Long-Range FPV Relay Node**
+
+Deploy the Bonnet and Radxa Zero 3W in a weatherproof enclosure as a field relay station. Perfect for bridging control and video links between drones and base stations.
+
+### 3. **All-in-One FPV Radio Controller**
+
+Integrate into a custom radio build running OpenIPC, with HDMI output, ELRS, and touchscreen or physical controls. Combines control and real-time video in a single device.
+
+### 4. **Goggles-Mounted VRX**
+
+Pair the FPV goggles such as Meta quest 3 to create a lightweight, wearable FPV monitor with onboard decoding.
+
+
+
+---
+
+## Getting Started
+
+1. **Attach Antennas**  
+   Connect antennas to the Bonnet. There are 4 IPEX connectors.
+
+2. **Connect to SBC**  
+   Plug the Bonnet into your SBC (Single board computer such as Radxa zero 3) using the 40 pin GPIO female port and the the flexible USB dock cable.
+
+   **Insert a microSD**
+    Insert a SD card with a compatible OpenIPC image flashed on it. RubyFPV is also possible.
+
+4. **Power Up**  
+   Connect a 2S–6S battery to the power input Wires. Use the diagrams above as a reference. It's recommended to use a jack or xt30 or xt60 connector. You will have to solder the connector yourself.
+   The Bonnet will regulate power to the SBC and peripherals. The bonnet has polarity protection, so even if you reverse the positive and ground, you will not break the Bonnet.
+
+---
+
+## Display Port Output
+
+The OpenIPC Bonnet includes an **HDMI-to-DisplayPort bridge**, allowing you to connect a low-latency external monitor—ideal for FPV, debugging, or touchscreen interfaces.
+
+### Connection Requirements
+
+To use the DisplayPort output:
+
+- You need a **micro HDMI to micro HDMI bridge connector** (male-to-male or an appropriate micro HDMI cable), since the Bonnet routes video output from the SBC’s HDMI through the internal bridge.
+- Ensure your monitor or display accepts **DisplayPort input** and supports **low-latency EDID** signaling.
+
+The bridge automatically negotiates video parameters using EDID, so no special configuration is typically required. Once powered and connected properly, video should appear on the external display during boot.
+
+> 💡 Useful for attaching to a head-mounted display, small FPV monitor, or modern VR glasses.
+
+
+## Software Notes
+
+- Dual Wi-Fi requires the `rtl8812au` driver (included in OpenIPC builds).
+- IMU is accessible via I2C and compatible with motion-tracking tools.
+- USB hub supports common USB peripherals. You can use it to add more WiFi adapters or add a female port for copying files in Ruby.
+
+---
+
+## Resources
+
+- [OpenIPC GitHub](https://github.com/OpenIPC)
+- [Radxa Zero 3W Specs](https://wiki.radxa.com/Zero3W)
+- [RTL8812AU Driver Source](https://github.com/aircrack-ng/rtl8812au)
+- [Bonnet in OpenIPC store](https://store.openipc.org/)
+---
+
+## Contributing
+
+Want to help expand support or test new features? Check our [Contribution Guidelines](https://docs.openipc.org/development/contribution-guidelines/) to get involved.
