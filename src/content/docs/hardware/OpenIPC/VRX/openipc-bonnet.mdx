@@ -8,8 +8,9 @@ tags:
   - expansion
   - openipc
 ---
+import ThemeImage from '/src/components/ThemeImage.astro'
 
-# OpenIPC Bonnet
+![image](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/bonnet-main-image.jpg)
 
 The **OpenIPC Bonnet** is a compact expansion board designed to extend the capabilities of small single-board computers—such as the Radxa Zero 3W—used in FPV, relay, and ground station systems. It integrates USB expansion, motion sensing, power management, and communication interfaces tailored for use with OpenIPC.
 
@@ -36,17 +37,20 @@ The **OpenIPC Bonnet** is a compact expansion board designed to extend the capab
 
 ## Front View Diagram
 
-> _[Insert front-facing image or wiring diagram of the OpenIPC Bonnet here]_  
-> _Label key connectors, power pads, and ports._
-
+<ThemeImage
+  lightSrc="https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/bonnet-top-light.jpg"
+  darkSrc="https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/bonnet-top-dark.png"
+  alt="Front"
+/>
 ---
 
 ## Back View Diagram
 
-> _[Insert rear-facing image or PCB layout of the OpenIPC Bonnet here]_  
-> _Highlight the USB hub, IMU, and DisplayPort bridge._
-
----
+<ThemeImage
+  lightSrc="https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/bonnet-bottom-light.jpg"
+  darkSrc="https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/bonnet-bottom-dark.png"
+  alt="Back"
+/>
 
 ## Typical Use Cases
 
