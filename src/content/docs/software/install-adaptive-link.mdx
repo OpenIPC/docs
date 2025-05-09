@@ -1,0 +1,149 @@
+---
+title: "Installing Adaptive Link"
+description: "Install and configure Adaptive-Link for OpenIPC to optimize your wireless connection"
+---
+---
+
+##  How Adaptive-Link Works  
+
+Wireless communication can transmit data at high speeds over short distances with a strong signal, or slowly but over longer distances with a weaker signal.  
+
+OpenIPC allows you to choose one fixed link speed and video bitrate. Default:  
+- **Bitrate:** 4 Mbps  
+- **Channel Width:** 20 MHz  
+- **MCS:** 1  
+- **FEC:** 8/12  
+- **Guard Interval:** long  
+
+This is a "universal" profile — moderate quality and average range.
+
+**Adaptive-Link** solves this by automatically selecting the best link and video profile based on signal quality (RSSI and SNR).  
+
+Strong signal = high speed and quality  
+Weak signal = long-range profile and lower bitrate  
+
+---
+
+##  How It Works  
+
+- **On the Ground Station**, `alink_gs` monitors RSSI and SNR, calculates a final "score" (1000–2000), and sends it to the drone.  
+- **On the drone**, `alink_drone` receives the score and selects the appropriate profile from `/etc/txprofiles.conf`.  
+- Profile transitions are controlled via `/etc/alink.conf`.
+
+### Example:  
+```ini
+rssi_min = -80  
+rssi_max = -40  
+snr_min = 12  
+snr_max = 36  
+```
+
+If RSSI = -60 and SNR = 20:  
+- RSSI score = 1500  
+- SNR score = 1333  
+- Final score (with 0.5/0.5 weights) ≈ 1416  
+- `alink` selects profile: `1051 - 1500`  
+
+---
+
+## Example Configurations  
+
+### `/etc/txprofiles.conf`  
+```bash
+999 - 999 long 0 8 12 1999 10 30 0,0,0,0 20 -12
+1000 - 1050 long 0 8 12 2000 10 30 0,0,0,0 20 -12
+1051 - 1500 long 1 8 12 4000 10 25 0,0,0,0 20 -12
+1501 - 1950 long 2 8 12 8000 10 20 12,6,6,12 20 -12
+1951 - 2001 short 2 8 12 9000 10 20 12,6,6,12 20 -12
+```
+:::tip
+Safe TX profiles can be found [here](https://github.com/OpenIPC/adaptive-link/tree/main/txprofiles)
+:::
+
+ :::caution
+   Set the transmission power levels in `/etc/txprofiles.conf` carefully. The default is `30`, which is safe for most adapters but may be too low for some. Adjust the power accordingly to ensure optimal performance.
+:::
+### `/etc/alink.conf`  
+```ini
+rssi_weight=0.3  
+snr_weight=0.7  
+fallback_ms=1000  
+hold_fallback_mode_s=3  
+min_between_changes_ms=150  
+hold_modes_down_s=4  
+hysteresis_percent=15  
+```
+
+---
+
+## Installation  
+
+:::tip 
+**An internet connection is required.**
+:::
+### On Drone (OpenIPC)  
+```bash
+cd /etc
+curl -L -o alink_install.sh https://raw.githubusercontent.com/OpenIPC/adaptive-link/refs/heads/main/alink_install.sh
+chmod +x alink_install.sh
+./alink_install.sh drone install
+reboot
+```
+
+Add to autostart:
+```bash
+/etc/rc.local >>  alink_drone & 
+```
+
+### On Ground Station (Radxa / Android / PC)  
+```bash
+sudo curl -L -o alink_install.sh https://raw.githubusercontent.com/OpenIPC/adaptive-link/refs/heads/main/alink_install.sh
+sudo chmod +x alink_install.sh
+sudo ./alink_install.sh gs install
+```
+
+**Config will be located at:**  
+- `/config/alink_gs.conf`, or  
+- `/home/radxa/alink_gs.conf`, or  
+- `/etc/alink_gs.conf`  
+
+---
+:::tip
+**Alternative installation method using SCP to install Adaptive Link - [here](/hardware/runcam/vtx/installing-alink-runcam/)**
+:::
+
+## Troubleshooting
+
+### If the drone stays in long-range mode (profile 999), check:
+
+- Ground station transmitter power
+- Antenna connections
+- `/etc/txprofiles.conf` settings
+
+### If the video quality is poor despite a strong signal:
+
+- Check bitrate settings in `/etc/txprofiles.conf`
+- Ensure RSSI and SNR weights in `/etc/alink.conf` are set correctly
+
+### If the system frequently changes settings:
+
+- Increase `min_between_changes_ms` value in `/etc/alink.conf`
+- Increase `hysteresis_percent` value in `/etc/alink.conf`
+
+## Parameters
+
+| Parameter | Full Name | Description |
+|-----------|-----------|-------------|
+| **RSSI** | Received Signal Strength Indicator | The power level of the received wireless signal. Measured in dBm, with values closer to 0 indicating a stronger signal. |
+| **SNR** | Signal-to-Noise Ratio | The ratio of signal power to noise power. Higher values indicate better signal quality and cleaner transmission. |
+| **MCS** | Modulation and Coding Scheme | Determines the data transfer rate by defining how information is encoded for transmission over the wireless medium. |
+| **FEC** | Forward Error Correction | A technique that adds redundant data to transmissions, allowing the receiver to detect and correct errors without retransmission. |
+| **GOP** | Group of Pictures | Defines the sequence and organization of video frames between keyframes. Affects video compression efficiency and stream responsiveness. |
+| **Bitrate** | Amount of video data per second | The quantity of data used per second of video, typically measured in Mbps. Higher bitrates generally provide better image quality at the cost of increased bandwidth usage. |
+---
+
+## Recommendations  
+
+- Don’t choose profiles with high bitrate if your system can’t handle the traffic.  
+- Always tailor `txprofiles.conf` to your adapter — especially **power levels**.  
+
