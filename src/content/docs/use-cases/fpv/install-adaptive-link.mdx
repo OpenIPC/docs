@@ -1,0 +1,166 @@
+---
+title: "Installing Adaptive Link"
+description: "Install and configure Adaptive-Link for OpenIPC to optimize your wireless connection"
+---
+
+##  How Adaptive-Link Works  
+
+Wireless communication can transmit data at high speeds over short distances with a strong signal, or slowly but over longer distances with a weaker signal.  
+
+OpenIPC allows you to choose one fixed link speed and video bitrate. Default:  
+- **Bitrate:** 4 Mbps  
+- **Channel Width:** 20 MHz  
+- **MCS:** 1  
+- **FEC:** 8/12  
+- **Guard Interval:** long  
+
+This is a "universal" profile — moderate quality and average range.
+
+**Adaptive-Link** solves this by automatically selecting the best link and video profile based on signal quality (RSSI and SNR).  
+
+Strong signal = high speed and quality  
+Weak signal = long-range profile and lower bitrate  
+
+---
+
+##  How It Works  
+
+- **On the Ground Station**, `alink_gs` monitors RSSI and SNR, calculates a final "score" (1000–2000), and sends it to the drone.  
+- **On the drone**, `alink_drone` receives the score and selects the appropriate profile from `/etc/txprofiles.conf`.  
+- Profile transitions are controlled via `/etc/alink.conf`.
+
+### Example:  
+```ini
+rssi_min = -80  
+rssi_max = -40  
+snr_min = 12  
+snr_max = 36  
+```
+
+If RSSI = -60 and SNR = 20:  
+- RSSI score = 1500  
+- SNR score = 1333  
+- Final score (with 0.5/0.5 weights) ≈ 1416  
+- `alink` selects profile: `1051 - 1500`  
+
+---
+
+## Installation
+
+:::tip 
+**An internet connection is required.**
+:::
+
+### On Drone (OpenIPC)
+```bash
+cd /etc
+curl -L -o alink_install.sh https://raw.githubusercontent.com/OpenIPC/adaptive-link/refs/heads/main/alink_install.sh
+chmod +x alink_install.sh
+./alink_install.sh drone install
+reboot
+```
+
+Add to autostart:
+```bash
+/etc/rc.local >>  alink_drone & 
+```
+
+### On Ground Station (Radxa / Android / PC)
+```bash
+sudo curl -L -o alink_install.sh https://raw.githubusercontent.com/OpenIPC/adaptive-link/refs/heads/main/alink_install.sh
+sudo chmod +x alink_install.sh
+sudo ./alink_install.sh gs install
+```
+
+**Config will be located at:**
+- `/config/alink_gs.conf`, or
+- `/home/radxa/alink_gs.conf`, or
+- `/etc/alink_gs.conf`
+
+:::tip
+**Alternative installation method using SCP to install Adaptive Link - [here](/hardware/runcam/vtx/installing-alink-runcam/)**
+:::
+
+## Configuration Files
+
+### Profile Configuration: `/etc/txprofiles.conf`
+
+Example configuration:
+```bash
+999 - 999 long 0 8 12 1999 10 30 0,0,0,0 20 -12
+1000 - 1050 long 0 8 12 2000 10 30 0,0,0,0 20 -12
+1051 - 1500 long 1 8 12 4000 10 25 0,0,0,0 20 -12
+1501 - 1950 long 2 8 12 8000 10 20 12,6,6,12 20 -12
+1951 - 2001 short 2 8 12 9000 10 20 12,6,6,12 20 -12
+```
+
+:::tip
+Safe TX profiles can be found [here](https://github.com/OpenIPC/adaptive-link/tree/main/txprofiles)
+:::
+
+:::caution
+Set the transmission power levels in `/etc/txprofiles.conf` carefully. The default is `30`, which is safe for most adapters but may be too low for some. Adjust the power accordingly to ensure optimal performance.
+:::
+---
+## Parameter TX profile
+
+| Parameter        | Description                                                                 |
+|------------------|-----------------------------------------------------------------------------|
+| **Range**        | Score range where this profile applies                                      |
+| **GI (Guard Interval)** | `short`: higher speed, less protection  `long`: more reliable at long range |
+| **MCS (Modulation and Coding Scheme)** | Lower value = lower speed, better stability  Higher value = higher throughput, requires stronger signal |
+| **FEC (Forward Error Correction)** | Example: `8/12` means 8 bits data, 4 bits for error correction  Lower ratio = faster speed, less error protection |
+| **Bitrate**      | Video stream speed in bits per second  Higher value = better quality, more bandwidth usage |
+| **GOP (Group of Pictures)** | Determines how often keyframes appear  Lower value = more I-frames, better recovery from packet loss |
+| **Pwr (Transmit Power)** | Transmission power of the radio signal  Higher power = longer range, more interference |
+| **roiQP (Region of Interest QP)** | Prioritizes video quality in important parts of the frame  Lower value = better quality in the ROI area |
+| **Bandwidth**    | Width of the radio channel in MHz  Wider = higher speed, narrower = better range |
+| **qpDelta**      | Global video compression tuning  Lower value = higher quality, less compression |
+
+---
+### Behavior Configuration: `/etc/alink.conf`
+
+Example configuration:
+```ini
+rssi_weight=0.3
+snr_weight=0.7
+fallback_ms=1000
+hold_fallback_mode_s=3
+min_between_changes_ms=150
+hold_modes_down_s=4
+hysteresis_percent=15
+```
+
+
+| Parameter | Description |
+|-----------|-------------|
+| **rssi_weight** | Weight given to RSSI (Received Signal Strength Indicator) in link quality calculations. Value of 0.3 means RSSI contributes 30% to the overall link quality assessment. |
+| **snr_weight** | Weight given to SNR (Signal-to-Noise Ratio) in link quality calculations. Value of 0.7 means SNR contributes 70% to the overall link quality assessment. |
+| **fallback_ms** | Time in milliseconds (1000ms = 1 second) the system waits before activating fallback mode when signal deteriorates. |
+| **hold_fallback_mode_s** | Duration in seconds (3s) the system remains in fallback mode even if signal improves, ensuring stability before switching back. |
+| **min_between_changes_ms** | Minimum time in milliseconds (150ms) between transmission mode changes, preventing rapid fluctuations. |
+| **hold_modes_down_s** | Time in seconds (4s) the system maintains lower transmission modes before attempting to increase quality/speed again. |
+| **hysteresis_percent** | Percentage buffer (15%) required for a mode change, preventing minor signal fluctuations from causing unnecessary mode switches. |
+
+
+
+## Troubleshooting
+
+### If the drone stays in long-range mode (profile 999):
+- Check ground station transmitter power
+- Verify antenna connections
+- Review `/etc/txprofiles.conf` settings
+
+### If video quality is poor despite strong signal:
+- Check bitrate settings in `/etc/txprofiles.conf`
+- Ensure RSSI and SNR weights in `/etc/alink.conf` are set correctly
+
+### If the system frequently changes settings:
+- Increase `min_between_changes_ms` value in `/etc/alink.conf`
+- Increase `hysteresis_percent` value in `/etc/alink.conf`
+
+## Recommendations
+
+- Don't choose profiles with high bitrate if your system can't handle the traffic
+- Always tailor `txprofiles.conf` to your adapter — especially **power levels**
+- Consider your specific use case when configuring profiles
