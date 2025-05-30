@@ -49,21 +49,109 @@ Your ground station can be **absolutely anything** with WiFi! This includes outd
 
 ## Step-by-Step Setup
 
-### Step 1: Install APFPV Firmware
+### Step 1: Installing APFPV Firmware
 
-**Download and prepare:**
-1. Download the firmware: https://github.com/OpenIPC/builder/releases/download/latest/openipc.ssc338q-nor-apfpv.tgz
-2. Extract the archive (you'll get `uImage.ssc338q` and `rootfs.squashfs.ssc338q`)
+There are two ways to install APFPV firmware on your drone. The internet method is much easier if your drone can connect to WiFi.
 
-**Install on your drone:**
-1. Use WinSCP (with SCP protocol) or another file transfer method
-2. Copy both files to `/tmp` folder on your drone
-3. Connect to your drone via UART or SSH
-4. Run this command:
+## Method 1: Easy Internet Installation (Recommended)
+
+### Step 1: Connect Your Drone to Internet
+
+**Physical connection:**
+1. Connect your drone to your computer using a Ethernet cable, USB adapter or UART adapter
+2. Power on your drone
+3. Wait for it to fully boot up (about 1-2 minutes)
+
+**Connect to your WiFi router:**
+1. Your drone needs to connect to your home WiFi to download the firmware
+2. Use SSH to connect to your drone (see "How to SSH" below)
+3. Configure your drone to connect to your home WiFi network
+
+### Step 2: How to SSH Into Your Drone
+
+**What is SSH?** SSH is a way to type commands directly into your drone from your computer.
+
+**On Windows:**
+1. Download and install [PuTTY](https://www.putty.org/) (free SSH program)
+2. Open PuTTY
+3. In "Host Name" field, enter your drone's IP address
+4. Port: 22
+5. Connection type: SSH
+6. Click "Open"
+7. Login with your drone's username and password
+
+**On Mac/Linux:**
+1. Open Terminal
+2. Type: `ssh root@[drone-ip-address]`
+3. Press Enter
+4. Enter password when prompted
+
+**Finding your drone's IP address:**
+- Check your router's admin page for connected devices
+- Or use network scanning apps on your phone
+- Common default: 192.168.1.24 or 192.168.0.24
+
+### Step 3: Install Firmware with One Command
+
+Once you're connected via SSH and your drone has internet access:
+
+1. Copy and paste this exact command:
+```bash
+sysupgrade -k -r -n --url=https://github.com/OpenIPC/builder/releases/download/latest/openipc.ssc338q-nor-apfpv.tgz
+```
+
+2. Press Enter
+
+3. Wait for the download and installation (5-10 minutes)
+
+4. Your drone will automatically reboot when finished
+
+**That's it!** Your drone now has APFPV firmware installed.
+
+---
+
+## Method 2: Manual Installation (No Internet Required)
+
+Use this method if your drone cannot connect to internet or you prefer manual installation.
+
+### Step 1: Download Firmware Files
+
+1. On your computer, go to: https://github.com/OpenIPC/builder/releases/download/latest/openipc.ssc338q-nor-apfpv.tgz
+2. Download the file
+3. Extract/unzip it - you'll get two files:
+   - `uImage.ssc338q`
+   - `rootfs.squashfs.ssc338q`
+
+### Step 2: Copy Files to Drone
+
+**Using WinSCP (Windows):**
+1. Download and install WinSCP
+2. Open WinSCP
+3. Protocol: SCP
+4. Host name: Your drone's IP address
+5. Username and password: Your drone's login credentials
+6. Click "Login"
+7. Navigate to `/tmp` folder on drone side
+8. Copy both firmware files to `/tmp`
+
+**Using SCP command (Mac/Linux):**
+```bash
+scp uImage.ssc338q root@[drone-ip]:/tmp/
+scp rootfs.squashfs.ssc338q root@[drone-ip]:/tmp/
+```
+
+### Step 3: Install Firmware
+
+1. SSH into your drone (see "How to SSH" above)
+2. Type this command:
 ```bash
 sysupgrade -z -n --kernel=/tmp/uImage.ssc338q --rootfs=/tmp/rootfs.squashfs.ssc338q
 ```
-5. Wait for installation to complete and reboot your drone
+3. Press Enter
+4. Wait for installation to complete (5-10 minutes)
+5. Drone will reboot automatically
+
+---
 
 ### Step 2: Connect to Your Drone
 
