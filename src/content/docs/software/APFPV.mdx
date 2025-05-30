@@ -1,0 +1,215 @@
+---
+title: "APFPV Firmware - Beginner's Guide"
+description: "Simple WiFi-based FPV video transmission for beginners. Easy setup, no complex configuration required."
+---
+
+# APFPV Firmware - Complete Beginner's Guide
+
+APFPV stands for "Access Point FPV" - it's a simple way to get video from your drone to your phone, tablet, or computer using regular WiFi. Think of it like your drone creating its own WiFi hotspot that you connect to for live video.
+
+## What is APFPV?
+
+The APFPV firmware from the OpenIPC team creates direct WiFi communication between your drone's video transmitter (VTX) and your ground station. Instead of complex mesh networks, your drone simply acts like a WiFi router that you connect to directly.
+
+This isn't meant to be revolutionary technology - it's designed to be **simple and accessible**, especially for people who find other FPV systems too complicated to set up.
+
+## Why Choose APFPV?
+
+**Perfect for beginners because:**
+- No complicated setup or configuration needed
+- Works with any phone, tablet, or computer with WiFi
+- No special equipment required for your ground station
+- Simple web interface you can open in any browser
+
+**Great for:**
+- Learning FPV without technical complexity
+- Slow-moving vehicles (cars, boats, gentle flying)
+- Non-aerobatic flying (planes and quadcopters)
+- Using any device as your FPV screen
+- Experimenting with different ground station equipment
+
+**Important limitations:**
+- Has 40-70ms delay (not suitable for fast aerobatics or racing)
+- Delay depends on many factors including distance and interference
+
+**Huge advantage:**
+Your ground station can be **absolutely anything** with WiFi! This includes outdoor devices from TP-Link, Ubiquiti, and other manufacturers with good built-in antennas for reliable long-range communication.
+
+## What You'll Need
+
+### For Your Drone (VTX):
+- OpenIPC-compatible camera/board
+- WiFi chip (RTL8812AU or RTL8733BU supported - most common ones work)
+
+### For Viewing (Ground Station):
+- **Android**: PixelPilot app (recommended)
+- **Computer**: Any computer with WiFi and a web browser
+- **Professional**: Outdoor WiFi equipment (TP-Link, Ubiquiti, etc.)
+- **Any device**: That can receive RTP video streams
+
+## Step-by-Step Setup
+
+### Step 1: Install APFPV Firmware
+
+**Download and prepare:**
+1. Download the firmware: https://github.com/OpenIPC/builder/releases/download/latest/openipc.ssc338q-nor-apfpv.tgz
+2. Extract the archive (you'll get `uImage.ssc338q` and `rootfs.squashfs.ssc338q`)
+
+**Install on your drone:**
+1. Use WinSCP (with SCP protocol) or another file transfer method
+2. Copy both files to `/tmp` folder on your drone
+3. Connect to your drone via UART or SSH
+4. Run this command:
+```bash
+sysupgrade -z -n --kernel=/tmp/uImage.ssc338q --rootfs=/tmp/rootfs.squashfs.ssc338q
+```
+5. Wait for installation to complete and reboot your drone
+
+### Step 2: Connect to Your Drone
+
+After your drone reboots:
+
+1. On your phone/computer, look for WiFi networks
+2. Connect to: **"OpenIPC"**
+3. Password: **"12345678"**
+4. Your device will automatically get an IP address (192.168.0.X)
+
+**Network details:**
+- Your drone's IP: `192.168.0.1`
+- Video stream goes to: `192.168.0.10`
+- Network range: `192.168.0.0/24`
+
+### Step 3: View Live Video
+
+**On Android (Easiest):**
+- Download and open PixelPilot app
+- Video should appear automatically
+
+**On Any Computer:**
+- Open web browser
+- Go to: `http://192.168.0.1`
+- You'll see the drone's beautiful WebUI with live video
+
+**On Linux:**
+Use GStreamer command:
+```bash
+gst-launch-1.0 udpsrc port=5600 ! application/x-rtp ! rtph265depay ! avdec_h265 ! fpsdisplaysink sync=false
+```
+
+**Any Other Device:**
+Use any program that can receive RTP streams over UDP on port 5600.
+
+## Customizing Your WiFi Network
+
+**Change your WiFi name and password:**
+
+Connect to your drone via UART or SSH and run:
+```bash
+fw_setenv wlanssid Drone
+fw_setenv wlanpass openipcfpv
+```
+
+Replace "Drone" with your preferred network name and "openipcfpv" with your chosen password. Reboot your drone for changes to take effect.
+
+## Understanding the Setup
+
+Think of your setup like this:
+- **Your drone** = WiFi router (192.168.0.1)
+- **Your ground station** = Connected device (192.168.0.10)
+- **Video stream** = Data flowing from drone to your device
+- **Web interface** = Control panel at http://192.168.0.1
+
+## Supported Hardware
+
+**WiFi Chips (VTX side):**
+- RTL8812AU (high-power dual-band)
+- RTL8733BU (compact USB adapter)
+
+**Ground Station (your side):**
+- Any smartphone or tablet
+- Any computer with WiFi
+- Professional outdoor WiFi equipment
+- FPV goggles with WiFi capability
+- Literally any WiFi-enabled device!
+
+## Common Questions
+
+### "What's the video delay?"
+Expect 40-70ms delay. This varies based on:
+- Distance between drone and ground station
+- WiFi interference in the area
+- Processing power of your ground station device
+- Video quality settings
+
+### "Can I use professional WiFi equipment?"
+Yes! This is a major advantage of APFPV. You can use:
+- TP-Link outdoor access points
+- Ubiquiti wireless equipment
+- Any commercial WiFi gear with good antennas
+- This gives you much better range than typical FPV systems
+
+### "What's the range?"
+Range depends entirely on your equipment:
+- Basic smartphone: 50-200 meters
+- Good WiFi adapter: 200-500 meters  
+- Professional outdoor equipment: 1+ kilometers
+
+## Troubleshooting
+
+### Can't See "OpenIPC" WiFi Network
+1. Make sure drone is powered and firmware installed correctly
+2. Wait 1-2 minutes after drone boots up
+3. Try restarting the drone
+4. Move closer to the drone
+
+### Connected but No Video
+1. Open web browser and go to `http://192.168.0.1`
+2. Check if you can see the web interface
+3. Try the PixelPilot app if on Android
+4. Verify you're connected to the right network
+
+### Poor Video Quality
+1. Move closer to reduce distance
+2. Check for WiFi interference from other devices
+3. Try different location away from other WiFi networks
+4. Adjust video quality in the web interface
+
+### Web Interface Won't Load
+1. Confirm you're connected to drone's WiFi
+2. Try `http://192.168.0.1` in different browsers
+3. Clear browser cache and cookies
+4. Restart both devices
+
+## Tips for Better Performance
+
+### Optimizing Your Setup
+- Use 5GHz WiFi when possible (less crowded than 2.4GHz)
+- Keep line of sight between drone and ground station
+- Use devices with good WiFi antennas. Use mix of directional and omnidirectional antennas.
+- Test everything on the ground before flying
+
+## Safety and Best Practices
+
+**Before Flying:**
+- Test complete system on the ground
+- Verify video quality and delay
+- Check WiFi range in your flying area
+- Have backup visual observer
+
+**While Flying:**
+- Maintain visual line of sight
+- Account for 40-70ms video delay
+- Monitor WiFi signal strength
+- Stay within tested range limits
+
+
+## What Makes APFPV Special
+
+Unlike complex mesh networking systems (WFB-NG, RubyFPV), APFPV:
+- Requires no special ground station hardware
+- Works with consumer WiFi equipment
+- Has simple point-to-point connection
+- Offers maximum compatibility with existing devices
+- Provides easy web-based configuration
+
+APFPV bridges the gap between complex FPV systems and simple solutions, making FPV accessible to everyone while supporting professional equipment for advanced users.
