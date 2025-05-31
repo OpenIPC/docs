@@ -80,7 +80,7 @@ Plug USB cable to connect AIO and PC first, then power on DC, or usb power only.
 
 If there are unknown USB devices in the computer, the following [corechip-sr9900](https://github.com/user-attachments/files/16829005/corechip-sr9900-usb20-to-fast-ethernet-adapter-1750095.zip) drivers need to be installed.
 
-Operations on Mac OS
+## Operations on Mac OS
 
 <img width="686" alt="Screenshot 2024-09-21 at 10 07 24 AM" src="https://github.com/user-attachments/assets/15fde52d-8f14-4377-87ed-cec6e05dc70a">
 
@@ -90,7 +90,7 @@ Operations on Mac OS
 
 
 
-#### Autosetup in windows
+### Autosetup in windows
 Please download [Auto_Set_Mario_CDC.zip](https://github.com/user-attachments/files/17010487/Auto_Set_Mario_CDC.zip) file, unzip it and run as administrator.
 
 or setting manually as follows:
