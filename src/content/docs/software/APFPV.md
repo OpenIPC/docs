@@ -3,6 +3,12 @@ title: "APFPV Firmware - Beginner's Guide"
 description: "Simple WiFi-based FPV video transmission for beginners. Easy setup, no complex configuration required."
 ---
 
+:::danger
+**APFPV is ALPHA software.** You may lose control of your RC vehicle due to link loss or interference. Use at your own risk. We are not responsible for any damage or loss.
+:::
+
+
+
 # APFPV Firmware - Complete Beginner's Guide
 
 APFPV stands for "Access Point FPV" - it's a simple way to get video from your drone to your phone, tablet, or computer using regular WiFi. Think of it like your drone creating its own WiFi hotspot that you connect to for live video.
@@ -13,31 +19,29 @@ The APFPV firmware from the OpenIPC team creates direct WiFi communication betwe
 
 This isn't meant to be revolutionary technology - it's designed to be **simple and accessible**, especially for people who find other FPV systems too complicated to set up.
 
-## Why Choose APFPV?
+## Why APFPV?
 
-**Perfect for beginners because:**
-- No complicated setup or configuration needed
-- Works with any phone, tablet, or computer with WiFi
-- No special equipment required for your ground station
-- Simple web interface you can open in any browser
-- Your ground station can be **absolutely anything** with WiFi!
+- No setup or configuration hassle
+- Works with any WiFi-enabled device
+- Browser-based interface (no apps required)
+- Use your phone, tablet, laptop—anything
 
-**Great for:**
-- Learning FPV without technical complexity
-- Slow-moving vehicles (cars, boats, gentle flying)
-- Non-aerobatic flying (planes and quadcopters)
-- Using any device as your FPV screen
-- Experimenting with different ground station equipment
+**Best For:**
+- Learning FPV
+- Ground vehicles, boats, or slow flying
+- Basic planes/quads (no racing)
+- Experimenting with ground stations
 
-**Important limitations:**
-- Has 40-70ms delay (not suitable for fast aerobatics or racing). 35ms is possible with the right equipment
-- Delay depends on many factors including distance and interference
+**Limitations:**
+- 40–70ms delay (not for racing or fast aerobatics)
+- Performance varies with distance and interference
+
 
 ## What You'll Need
 
 ### For Your Drone (VTX):
 - OpenIPC-compatible camera/board
-- WiFi chip (RTL8812AU or RTL8733BU supported - most common ones work)
+- WiFi chip (RTL8812AU or RTL8733BU)
 
 ### For Viewing (Ground Station):
 - **Android**: PixelPilot app (recommended)
