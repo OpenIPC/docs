@@ -8,14 +8,11 @@ description: "Simple WiFi-based FPV video transmission for beginners. Easy setup
 :::
 
 
-
-# APFPV Firmware - Complete Beginner's Guide
-
 APFPV stands for "Access Point FPV" - it's a simple way to get video from your drone to your phone, tablet, or computer using regular WiFi. Think of it like your drone creating its own WiFi hotspot that you connect to for live video.
 
 ## What is APFPV?
 
-The APFPV firmware from the OpenIPC team creates direct WiFi communication between your drone's video transmitter (VTX) and your ground station. Instead of complex mesh networks, your drone simply acts like a WiFi router that you connect to directly.
+The APFPV firmware from the OpenIPC team creates direct WiFi communication between your drone's video transmitter (VTX) and your ground station. Instead of complex solutions, your drone simply acts like a WiFi router that you connect to directly.
 
 This isn't meant to be revolutionary technology - it's designed to be **simple and accessible**, especially for people who find other FPV systems too complicated to set up.
 
@@ -33,9 +30,10 @@ This isn't meant to be revolutionary technology - it's designed to be **simple a
 - Experimenting with ground stations
 
 **Limitations:**
-- 40–70ms delay (not for racing or fast aerobatics)
+- 35–70ms delay (not for racing or fast aerobatics)
 - Performance varies with distance and interference
-
+- Only one WiFi device as a receiver is possible
+- No signal aggregation
 
 ## What You'll Need
 
