@@ -106,6 +106,20 @@ The bridge automatically negotiates video parameters using EDID, so no special c
 
 >  Useful for attaching to a head-mounted display, small FPV monitor, or modern VR glasses.
 
+## Button Mappings
+
+The buttons and some additional devices on the bonnet are mapped to the GPIO pins on radxa in the following manner:
+
+- **5-way joystick:**
+  - Up = **PIN16**
+  - Down = **PIN18**
+  - Right = **PIN12**
+  - Left (Back) = **PIN13**
+  - OK (Menu) = **PIN11**
+- **Record button:** **PIN22**
+- **I2C7**: Connected to IMU + INA227
+- **UART**: **PIN8** (TX) + **PIN10** (RX)
+
 ## Action Button
 
 The push button is mapped to **GPIO pin number 22** on Radxa zero 3. This works with SBC images for OpenIPC-FPV. **It will not work with Ruby FPV.**
