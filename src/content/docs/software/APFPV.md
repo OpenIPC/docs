@@ -39,7 +39,7 @@ This isn't meant to be revolutionary technology - it's designed to be **simple a
 
 ### For Your Drone (VTX):
 - OpenIPC-compatible camera/board
-- WiFi chip (RTL8812AU or RTL8733BU)
+- WiFi chip (RTL8812AU, RTL8812EU or RTL8733BU)
 
 ### For Viewing (Ground Station):
 - **Android**: PixelPilot app (recommended)
@@ -196,8 +196,26 @@ Connect to your drone via UART or SSH and run:
 fw_setenv wlanssid Drone
 fw_setenv wlanpass openipcfpv
 ```
+Replace "Drone" with your preferred network name and "openipcfpv" with your chosen password. 
 
-Replace "Drone" with your preferred network name and "openipcfpv" with your chosen password. Reboot your drone for changes to take effect.
+**Change your WiFi Band and Frequency:**
+
+Connect to your drone via UART or SSH and run:
+```bash
+fw_setenv wlanfreq 5700
+```
+Set the frequency you need in the 2.4GHz or 5GHz range
+
+**Change your WiFi Transmitter Power:**
+
+Connect to your drone via UART or SSH and run:
+```bash
+fw_setenv wlanpwr 2000
+```
+Be careful and cautious with power changes, it may damage your device.
+
+Reboot your VTX for changes to take effect.
+
 
 ## Understanding the Setup
 
@@ -211,6 +229,7 @@ Think of your setup like this:
 
 **WiFi Chips (VTX side):**
 - RTL8812AU (high-power dual-band)
+- RTL8812EU (high-power dual-band)
 - RTL8733BU (compact USB adapter)
 
 **Ground Station (your side):**
