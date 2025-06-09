@@ -1,0 +1,564 @@
+---
+// src/components/BitrateCalculator.astro
+interface Props {
+  initialMode?: 'normal' | 'backwards';
+}
+const { initialMode = 'normal' } = Astro.props;
+---
+
+<div class="bitrate-calculator">
+  <div class="mode-switcher">
+    <button 
+      id="normalModeBtn" 
+      class:list={['mode-btn', initialMode === 'normal' && 'active']}
+      aria-pressed={initialMode === 'normal'}
+    >
+      Normal Mode
+    </button>
+    <button 
+      id="backwardsModeBtn" 
+      class:list={['mode-btn', initialMode === 'backwards' && 'active']}
+      aria-pressed={initialMode === 'backwards'}
+    >
+      Backwards Mode
+    </button>
+  </div>
+
+  <!-- Нормальный режим -->
+  <div id="normalMode" class="calculator-mode" style={initialMode !== 'normal' ? 'display: none;' : ''}>
+    <div class="input-group">
+      <label for="targetBitrate">Target Bitrate (kbps):</label>
+      <input type="number" id="targetBitrate" value="7000" min="1">
+    </div>
+    
+    <div class="input-group">
+      <label for="fecRatio">FEC Ratio (x/y):</label>
+      <input type="text" id="fecRatio" value="8/12" placeholder="8/12">
+    </div>
+    
+    <div class="input-group">
+      <label for="maxMcs">Max MCS (0-7):</label>
+      <input type="number" id="maxMcs" value="7" min="0" max="7">
+    </div>
+    
+    <div class="input-group">
+      <label for="cap">Cap (kbps):</label>
+      <input type="number" id="cap" value="20000" min="1">
+    </div>
+    
+    <div class="input-group">
+      <label for="guardInterval">Guard Interval:</label>
+      <select id="guardInterval">
+        <option value="long">Long</option>
+        <option value="short" selected>Short</option>
+      </select>
+    </div>
+    
+    <div class="input-group">
+      <label for="maxBandwidth">Max Bandwidth:</label>
+      <select id="maxBandwidth">
+        <option value="20">20 MHz</option>
+        <option value="40" selected>40 MHz</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Обратный режим -->
+  <div id="backwardsMode" class="calculator-mode" style={initialMode !== 'backwards' ? 'display: none;' : ''}>
+    <div class="input-group">
+      <label for="bw">Bandwidth:</label>
+      <select id="bw">
+        <option value="20">20 MHz</option>
+        <option value="40">40 MHz</option>
+      </select>
+    </div>
+    
+    <div class="input-group">
+      <label for="mcs">MCS (0-7):</label>
+      <input type="number" id="mcs" value="0" min="0" max="7">
+    </div>
+    
+    <div class="input-group">
+      <label for="guard">Guard Interval:</label>
+      <select id="guard">
+        <option value="long">Long</option>
+        <option value="short">Short</option>
+      </select>
+    </div>
+    
+    <div class="input-group">
+      <label for="backwardsFec">FEC Ratio (x/y):</label>
+      <input type="text" id="backwardsFec" value="8/12" placeholder="8/12">
+    </div>
+    
+    <div class="input-group">
+      <label for="backwardsCap">Cap (kbps):</label>
+      <input type="number" id="backwardsCap" value="20000" min="1">
+    </div>
+  </div>
+
+  <!-- Кнопка расчета -->
+  <button id="calculateBtn" class="calculate-btn">Calculate</button>
+  
+  <!-- Блоки для вывода -->
+  <div id="error" class="error-message" style="display: none;"></div>
+  <div id="result" class="result-box">
+    <strong>Result:</strong> <span id="resultText">Click "Calculate"</span>
+  </div>
+</div>
+
+<script is:inline>
+// Базовые скорости передачи
+const baseRates = {
+  20: {
+    long: [6500, 12000, 15500, 20000, 25000, 42000, 47500, 55000],
+    short: [7200, 13400, 18700, 21900, 28300, 43800, 50000, 55200]
+  },
+  40: {
+    long: [9800, 18600, 30400, 40200, 55800, 80400, 90200, 97000],
+    short: [12000, 24000, 36000, 48000, 60000, 91000, 980000, 100000]
+  }
+};
+
+// Функция расчета
+function computeFinal(bw, gi, mcs, fec_n, fec_k, cap) {
+  const rates = baseRates[bw][gi];
+  if (!rates || mcs < 0 || mcs >= rates.length) {
+    throw new Error('Invalid parameters');
+  }
+  
+  const baseRate = rates[mcs];
+  const denom = 3 * fec_k;
+  const halfDenom = Math.floor(denom / 2);
+  const num = baseRate * 2 * fec_n;
+  let final = Math.floor((num + halfDenom) / denom);
+  
+  return Math.min(final, cap);
+}
+
+// Инициализация при загрузке
+document.addEventListener('DOMContentLoaded', () => {
+  const normalModeBtn = document.getElementById('normalModeBtn');
+  const backwardsModeBtn = document.getElementById('backwardsModeBtn');
+  const normalMode = document.getElementById('normalMode');
+  const backwardsMode = document.getElementById('backwardsMode');
+  const calculateBtn = document.getElementById('calculateBtn');
+  const errorElement = document.getElementById('error');
+  const resultText = document.getElementById('resultText');
+
+  // Переключение режимов
+  normalModeBtn.addEventListener('click', () => {
+    normalMode.style.display = 'block';
+    backwardsMode.style.display = 'none';
+    normalModeBtn.classList.add('active');
+    backwardsModeBtn.classList.remove('active');
+    normalModeBtn.setAttribute('aria-pressed', 'true');
+    backwardsModeBtn.setAttribute('aria-pressed', 'false');
+  });
+
+  backwardsModeBtn.addEventListener('click', () => {
+    normalMode.style.display = 'none';
+    backwardsMode.style.display = 'block';
+    backwardsModeBtn.classList.add('active');
+    normalModeBtn.classList.remove('active');
+    backwardsModeBtn.setAttribute('aria-pressed', 'true');
+    normalModeBtn.setAttribute('aria-pressed', 'false');
+  });
+
+  // Обработка расчета
+  calculateBtn.addEventListener('click', () => {
+    try {
+      errorElement.style.display = 'none';
+      
+      if (normalMode.style.display !== 'none') {
+        // Нормальный режим
+        const target = parseInt(document.getElementById('targetBitrate').value);
+        const fec = document.getElementById('fecRatio').value;
+        const maxMcs = parseInt(document.getElementById('maxMcs').value);
+        const cap = parseInt(document.getElementById('cap').value);
+        const gi = document.getElementById('guardInterval').value;
+        const maxBw = document.getElementById('maxBandwidth').value;
+        
+        // Валидация
+        if (isNaN(target) || isNaN(maxMcs) || isNaN(cap)) {
+          throw new Error('Please enter valid numbers');
+        }
+        
+        const fecParts = fec.split('/');
+        if (fecParts.length !== 2) {
+          throw new Error('FEC must be in the form "x/y"');
+        }
+        
+        const fec_n = parseInt(fecParts[0]);
+        const fec_k = parseInt(fecParts[1]);
+        
+        if (isNaN(fec_n) || isNaN(fec_k)) {
+          throw new Error('Invalid FEC values');
+        }
+        
+        // Расчет
+        const bandwidths = maxBw === '20' ? [20] : [20, 40];
+        const gis = gi ? [gi] : ['long', 'short'];
+        
+        let found = false;
+        for (const bw of bandwidths) {
+          for (const gi of gis) {
+            for (let mcs = 0; mcs <= maxMcs; mcs++) {
+              const rate = computeFinal(bw, gi, mcs, fec_n, fec_k, cap);
+              
+              if (rate >= target) {
+                resultText.textContent = `${mcs}:${bw}:${gi}:${fec}`;
+                found = true;
+                return;
+              }
+            }
+          }
+        }
+        
+        if (!found) {
+          resultText.textContent = 'No combination found';
+        }
+      } else {
+        // Обратный режим
+        const bw = document.getElementById('bw').value;
+        const mcs = parseInt(document.getElementById('mcs').value);
+        const guard = document.getElementById('guard').value;
+        const backwardsFec = document.getElementById('backwardsFec').value;
+        const backwardsCap = parseInt(document.getElementById('backwardsCap').value);
+        
+        // Валидация
+        if (isNaN(mcs) || isNaN(backwardsCap)) {
+          throw new Error('Please enter valid numbers');
+        }
+        
+        const fecParts = backwardsFec.split('/');
+        if (fecParts.length !== 2) {
+          throw new Error('FEC must be in the form "x/y"');
+        }
+        
+        const fec_n = parseInt(fecParts[0]);
+        const fec_k = parseInt(fecParts[1]);
+        
+        if (isNaN(fec_n) || isNaN(fec_k)) {
+          throw new Error('Invalid FEC values');
+        }
+        
+        // Расчет
+        const rate = computeFinal(bw, guard, mcs, fec_n, fec_k, backwardsCap);
+        resultText.textContent = `${rate} kbps`;
+      }
+    } catch (err) {
+      errorElement.textContent = `Error: ${err.message}`;
+      errorElement.style.display = 'block';
+      resultText.textContent = 'Error occurred';
+    }
+  });
+});
+</script>
+
+<style>
+.bitrate-calculator {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 16px;
+  background: var(--sl-color-background);
+  color: var(--sl-color-text);
+  border: 1px solid var(--sl-color-border);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    0 0 0 1px var(--sl-color-border);
+  font-family: system-ui, -apple-system, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.bitrate-calculator::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  z-index: 1;
+}
+
+.mode-switcher {
+  display: flex;
+  margin-bottom: 15px;
+  gap: 10px;
+  position: relative;
+  left: 18px;
+  z-index: 1;
+}
+
+.mode-btn {
+  flex: 2 1 auto;
+  min-width: 0;
+  padding: 5px;
+  background: var(--sl-color-gray-3);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  color: var(--sl-color-text);
+  font-size: 1rem;
+  box-shadow: 
+    0 2px 5px rgba(0,0,0,0.08),
+    inset 0 1px 1px rgba(255,255,255,0.2);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.mode-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(to bottom, 
+      rgba(255,255,255,0.15), 
+      rgba(0,0,0,0.05));
+  z-index: -1;
+}
+
+.mode-btn.active {
+  background: var(--sl-color-accent);
+  color: var(--sl-color-white);
+  box-shadow: 
+    0 4px 12px rgba(var(--sl-color-accent-rgb), 0.3),
+    inset 0 1px 1px rgba(255,255,255,0.3);
+}
+
+.mode-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 5px 15px rgba(0,0,0,0.12),
+    inset 0 1px 1px rgba(255,255,255,0.25);
+}
+
+.mode-btn.active:hover {
+  background: var(--sl-color-accent-high);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 5px 15px rgba(var(--sl-color-accent-rgb), 0.4),
+    inset 0 1px 1px rgba(255,255,255,0.35);
+}
+
+.mode-btn:active {
+  transform: translateY(1px);
+}
+
+.calculator-mode {
+  padding: 20px;
+  border-radius: 12px;
+  background: var(--sl-color-background);
+  border: 1px solid var(--sl-color-border);
+  box-shadow: 
+    inset 0 0 0 1px var(--sl-color-border),
+    0 5px 15px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--sl-color-text);
+  font-size: 0.95rem;
+}
+
+input, select {
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  background: var(--sl-color-background);
+  color: var(--sl-color-text);
+  border: 2px solid #1f2937;
+  box-shadow: 
+    inset 0 0 0 1px var(--sl-color-border),
+    0 2px 6px rgba(0,0,0,0.05);
+  transition: all 0.25s ease;
+  position: relative;
+  z-index: 1;
+}
+
+input:focus, select:focus {
+  outline: none;
+  box-shadow: 
+    inset 0 0 0 2px var(--sl-color-accent),
+    0 4px 12px rgba(var(--sl-color-accent-rgb), 0.2);
+  background: var(--sl-color-background);
+  transform: translateY(-1px);
+}
+
+input::placeholder {
+  color: var(--sl-color-gray-5);
+}
+
+select {
+  appearance: none;
+  background-image: 
+    linear-gradient(45deg, transparent 50%, var(--sl-color-gray-5) 50%),
+    linear-gradient(135deg, var(--sl-color-gray-5) 50%, transparent 50%);
+  background-position: 
+    calc(100% - 20px) center,
+    calc(100% - 15px) center;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 40px;
+}
+
+.calculate-btn {
+  width: 100%;
+  padding: 16px;
+  background: var(--sl-color-accent);
+  color: var(--sl-color-white);
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 25px 0;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 4px 15px rgba(var(--sl-color-accent-rgb), 0.3),
+    inset 0 1px 1px rgba(255,255,255,0.3);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.calculate-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.2), transparent);
+  z-index: -1;
+}
+
+.calculate-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 6px 20px rgba(var(--sl-color-accent-rgb), 0.4),
+    inset 0 1px 1px rgba(255,255,255,0.4);
+  background: var(--sl-color-accent-high);
+}
+
+.calculate-btn:active {
+  transform: translateY(1px);
+  box-shadow: 
+    0 2px 8px rgba(var(--sl-color-accent-rgb), 0.2),
+    inset 0 1px 1px rgba(255,255,255,0.2);
+}
+
+.error-message {
+  color: var(--sl-color-red);
+  padding: 16px;
+  background: var(--sl-color-red-low);
+  border-radius: 10px;
+  margin-bottom: 25px;
+  display: none;
+  box-shadow: 
+    inset 0 0 0 1px var(--sl-color-red),
+    0 3px 8px rgba(0,0,0,0.05);
+}
+
+.result-box {
+  padding: 20px;
+  background: var(--sl-color-green-low);
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  text-align: center;
+  box-shadow: 
+    inset 0 0 0 1px var(--sl-color-green),
+    0 5px 15px rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.result-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    var(--sl-color-green), 
+    var(--sl-color-cyan));
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.calculator-mode, .result-box, .error-message {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.input-group {
+  animation: fadeIn 0.5s ease-out;
+  animation-fill-mode: backwards;
+}
+
+.input-group:nth-child(1) { animation-delay: 0.1s; }
+.input-group:nth-child(2) { animation-delay: 0.2s; }
+.input-group:nth-child(3) { animation-delay: 0.3s; }
+.input-group:nth-child(4) { animation-delay: 0.4s; }
+.input-group:nth-child(5) { animation-delay: 0.5s; }
+.input-group:nth-child(6) { animation-delay: 0.6s; }
+
+/* Переопределения для темной темы */
+:global(html.dark) .bitrate-calculator {
+  background: var(--sl-color-gray-0);
+  box-shadow: 
+    0 4px 25px rgba(0, 0, 0, 0.4),
+    0 0 0 1px var(--sl-color-border);
+}
+
+:global(html.dark) .mode-btn:not(.active) {
+  background: var(--sl-color-gray-7);
+}
+
+:global(html.dark) .mode-btn:not(.active):hover {
+  background: var(--sl-color-gray-6);
+}
+
+:global(html.dark) .calculator-mode {
+  background: var(--sl-color-gray-0);
+  box-shadow: 
+    inset 0 0 0 1px var(--sl-color-gray-6),
+    0 5px 20px rgba(0,0,0,0.2);
+}
+
+:global(html.dark) input,
+:global(html.dark) select {
+  background: var(--sl-color-gray-0);
+  box-shadow: 
+    inset 0 0 0 1px var(--sl-color-gray-6),
+    0 3px 10px rgba(0,0,0,0.15);
+}
+
+:global(html.dark) .calculate-btn {
+  box-shadow: 
+    0 4px 20px rgba(var(--sl-color-accent-rgb), 0.4),
+    inset 0 1px 1px rgba(255,255,255,0.1);
+}
+</style>
