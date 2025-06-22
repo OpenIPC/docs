@@ -320,3 +320,134 @@ Unlike complex mesh networking systems (WFB-NG, RubyFPV), APFPV:
 - Provides easy web-based configuration
 
 APFPV bridges the gap between complex FPV systems and simple solutions, making FPV accessible to everyone while supporting professional equipment for advanced users.
+
+##apfpv with runcam gs or other gs that got many wifi card
+
+step 1 : download radxa img at this link https://github.com/OpenIPC/sbc-groundstations/releases/tag/zero3w-apfpv-v0.0.1
+step 2 : flash sd card using balena etcher or other similar software
+setp 3 : once finish we need to modify stream.sh and firstboot.sh
+
+in /script/firstboot.sh copy this block of code that will shearch external wifi card at the beginning of the file it should replace the wlan0 connection script.
+
+```bash
+#!/bin/bash
+
+SSID="OpenIPC"
+PASSWORD="12345678"
+EXCLUDE_IFACE="wlan0"
+
+echo "[*] Détection des interfaces Wi-Fi via ip..."
+
+# Liste des interfaces de type wlan* ou wlx* sauf wlan0
+WIFI_IFACES=$(ip -o link show | awk -F': ' '{print $2}' | grep -E '^wlan|^wlx' | grep -v "^$EXCLUDE_IFACE$")
+
+INDEX=1
+
+for IFACE in $WIFI_IFACES; do
+    CONN_NAME="wifi$INDEX"
+
+    echo ""
+    echo "=== Interface détectée : $IFACE → connexion nommée $CONN_NAME ==="
+
+    # Supprimer ancienne connexion si elle existe
+    if nmcli connection show "$CONN_NAME" &>/dev/null; then
+        echo "[*] Suppression de l'ancienne connexion $CONN_NAME"
+        nmcli connection delete "$CONN_NAME"
+    fi
+
+    # Scanner les réseaux Wi-Fi
+    echo "[*] Scan des réseaux pour $IFACE..."
+    nmcli device wifi rescan ifname "$IFACE"
+    sleep 2
+
+    # Créer la connexion Wi-Fi
+    echo "[*] Création de la connexion $CONN_NAME..."
+    nmcli connection add type wifi ifname "$IFACE" con-name "$CONN_NAME" ssid "$SSID" \
+        wifi-sec.key-mgmt wpa-psk wifi-sec.psk "$PASSWORD" \
+        ipv4.method auto connection.autoconnect yes
+
+    # Définir la priorité de route
+    if [[ "$CONN_NAME" == "wifi1" ]]; then
+        echo "[*] Affectation de la priorité de route : 100 (wifi1)"
+        nmcli connection modify "$CONN_NAME" ipv4.route-metric 100
+    elif [[ "$CONN_NAME" == "wifi2" ]]; then
+        echo "[*] Affectation de la priorité de route : 200 (wifi2)"
+        nmcli connection modify "$CONN_NAME" ipv4.route-metric 200
+    fi
+
+    # Activer la connexion
+    echo "[*] Activation de la connexion $CONN_NAME"
+    nmcli connection up "$CONN_NAME"
+
+    echo "[+] $CONN_NAME connectée et priorisée"
+    INDEX=$((INDEX + 1))
+done
+
+echo ""
+echo "[✓] Toutes les interfaces sont connectées avec priorités configurées."
+```
+step 4 : in stream.sh disable wlan0 using nmcli
+
+copy this line :
+
+```bash
+nmcli device disconnect wlan0
+```
+
+thats all now put the sd card on your vrx and boot it, you will get 2 wifi interface connect to apfpv credential, and with ip route it will pick the best wifi card every time to connect, the range will increase significantly.
+
+###using adaptive link 
+adaptive link will modify the bitrate to keep link alive, it still exprimental stage 
+step 1 : download from github https://github.com/carabidulebabat/CaraSandbox/blob/main/ap_alink.sh
+step 2 : modify rc.local in /etc/ folder and add before exit 0
+```bash
+ap_alink.sh &
+````
+ save the file
+step 3 : go to putty and type
+
+````bash
+chmod +x /etc/ap_alink.sh
+```
+
+Now lets see the different setting, cause its experimental we can play with various parametrer
+
+bitrate=30 is the default bitrate, when its boot it will start at 30mbps
+bitratemax is the max bitrate allowed, majestic will not go higher than this value
+default value is bitrate 30 and max 40, its good if you have a radxa gs with good wifi card, if your on android try lower value like
+
+```bash
+bitrate=4
+bitratemax=10
+````
+
+power is not adaptive yet 
+
+get_dynamic_interval() {
+    dbm=$(get_dbm)
+    echo $(awk -v d="$dbm" 'BEGIN {
+        if (d > -40)      print 8;
+        else if (d > -65) print 6;
+        else if (d > -75) print 4;
+        else if (d > -85) print 2;
+        else              print 1;
+    }')
+}
+this function allow to increase the bitrate faster or lower depends on link quality in dbm you can modify the d value to set the sensitivity of ap alink
+
+get_dynamic_decrease() {
+    dbm=$(get_dbm)
+    echo $(awk -v d="$dbm" 'BEGIN {
+        if (d > -60)      print 2;    
+        else if (d > -75) print 5;  
+        else if (d > -85) print 15;    
+        else              print 20;    
+    }')
+}
+
+same thing at get dynamic interval will lower bitrate faster or lower depends of link quality.
+
+I suggest to try different value for d > dbm and see in flight
+
+thats all for the moment
+
