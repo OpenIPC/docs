@@ -321,9 +321,9 @@ Unlike complex mesh networking systems (WFB-NG, RubyFPV), APFPV:
 
 APFPV bridges the gap between complex FPV systems and simple solutions, making FPV accessible to everyone while supporting professional equipment for advanced users.
 
-##apfpv with runcam gs or other gs that got many wifi card
+##APFPV with runcam gs or other gs that got many wifi card
 
-step 1 : download radxa img at this link https://github.com/OpenIPC/sbc-groundstations/releases/tag/zero3w-apfpv-v0.0.1
+step 1 : download APFPV radxa img at this link https://github.com/OpenIPC/sbc-groundstations/
 step 2 : flash sd card using balena etcher or other similar software
 setp 3 : once finish we need to modify stream.sh and firstboot.sh
 
