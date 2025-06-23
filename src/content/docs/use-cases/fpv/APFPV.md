@@ -323,7 +323,7 @@ APFPV bridges the gap between complex FPV systems and simple solutions, making F
 
 ##APFPV with runcam gs or other gs that got many wifi card
 
-step 1 : download APFPV radxa img at this link https://github.com/OpenIPC/sbc-groundstations/
+step 1 : download APFPV radxa img at this link https://github.com/OpenIPC/sbc-groundstations/ and click on APFPV v0.0.1 link
 step 2 : flash sd card using balena etcher or other similar software
 setp 3 : once finish we need to modify stream.sh and firstboot.sh
 
@@ -336,9 +336,9 @@ SSID="OpenIPC"
 PASSWORD="12345678"
 EXCLUDE_IFACE="wlan0"
 
-echo "[*] Détection des interfaces Wi-Fi via ip..."
+echo "[*] scan wifi card"
 
-# Liste des interfaces de type wlan* ou wlx* sauf wlan0
+# list every wifi interface wlx or wlan expect wlan0
 WIFI_IFACES=$(ip -o link show | awk -F': ' '{print $2}' | grep -E '^wlan|^wlx' | grep -v "^$EXCLUDE_IFACE$")
 
 INDEX=1
@@ -349,42 +349,38 @@ for IFACE in $WIFI_IFACES; do
     echo ""
     echo "=== Interface détectée : $IFACE → connexion nommée $CONN_NAME ==="
 
-    # Supprimer ancienne connexion si elle existe
+    # delete old connection
     if nmcli connection show "$CONN_NAME" &>/dev/null; then
-        echo "[*] Suppression de l'ancienne connexion $CONN_NAME"
         nmcli connection delete "$CONN_NAME"
     fi
 
-    # Scanner les réseaux Wi-Fi
-    echo "[*] Scan des réseaux pour $IFACE..."
+    # scan avaible wifi network
     nmcli device wifi rescan ifname "$IFACE"
     sleep 2
 
-    # Créer la connexion Wi-Fi
-    echo "[*] Création de la connexion $CONN_NAME..."
+    # connect to APFPV network
+    echo "[*] create $CONN_NAME..."
     nmcli connection add type wifi ifname "$IFACE" con-name "$CONN_NAME" ssid "$SSID" \
         wifi-sec.key-mgmt wpa-psk wifi-sec.psk "$PASSWORD" \
         ipv4.method auto connection.autoconnect yes
 
-    # Définir la priorité de route
+    # enable ip route
     if [[ "$CONN_NAME" == "wifi1" ]]; then
-        echo "[*] Affectation de la priorité de route : 100 (wifi1)"
+
         nmcli connection modify "$CONN_NAME" ipv4.route-metric 100
     elif [[ "$CONN_NAME" == "wifi2" ]]; then
-        echo "[*] Affectation de la priorité de route : 200 (wifi2)"
+
         nmcli connection modify "$CONN_NAME" ipv4.route-metric 200
     fi
 
-    # Activer la connexion
-    echo "[*] Activation de la connexion $CONN_NAME"
+    # enable connection
     nmcli connection up "$CONN_NAME"
 
-    echo "[+] $CONN_NAME connectée et priorisée"
     INDEX=$((INDEX + 1))
 done
 
 echo ""
-echo "[✓] Toutes les interfaces sont connectées avec priorités configurées."
+echo "[✓] evrything done, end of script"
 ```
 step 4 : in stream.sh disable wlan0 using nmcli
 
@@ -448,6 +444,6 @@ get_dynamic_decrease() {
 same thing at get dynamic interval will lower bitrate faster or lower depends of link quality.
 
 I suggest to try different value for d > dbm and see in flight
-
+you can killall ap_alink.sh and type sh /etc/ap_alink.sh to execute script with log, log will show current bitrate, interval and dbm
 thats all for the moment
 
