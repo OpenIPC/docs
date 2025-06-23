@@ -347,7 +347,7 @@ for IFACE in $WIFI_IFACES; do
     CONN_NAME="wifi$INDEX"
 
     echo ""
-    echo "=== Interface détectée : $IFACE → connexion nommée $CONN_NAME ==="
+    echo "=== wifi card detected : $IFACE → $CONN_NAME ==="
 
     # delete old connection
     if nmcli connection show "$CONN_NAME" &>/dev/null; then
