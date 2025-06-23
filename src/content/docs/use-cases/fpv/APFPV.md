@@ -397,7 +397,7 @@ adaptive link will modify the bitrate to keep link alive, it still exprimental s
 step 1 : download from github https://github.com/carabidulebabat/CaraSandbox/blob/main/ap_alink.sh
 step 2 : modify rc.local in /etc/ folder and add before exit 0
 ```bash
-ap_alink.sh &
+/etc/ap_alink.sh &
 ````
  save the file
 step 3 : go to putty and type
