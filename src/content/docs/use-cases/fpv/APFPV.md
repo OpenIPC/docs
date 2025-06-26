@@ -320,14 +320,13 @@ Unlike complex mesh networking systems (WFB-NG, RubyFPV), APFPV:
 - Provides easy web-based configuration
 
 APFPV bridges the gap between complex FPV systems and simple solutions, making FPV accessible to everyone while supporting professional equipment for advanced users.
+## APFPV with Runcam-RX or other GS that have many net cards
 
-##APFPV with runcam gs or other gs that got many wifi card
+ 1.  Download the latest APFPV radxa image [here](https://github.com/OpenIPC/sbc-groundstations/) and click on APFPV v0.0.1 link
+ 2. Flash SD card using balena etcher or other similar software
+ 3.  Once finished you just need to modify stream.sh and firstboot.sh
 
-step 1 : download APFPV radxa img at this link https://github.com/OpenIPC/sbc-groundstations/ and click on APFPV v0.0.1 link
-step 2 : flash sd card using balena etcher or other similar software
-setp 3 : once finish we need to modify stream.sh and firstboot.sh
-
-in /script/firstboot.sh copy this block of code that will shearch external wifi card at the beginning of the file it should replace the wlan0 connection script.
+In /script/firstboot.sh copy this block of code that will shearch external wifi card at the beginning of the file it should replace the ```wlan0``` connection script.
 
 ```bash
 #!/bin/bash
@@ -382,27 +381,25 @@ done
 echo ""
 echo "[✓] evrything done, end of script"
 ```
-step 4 : in stream.sh disable wlan0 using nmcli
-
-copy this line :
+ 4. In stream.sh disable ```wlan0``` using nmcli by pasting this line:
 
 ```bash
 nmcli device disconnect wlan0
 ```
 
-thats all now put the sd card on your vrx and boot it, you will get 2 wifi interface connect to apfpv credential, and with ip route it will pick the best wifi card every time to connect, the range will increase significantly.
+Thats all, now put the SD card in your vrx and turn it ON, you will get 2 wifi interfaces connected to APFPV credentials, and with ip route it will pick the best wifi card every time, the range should increase significantly.
 
-###using adaptive link 
-adaptive link will modify the bitrate to keep link alive, it still exprimental stage 
-step 1 : download from github https://github.com/carabidulebabat/CaraSandbox/blob/main/ap_alink.sh
-step 2 : modify rc.local in /etc/ folder and add before exit 0
+### Using APAlink 
+APAlink will modify the bitrate on the fly to keep link alive, it still on exprimental stage, use on  your own risk! 
+ 1. Download it from [GitHub](https://github.com/carabidulebabat/CaraSandbox/blob/main/ap_alink.sh).
+ 2. Modify rc.local in /etc/ folder and add before exit 0 and save the file.
 ```bash
 /etc/ap_alink.sh &
 ````
- save the file
-step 3 : go to putty and type
+ 
+ 3. SSH into it(putty can be used) and type:
 
-````bash
+```bash
 chmod +x /etc/ap_alink.sh
 ```
 
@@ -417,8 +414,8 @@ bitrate=4
 bitratemax=10
 ````
 
-power is not adaptive yet 
-
+Power output is not adaptive yet. 
+```bash
 get_dynamic_interval() {
     dbm=$(get_dbm)
     echo $(awk -v d="$dbm" 'BEGIN {
@@ -429,8 +426,9 @@ get_dynamic_interval() {
         else              print 1;
     }')
 }
-this function allow to increase the bitrate faster or lower depends on link quality in dbm you can modify the d value to set the sensitivity of ap alink
-
+```
+This function allows to increase the bitrate faster or lower depends on link quality in dbm. You can modify the d value to set the sensitivity of APAlink.
+```bash
 get_dynamic_decrease() {
     dbm=$(get_dbm)
     echo $(awk -v d="$dbm" 'BEGIN {
@@ -440,10 +438,9 @@ get_dynamic_decrease() {
         else              print 20;    
     }')
 }
+```
+Same thing as get dynamic interval, but it will lower bitrate faster or lower depends of link quality.
 
-same thing at get dynamic interval will lower bitrate faster or lower depends of link quality.
-
-I suggest to try different value for d > dbm and see in flight
-you can killall ap_alink.sh and type sh /etc/ap_alink.sh to execute script with log, log will show current bitrate, interval and dbm
-thats all for the moment
+I suggest to try different value for d > dbm and see in flight.
+You can killall ap_alink.sh and type sh /etc/ap_alink.sh to execute script with log, log will show current bitrate, interval and dbm. Thats all for APAlink at the moment
 
