@@ -390,7 +390,7 @@ nmcli device disconnect wlan0
 Thats all, now put the SD card in your vrx and turn it ON, you will get 2 wifi interfaces connected to APFPV credentials, and with ip route it will pick the best wifi card every time, the range should increase significantly.
 
 ### Using APAlink 
-APAlink will modify the bitrate on the fly to keep link alive, it still on exprimental stage, use on  your own risk! 
+APAlink will modify the bitrate on the fly to keep link alive, its stable beta now, will be port in cpp soon.
  1. Download it from [GitHub](https://github.com/carabidulebabat/CaraSandbox/blob/main/ap_alink.sh).
  2. Modify rc.local in /etc/ folder and add before exit 0 and save the file.
 ```bash
@@ -403,44 +403,27 @@ APAlink will modify the bitrate on the fly to keep link alive, it still on expri
 chmod +x /etc/ap_alink.sh
 ```
 
-Now lets see the different setting, cause its experimental we can play with various parametrer
+Now lets see how its work now.
 
-bitrate=30 is the default bitrate, when its boot it will start at 30mbps
-bitratemax is the max bitrate allowed, majestic will not go higher than this value
-default value is bitrate 30 and max 40, its good if you have a radxa gs with good wifi card, if your on android try lower value like
+Apfpv already got modulation scheme adaptive, so now the ap aplink is a simple fallback link that trigger 2mbps when signal is low.
+We got bitrate max wich the maximum bitrate reachable and bitrate min wich is the fall back bitrate
 
-```bash
-bitrate=4
-bitratemax=10
-````
+Stock setting use 25mbps bitrate and 2 mbps for fallback
 
-Power output is not adaptive yet. 
-```bash
-get_dynamic_interval() {
-    dbm=$(get_dbm)
-    echo $(awk -v d="$dbm" 'BEGIN {
-        if (d > -40)      print 8;
-        else if (d > -65) print 6;
-        else if (d > -75) print 4;
-        else if (d > -85) print 2;
-        else              print 1;
-    }')
-}
-```
-This function allows to increase the bitrate faster or lower depends on link quality in dbm. You can modify the d value to set the sensitivity of APAlink.
-```bash
-get_dynamic_decrease() {
-    dbm=$(get_dbm)
-    echo $(awk -v d="$dbm" 'BEGIN {
-        if (d > -60)      print 2;    
-        else if (d > -75) print 5;  
-        else if (d > -85) print 15;    
-        else              print 20;    
-    }')
-}
-```
-Same thing as get dynamic interval, but it will lower bitrate faster or lower depends of link quality.
+now we got dbm wich is the threshold when fallback kick in.
 
-I suggest to try different value for d > dbm and see in flight.
-You can killall ap_alink.sh and type sh /etc/ap_alink.sh to execute script with log, log will show current bitrate, interval and dbm. Thats all for APAlink at the moment
+you can use 3 value
 
+-48 wich make fallback enter very quicly and a worse image quality, its good value for > 25mbps bitrate
+-50 wich is the default value and a good compromise between link consistency and image quality
+-61 Its works but not recommand this value, fallback will enter too late and you will lose video, if your on rc car or fix wing, or ardupilot kwad you can try it.
+
+Note, more higher bitrate you set you need to higher dbm value, unless majestic will not adapt in time and you will get poor performance.
+
+for bitrates that works
+
+10mbps very stable
+15mbps stable
+25mbps higher stable bitrate we got
+
+48mbps !!!!! will give a 50mbps video feed that crystal clear but not very stable now. I will suggest 45mbps to try first.
