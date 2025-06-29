@@ -100,3 +100,20 @@ For advanced setup guide please read this [article](/use-cases/fpv/advanced-setu
 
 ### Basic setup summary
 After basic setup you will get cheapest modern digital FPV system, but you`ll not see OSD, to setup OSD you need to read [advanced setup article](/use-cases/fpv/advanced-setup/). If you want to read instruction from manufacturer, please read [this](https://store-m8o52p.mybigcommerce.com/product_images/img_runcam_wifilink2/wifilink2_manual-en.pdf).
+
+
+### How to diagnose a failed flash  
+This info was gathered from the RunCam Support on 06/2025:
+
+
+To determine if Uboot is still accessible, the current of the Wifilink2 should be measured and compared to given values:
+This can be achieved by a regulated power supply and/or a multimeter.
+Power should be applied via the 6pin FC connector
+
+| Case  | Voltage | Amps | Power  | Status|
+|:------|---------|------|--------|--------|
+|1|13.5 V| 0.182 A| 2.5 W| Uboot still accessible <br>This suggests the firmware flash failed, but U-Boot is still present. Firmware flash error, can be fixed with UART flashing.|
+|2|13.5 V| <=0.144 A| <= 1.9 W| Uboot missing/unavailable. Need full reflash using chip programmer.|
+
+
+
