@@ -103,17 +103,17 @@ After basic setup you will get cheapest modern digital FPV system, but you`ll no
 
 
 ### How to diagnose a failed flash  
-This info was gathered from the RunCam Support in 06/2025:
+This info was gathered from the RunCam Support on 06/2025:
 
 
-To asses if Uboot is still accessible, the current of the Wifilink2 can be measured and compared to give values:
-This can be achieved by a regulated power supply and/or a Multimeter.
-Power will be applied via the 6pin FC connector
+To determine if Uboot is still accessible, the current of the Wifilink2 should be measured and compared to given values:
+This can be achieved by a regulated power supply and/or a multimeter.
+Power should be applied via the 6pin FC connector
 
 | Case  | Voltage | Amps | Power  | Status|
 |:------|---------|------|--------|--------|
-|1|13.5 V| 0.182 A| 2.5 W| Uboot still accessible <br>This suggests the firmware flash failed, but U-Boot is still present (device is not fully bricked).|
-|2|13.5 V| <=0.144 A| <= 1.9 W| Uboot missing/unavailable <br>propably Bricked|
+|1|13.5 V| 0.182 A| 2.5 W| Uboot still accessible <br>This suggests the firmware flash failed, but U-Boot is still present. Firmware flash error, can be fixed with UART flashing.|
+|2|13.5 V| <=0.144 A| <= 1.9 W| Uboot missing/unavailable. Need full reflash using chip programmer.|
 
 
 
