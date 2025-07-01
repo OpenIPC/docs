@@ -153,7 +153,7 @@ sysupgrade -z -n --kernel=/tmp/uImage.ssc338q --rootfs=/tmp/rootfs.squashfs.ssc3
 
 ---
 
-### Step 2: Connect to Your Drone
+### Step 4: Connect to Your Drone
 
 After your drone reboots:
 
@@ -167,7 +167,7 @@ After your drone reboots:
 - Video stream goes to: `192.168.0.10`
 - Network range: `192.168.0.0/24`
 
-### Step 3: View Live Video
+### Step 5: View Live Video
 
 **On Android (Easiest):**
 - Download and open PixelPilot app
