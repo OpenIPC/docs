@@ -389,41 +389,67 @@ nmcli device disconnect wlan0
 
 Thats all, now put the SD card in your vrx and turn it ON, you will get 2 wifi interfaces connected to APFPV credentials, and with ip route it will pick the best wifi card every time, the range should increase significantly.
 
-### Using APAlink 
-APAlink will modify the bitrate on the fly to keep link alive, its stable beta now, will be port in cpp soon.
- 1. Download it from [GitHub](https://github.com/carabidulebabat/CaraSandbox/blob/main/ap_alink.sh).
- 2. Modify rc.local in /etc/ folder and add before exit 0 and save the file.
-```bash
-/etc/ap_alink.sh &
-````
- 
- 3. SSH into it(putty can be used) and type:
+Using APALink
 
-```bash
-chmod +x /etc/ap_alink.sh
-```
+APALINK is a C program designed to keep your video link alive. It uses fallback logic to switch to a lower bitrate (e.g., 2 Mbps) when the signal is weak.
 
-Now lets see how its work now.
+Installation
 
-Apfpv already got modulation scheme adaptive, so now the ap aplink is a simple fallback link that trigger 2mbps when signal is low.
-We got bitrate max wich the maximum bitrate reachable and bitrate min wich is the fall back bitrate
+To install it is easy:
 
-Stock setting use 25mbps bitrate and 2 mbps for fallback
+1. Go to https://github.com/carabidulebabat/CaraSandbox  
+2. Follow the steps in the README.md.
 
-now we got dbm wich is the threshold when fallback kick in.
+3. Copy the ap_alink binary to /usr/bin:
 
-you can use 3 value
+'''bash
+chmod 777 +x /usr/bin
+'''
 
--48 wich make fallback enter very quicly and a worse image quality, its good value for > 25mbps bitrate
--50 wich is the default value and a good compromise between link consistency and image quality
--61 Its works but not recommand this value, fallback will enter too late and you will lose video, if your on rc car or fix wing, or ardupilot kwad you can try it.
+4. Copy the ap_alink.conf file to the /etc/ folder.
 
-Note, more higher bitrate you set you need to higher dbm value, unless majestic will not adapt in time and you will get poor performance.
+5. (Optional) Copy vtxmenu.ini to /etc/ as well to enable the APFPV menu.
 
-for bitrates that works
+6. Go fly!
 
-10mbps very stable
-15mbps stable
-25mbps higher stable bitrate we got
+Settings
 
-48mbps !!!!! will give a 50mbps video feed that crystal clear but not very stable now. I will suggest 45mbps to try first.
+You can edit the ap_alink.conf file:
+
+'''bash
+bitrate_max=22 ## its the bitrate when good signal
+bitrate_min=2 ## its the fallback bitrate
+dbm_threshold=-47 ## this value is the threshold of when fallback mode needs to kick in. WARNING: set this value as your Wi-Fi RF sensitivity
+'''
+
+- A lower threshold = better image quality for longer, but video may lag or freeze under weak signal.
+- A higher threshold = fallback triggers faster, possibly reducing lag but also image quality.
+
+Recommended Settings
+
+EU2:
+'''bash
+bitrate_max=45
+bitrate_min=2
+dbm_threshold=-52
+'''
+
+8812AU AF1:
+'''bash
+bitrate_max=20
+bitrate_min=2
+dbm_threshold=-48
+'''
+
+MSP Menu
+
+Navigate to the MSP menu just like in HDZero or WFB-NG.
+
+Inside the "BASIC SETTING" submenu, you have:
+
+- Tx Power: 1500 or 2000 (representing MIN/MAX power). 3000 is unstable on most chips. These are in dBm but may vary depending on your Wi-Fi chip’s power amplifier (PA).
+- Channel: Every 5GHz Wi-Fi channel is listed.
+
+That’s All
+
+Straightforward, easy to understand — just plug and fly without overthinking.
