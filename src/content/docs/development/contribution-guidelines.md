@@ -106,7 +106,7 @@ To make ThemeImage work, add `import ThemeImage from '/src/components/ThemeImage
 
 However, for directories that do **not** use `autogenerate`, like `getting-started`, `development`, and `resources`, you'll need to manually add your page to the sidebar. Follow these steps:
 
-- Open the `src/content/docs/config.ts` file.
+- Open the `astro.config.mjs` file.
 - Add your new page to the appropriate section in the sidebar navigation. For example, if you added a new feature guide under "Development", you would update the config like this:
   
   ```typescript
