@@ -41,7 +41,7 @@ version: 1.9.9
 * See [getting started](https://wiki.radxa.com/Zero/getting_started)
 * Extract the radxa_x.x.x_.img.xz using [7Zip](https://www.7-zip.org/) to get radxa_x.x.x_.img .
 * Using tools like [balenaEtcher](https://etcher.balena.io/) or [rufus](https://rufus.ie/en/) to flash it to your SD card .
-* After flashing unmount and re mount you SD card you will see 2 partition 
+* After flashing unplug and plug you SD card you will see 2 partition . 
 * Config Partition (which will have all the configuration files inside)
 * (IMG 2.0.0) A normal FAT32 partition (which will have all the DVR recordings for easy extraction )
 
