@@ -37,8 +37,14 @@ version: 1.9.9
 ## STEP 1: Flashing
 
 ### SD Card
+ (Note please use a Good quality Class 10 SD card Capacity more than 16 GB )
 * See [getting started](https://wiki.radxa.com/Zero/getting_started)
-  - Tools like [balenaEtcher](https://etcher.balena.io/) or [rufus](https://rufus.ie/en/) can write an image an sd card.
+* Extract the radxa_x.x.x_.img.xz using [7Zip](https://www.7-zip.org/) to get radxa_x.x.x_.img .
+* Using tools like [balenaEtcher](https://etcher.balena.io/) or [rufus](https://rufus.ie/en/) to flash it to your SD card .
+* After flashing unmount and re mount you SD card you will see 2 partition 
+* Config Partition (which will have all the configuration files inside)
+* (IMG 2.0.0) A normal FAT32 partition (which will have all the DVR recordings for easy extraction )
+
   - Radxa provided [tools](https://dl.radxa.com/tools/)
 
 ### EMMC
