@@ -429,14 +429,14 @@ Recommended Settings
 
 EU2:
 '''bash
-bitrate_max=45
+bitrate_max=12
 bitrate_min=2
 dbm_threshold=-52
 '''
 
 8812AU AF1:
 '''bash
-bitrate_max=20
+bitrate_max=10
 bitrate_min=2
 dbm_threshold=-48
 '''
@@ -447,8 +447,9 @@ Navigate to the MSP menu just like in HDZero or WFB-NG.
 
 Inside the "BASIC SETTING" submenu, you have:
 
-- Tx Power: 1500 or 2000 (representing MIN/MAX power). 3000 is unstable on most chips. These are in dBm but may vary depending on your Wi-Fi chip’s power amplifier (PA).
+- Tx Power: 1500 or 2000 (representing MIN/MAX power). 25mw or 100mw.
 - Channel: Every 5GHz Wi-Fi channel is listed.
+- AutoPower 0 or 1 enable set tx power auto of iw
 
 That’s All
 
