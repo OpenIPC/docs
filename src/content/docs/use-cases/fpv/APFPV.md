@@ -389,13 +389,13 @@ nmcli device disconnect wlan0
 
 Thats all, now put the SD card in your vrx and turn it ON, you will get 2 wifi interfaces connected to APFPV credentials, and with ip route it will pick the best wifi card every time, the range should increase significantly.
 
-Using APALink
+## Using APALink
 
 APALINK is a C program designed to keep your video link alive. It uses fallback logic to switch to a lower bitrate (e.g., 2 Mbps) when the signal is weak.
 
-Installation
+### Installation
 
-To install it is easy:
+To install it is easy as:
 
 1. Go to https://github.com/carabidulebabat/CaraSandbox  
 2. Follow the steps in the README.md.
@@ -412,7 +412,7 @@ chmod 777 +x /usr/bin
 
 6. Go fly!
 
-Settings
+### Settings
 
 You can edit the ap_alink.conf file:
 
@@ -425,23 +425,23 @@ dbm_threshold=-47 ## this value is the threshold of when fallback mode needs to 
 - A lower threshold = better image quality for longer, but video may lag or freeze under weak signal.
 - A higher threshold = fallback triggers faster, possibly reducing lag but also image quality.
 
-Recommended Settings
+### Recommended Settings
 
-EU2:
+BL-M8812EU2:
 '''bash
 bitrate_max=12
 bitrate_min=2
 dbm_threshold=-52
 '''
 
-8812AU AF1:
+BL-R8812AF1:
 '''bash
 bitrate_max=10
 bitrate_min=2
 dbm_threshold=-48
 '''
 
-MSP Menu
+### VTXMENU
 
 Navigate to the MSP menu just like in HDZero or WFB-NG.
 
@@ -454,3 +454,4 @@ Inside the "BASIC SETTING" submenu, you have:
 That’s All
 
 Straightforward, easy to understand — just plug and fly without overthinking.
+
