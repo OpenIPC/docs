@@ -30,7 +30,7 @@ Where:
   -h, --help            Display this help and exit.
 ```
 
-:::
+:::tip
 By default, sysupgrade will reboot the camera to complete the update. If you don't wish to do that then use the -x option.
 :::
 ## Upgrading from the GitHub latest release.
@@ -53,7 +53,7 @@ otherwise the latest release on Github will be downloaded.
 ### On your host machine:
 If you haven't already got a TFTP server running on your host machine then take a look at the Wiki article [Set up a TFTP server](installation-tftpd.md).
 
-If you don't already have the uImage and rootfs.squashfs images for your camera then go to <https://github.com/OpenIPC/firmware/releases/tag/latest> and download the latest firmware bundle for your SoC and extract the content of the bundle into the root directory of your TFTP server.
+If you don't already have the uImage and rootfs.squashfs images for your camera then go to [OpenIPC firmware latest}(https://github.com/OpenIPC/firmware/releases/tag/latest) and download the latest firmware bundle for your SoC and extract the content of the bundle into the root directory of your TFTP server.
 
 ```bash
 tar xvf <firmware.tgz>
@@ -66,7 +66,7 @@ You can either update the images from a Linux terminal session or from the U-Boo
 
 Check that your camera environment variable for the TFTP server is correct by looking for the _serverip_ entry when listing them with _fw_printenv_.
 
-If it needs updating use _fw_setenv serverip <your.tftp.ip.address>_ command.
+If it needs updating use ```fw_setenv serverip <your.tftp.ip.address>``` command.
 
 #### From Linux
 ```bash
@@ -104,7 +104,7 @@ Now restart the camera to load the new images.
 
 ## Using scp
 ### On your host machine:
-If you don't already have the uImage and rootfs.squashfs images for your camera then go to <https://github.com/OpenIPC/firmware/releases/tag/latest> and download the latest firmware bundle for your SoC and extract the contents.
+If you don't already have the uImage and rootfs.squashfs images for your camera then go to [OpenIPC firmware latest](https://github.com/OpenIPC/firmware/releases/tag/latest) and download the latest firmware bundle for your SoC and extract the contents.
 
 ```bash
 tar xvf <firmware.tgz>
@@ -133,7 +133,7 @@ sysupgrade --kernel=/tmp/uImage.${soc} --rootfs=/tmp/rootfs.squashfs.${soc} -z
 
 ## Upgrading from an SD card
 ### On your host machine
-If you don't already have the uImage and rootfs.squashfs images for your camera then go to <https://github.com/OpenIPC/firmware/releases/tag/latest> and download the latest firmware bundle for your SoC and extract the contents
+If you don't already have the uImage and rootfs.squashfs images for your camera then go to [OpenIPC firmware latest](https://github.com/OpenIPC/firmware/releases/tag/latest) and download the latest firmware bundle for your SoC and extract the contents
 
 If you have built your own versions using a copy of the [firmware repository](https://github.com/OpenIPC/firmware) then your uImage and rootsfs.squashfs images will be in your _output/images_ folder.
 
