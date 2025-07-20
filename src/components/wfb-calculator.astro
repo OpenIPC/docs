@@ -63,7 +63,7 @@ const { initialMode = 'normal' } = Astro.props;
     </div>
   </div>
 
-  <!-- Обратный режим -->
+  <!-- Backwards Mode -->
   <div id="backwardsMode" class="calculator-mode" style={initialMode !== 'backwards' ? 'display: none;' : ''}>
     <div class="input-group">
       <label for="bw">Bandwidth:</label>
@@ -97,7 +97,7 @@ const { initialMode = 'normal' } = Astro.props;
     </div>
   </div>
 
-  <!-- Кнопка расчета -->
+  <!-- Calculate button -->
   <button id="calculateBtn" class="calculate-btn">Calculate</button>
   
   <!-- Блоки для вывода -->
@@ -108,7 +108,7 @@ const { initialMode = 'normal' } = Astro.props;
 </div>
 
 <script is:inline>
-// Базовые скорости передачи
+// Basic rates
 const baseRates = {
   20: {
     long: [6500, 12000, 15500, 20000, 25000, 42000, 47500, 55000],
@@ -120,7 +120,7 @@ const baseRates = {
   }
 };
 
-// Функция расчета
+// Calculate function
 function computeFinal(bw, gi, mcs, fec_n, fec_k, cap) {
   const rates = baseRates[bw][gi];
   if (!rates || mcs < 0 || mcs >= rates.length) {
@@ -136,7 +136,7 @@ function computeFinal(bw, gi, mcs, fec_n, fec_k, cap) {
   return Math.min(final, cap);
 }
 
-// Инициализация при загрузке
+// Initialization
 document.addEventListener('DOMContentLoaded', () => {
   const normalModeBtn = document.getElementById('normalModeBtn');
   const backwardsModeBtn = document.getElementById('backwardsModeBtn');
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const errorElement = document.getElementById('error');
   const resultText = document.getElementById('resultText');
 
-  // Переключение режимов
+  // Made switch
   normalModeBtn.addEventListener('click', () => {
     normalMode.style.display = 'block';
     backwardsMode.style.display = 'none';
@@ -165,13 +165,13 @@ document.addEventListener('DOMContentLoaded', () => {
     normalModeBtn.setAttribute('aria-pressed', 'false');
   });
 
-  // Обработка расчета
+  // Calculation parsing
   calculateBtn.addEventListener('click', () => {
     try {
       errorElement.style.display = 'none';
       
       if (normalMode.style.display !== 'none') {
-        // Нормальный режим
+        // Normal mode
         const target = parseInt(document.getElementById('targetBitrate').value);
         const fec = document.getElementById('fecRatio').value;
         const maxMcs = parseInt(document.getElementById('maxMcs').value);
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const gi = document.getElementById('guardInterval').value;
         const maxBw = document.getElementById('maxBandwidth').value;
         
-        // Валидация
+        // Validation
         if (isNaN(target) || isNaN(maxMcs) || isNaN(cap)) {
           throw new Error('Please enter valid numbers');
         }
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
           throw new Error('Invalid FEC values');
         }
         
-        // Расчет
+        // Calculation
         const bandwidths = maxBw === '20' ? [20] : [20, 40];
         const gis = gi ? [gi] : ['long', 'short'];
         
@@ -219,14 +219,14 @@ document.addEventListener('DOMContentLoaded', () => {
           resultText.textContent = 'No combination found';
         }
       } else {
-        // Обратный режим
+        // Backwards mode
         const bw = document.getElementById('bw').value;
         const mcs = parseInt(document.getElementById('mcs').value);
         const guard = document.getElementById('guard').value;
         const backwardsFec = document.getElementById('backwardsFec').value;
         const backwardsCap = parseInt(document.getElementById('backwardsCap').value);
         
-        // Валидация
+        // Validation
         if (isNaN(mcs) || isNaN(backwardsCap)) {
           throw new Error('Please enter valid numbers');
         }
@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
           throw new Error('Invalid FEC values');
         }
         
-        // Расчет
+        // Calculation
         const rate = computeFinal(bw, guard, mcs, fec_n, fec_k, backwardsCap);
         resultText.textContent = `${rate} kbps`;
       }
