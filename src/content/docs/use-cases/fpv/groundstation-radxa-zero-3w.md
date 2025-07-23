@@ -25,6 +25,7 @@ version: 1.9.9
 14. [OpenIPC GS Radxa zero VRX Case](https://www.printables.com/model/1109931-openipc-gs-radxa-zero-vrx-case)
 15. [OpenIPC Radxa Zero 3W VRX case](https://www.printables.com/model/1238633-openipc-radxa-zero-3w-vrx-case-3x-eu-rx-cards-w-hd)
 16. [OpenIPC Ruby_FPV GS Radxa zerro 3w based](https://www.printables.com/model/1238753-openipc-ruby_fpv-gs-radxa-zerro-3w-based)
+17. [ORV2](https://github.com/PaddyP90/ORV2?tab=readme-ov-file) 
 
 ## Prerequisites 
 
