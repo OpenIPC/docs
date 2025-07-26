@@ -1,7 +1,12 @@
----
-title: Supported SoC
----
-Note: This list does not guarantee that your sensor will work. There are nuances such as different ways of connecting sensors, relabeling of sensors, mismatch between the installed sensor and the declared sensor, etc. This is just a list of the drivers found in the SDK for the particular processor. Please take this into account.
+## Supported SoC
+
+
+<div style={{backgroundColor: 'skyblue', padding: '1rem'}}>
+  `Note`: This list is different from FPV project only some of the soc listed here will support FPV firmware.
+  This list does not guarantee that your sensor will work. There are nuances such as different ways of connecting sensors, relabeling of sensors, mismatch between the installed sensor and the declared sensor, etc. This is just a list of the drivers found in the SDK for the particular processor. Please take this into account..
+</div>
+
+
 
 **Ambarella**
 
