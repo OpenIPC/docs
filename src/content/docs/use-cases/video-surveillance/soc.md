@@ -1,5 +1,6 @@
 ---
 title: "Supported SoC"
+description: "A List of SoC which are currently supported by OpenIPC."
 ---
 
 
