@@ -1,4 +1,6 @@
-## Supported SoC
+---
+title: "Supported SoC"
+---
 
 
 <div style={{backgroundColor: 'skyblue', padding: '1rem'}}>
