@@ -24,7 +24,7 @@ reset
 
 ## The result
 
-![](/src/assets/images/fpv-nvr-hi3536dv100-openipc-ready.webp)
+![](/images/fpv-nvr-hi3536dv100-openipc-ready.webp)
 
 ## Buy a device
 

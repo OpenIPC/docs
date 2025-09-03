@@ -94,7 +94,7 @@ This is an image with unreadable text in a dark theme
 />
 ```
 :::caution
-Please place your image in `/src/assets/images`so that you can use it like this `[Example Image](/src/assets/images/example-image.png)` while using `yarn dev`. Before PR request add `https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main` before every image like this `[Example Image](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/example-image.png)`
+Please place your image in `/src/assets/images`so that you can use it like this `[Example Image](/images/example-image.png)` while using `yarn dev`. Before PR request add `https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main` before every image like this `[Example Image](/images/example-image.png)`
 :::
 :::caution
 To make ThemeImage work, add `import ThemeImage from '/src/components/ThemeImage.astro'` right after Frontmatter. If you forget to do this, `yarn dev` won't see any problems, but the site won't work, so do a `yarn build` before PR to check if everything is ok.
@@ -152,7 +152,7 @@ git push origin add-new-page
 - Go to the [OpenIPC documentation site](https://docs.openipc.org).
 - Find the page that you want to edit and click the **Edit page** button, as shown below:
 
-![Edit Page Button](../../../assets/images/edit-a-page-1.png)
+![Edit Page Button](/images/edit-a-page-1.png)
 
 This will take you directly to the corresponding markdown file in the GitHub repository.
 
@@ -161,7 +161,7 @@ You’ll be taken to the GitHub editor, where you can make changes directly to t
 
 For example:
 
-![Editing the Page in GitHub](../../../assets/images//edit-a-page-2.png)
+![Editing the Page in GitHub](/images//edit-a-page-2.png)
 
 ### 3. Propose Your Changes
 Once you've made your edits:
@@ -169,7 +169,7 @@ Once you've made your edits:
 - Add a short commit message that describes the update.
 - Choose whether you want to commit directly to the main branch or create a new branch for the changes.
 
-![Proposing Changes](../../../assets/images/edit-a-page-3.png)
+![Proposing Changes](/images/edit-a-page-3.png)
 
 ### 4. Create a Pull Request (If Necessary)
 If you've created a new branch, click **Propose changes** to start a Pull Request (PR). In the PR description, explain what changes you made and why.

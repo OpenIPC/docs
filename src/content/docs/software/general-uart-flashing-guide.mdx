@@ -26,13 +26,13 @@ description: "Universal guide for flashing firmware over UART using FTDI and TFT
    ipconfig
    ```
 
-   ![ipconfig output](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/runcamv1ip.png)
+   ![ipconfig output](/images/runcamv1ip.png)
 
    Locate your **IPv4 address**.
 
 2. Start **Tftpd64**:
 
-   ![Tftpd64](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/tftpd.png)
+   ![Tftpd64](/images/tftpd.png)
 
    [Instruction page link](https://openipc.org/cameras/vendors/sigmastar/socs/ssc338q?locale=en)
 
@@ -42,7 +42,7 @@ description: "Universal guide for flashing firmware over UART using FTDI and TFT
 
 5. Check your FTDI wiring:
 
-   ![FTDI wiring](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/ftdi.png)
+   ![FTDI wiring](/images/ftdi.png)
 
    - **RX** → **TX**  
    - **TX** → **RX**  
@@ -76,7 +76,7 @@ Always open Putty **before** powering the device to capture the boot log.
 
 11. If everything is connected correctly, boot logs will appear in the Putty terminal.
 
-   ![Putty UART output](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/runcamv1putty.png)
+   ![Putty UART output](/images/runcamv1putty.png)
 
 12. Go to: [https://openipc.org/cameras/vendors/](https://openipc.org/cameras/vendors/)
 
@@ -84,11 +84,11 @@ Always open Putty **before** powering the device to capture the boot log.
 
 13. Place the downloaded firmware `.bin` into the TFTP folder:
 
-   ![TFTP firmware file](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/runcamv1tftp1.png)
+   ![TFTP firmware file](/images/runcamv1tftp1.png)
 
 14. Follow the instructions **line by line** (don’t paste multiple lines at once):
 
-   ![Firmware flashing command](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/runcamv1firmware.png)
+   ![Firmware flashing command](/images/runcamv1firmware.png)
 
 15. **If your download fails after the third command**, check the TFTP server settings.
 
