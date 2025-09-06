@@ -18,7 +18,7 @@ This guide will help you get started on turning your camera into an IP Security 
 - **Camera**: A camera with a supported SoC
 
 - **FTDI Adapter**: Essential for the flashing process.
-  ![FTDI Adapter](/src/assets/images/sbs-ftdi.jpg)
+  ![FTDI Adapter](/images/sbs-ftdi.jpg)
 
   - [FTDI Adapter Purchase Link](https://www.ebay.co.uk/itm/203581591537?hash=item2f66688ff1)
 
@@ -31,7 +31,7 @@ This guide will help you get started on turning your camera into an IP Security 
 #### Step 1.1: Flashing the Camera
 
 - **Connection Points**: Identify the UART connection points on the camera board.
-  ![Camera Pinout](/src/assets/images/sbs-Camera-Pinout.jpg)
+  ![Camera Pinout](/images/sbs-Camera-Pinout.jpg)
 - **Using FTDI Adapter**: Connect the camera to the FTDI adapter for console access.
 - **Flashing Process**: Use console commands to flash the OpenIPC firmware onto the camera.
 > **Note:** If you get garbled output or no output, Try flipping RX and TX.

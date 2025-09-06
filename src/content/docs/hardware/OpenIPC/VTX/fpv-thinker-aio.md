@@ -12,7 +12,7 @@ Two variants of the unit are available:
 
 [^1]: RTL8731BU, typical peak TX power is 50mW @ 5G, 125mW @ 2.4G
 
-![image: Thinker Air Unit Kit](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/aio-thinker/thinker-webshop-photo.jpg "Thinker Air Unit Kit")
+![image: Thinker Air Unit Kit](/images/aio-thinker/thinker-webshop-photo.jpg "Thinker Air Unit Kit")
 
 ### Specifications
 
@@ -94,7 +94,7 @@ For proper communication, ensure that D+ is connected to D+ and D- is connected 
 
 #### System Connectivity & Physical Specifications
 
-![image: Thinker Connectivity & User-Accessible Components](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/aio-thinker/thinker-connectivity.png "Thinker Connectivity & User-Accessible Components")
+![image: Thinker Connectivity & User-Accessible Components](/images/aio-thinker/thinker-connectivity.png "Thinker Connectivity & User-Accessible Components")
 
 | Pin Name    | Dir  | Description                                                    |
 |-------------|------|----------------------------------------------------------------|
@@ -121,7 +121,7 @@ For proper communication, ensure that D+ is connected to D+ and D- is connected 
 | RX          | In   | UART1 receive line                                             |
 | TX          | Out  | UART1 transmit line                                            |
 
-![image: Thinker PCB And Heats Sink Dimensions](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/aio-thinker/thinker-dimensions.png "Thinker PCB And Heat Sink Dimensions")
+![image: Thinker PCB And Heats Sink Dimensions](/images/aio-thinker/thinker-dimensions.png "Thinker PCB And Heat Sink Dimensions")
 
 #### *Installation Tips and Precautions*
 
