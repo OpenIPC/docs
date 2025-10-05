@@ -4,10 +4,17 @@ description: "RTL8812AU documentation page for OpenIPC wiki"
 ---
 import ThemeImage from '/src/components/ThemeImage.astro'
 
-The RTL8812AU is an old, expensive, but proven WiFi chip that can be found in a lot of network cards. AU based NICs have exceptional community support so that 5Mhz, 10MHz, 20MHz and 40MHz can receive and transmit! So AU based equipment can achieve exceptional bitrates, as for example on 21-04-2025 52Mbps was achieved in total (36Mbps video).  On this page you can find information about known WiFi adapters with this chip.
+The RTL8812AU is an old, expensive, but proven WiFi chip that can be found in a lot of network cards. AU based NICs have exceptional community support so 5Mhz, 10MHz, 20MHz and 40MHz injection/monitor modes can receive and transmit! So AU based equipment can achieve exceptional bitrates, as for example on 21-04-2025 52Mbps was achieved in total (36Mbps video)(WFB-NG). On this page you can find information about known WiFi adapters with this chip.
+
+:::caution
+RTL8812AU driver reports a smoothed RSSI which reacts very slowly, so `hostapd` based APFPV firmware has jittery feed on that WiFi chip.
+:::
 
 ## BL-R8812AF1
 LB-LINK BL-R8812AF1 is small size, low power net card. It is very popular choice for toothpick builds. This net card can be found on EMAX Wyvern Link VTX Alpha 100mW.
+:::caution
+This net card can get expremely hot very quick, so it is better to make some-kind of radiator for it.
+:::
 ![image](/images/bl-r8812af1-top.png)
 <ThemeImage
   lightSrc="/images/bl-r8812af1-bottom-light.png"
