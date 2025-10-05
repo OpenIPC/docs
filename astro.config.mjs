@@ -56,10 +56,29 @@ export default defineConfig({
 						{
 							label: "FPV (First Person View)",
 							collapsed: true,
-							autogenerate: {
-							collapsed: true,
-								directory: "/use-cases/fpv",
-							},
+							items: [
+							    {
+							        label: "Net cards",
+							        collapsed: true,
+							        autogenerate: {
+								        directory: "/use-cases/fpv/net-cards",
+							        },
+						        },
+						        {
+							        label: "WFB-NG",
+							        collapsed: true,
+							        autogenerate: {
+						            		directory: "/use-cases/fpv/wfb-ng",
+							        },
+						        },
+						        {
+							        label: "APFPV",
+							        collapsed: true,
+							        autogenerate: {
+								        directory: "/use-cases/fpv/apfpv",
+							        },
+						        },
+					    ],
 							badge: { text: "WIP", variant: "caution" },
 						},
 						{

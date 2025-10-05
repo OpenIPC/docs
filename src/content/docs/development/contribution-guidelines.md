@@ -31,7 +31,7 @@ Use the following table to determine where to add your new page based on its con
 | **Section**        | **Description**                                                                            | **Directory**                        | **Sidebar Behavior**              |
 |--------------------|--------------------------------------------------------------------------------------------|--------------------------------------|-----------------------------------|
 | **Getting Started** | Introductory content such as project overview, roadmap, and setup instructions.            | `src/content/docs/getting-started/`  | Manual configuration required     |
-| **Use Cases**       | Guides related to FPV, home automation, and video surveillance use cases.                  | `src/content/docs/use-cases/`        | Autogenerate enabled              |
+| **Use Cases**       | Guides related to FPV, home automation, and video surveillance use cases.                  | `src/content/docs/use-cases/`        | Autogenerate enabled only in subfolders(apfpv, wfb-ng, net-cards)             |
 | **Hardware**        | Documentation about OpenIPC hardware components and configurations.                        | `src/content/docs/hardware/`         | Autogenerate enabled              |
 | **Software**        | Documentation about software features and installations.                                   | `src/content/docs/software/`         | Autogenerate enabled              |
 | **Development**     | Contributing guides, application projects, and development tools.                          | `src/content/docs/development/`      | Manual configuration required     |
