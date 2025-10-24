@@ -58,8 +58,8 @@ The default firmware on the internal eMMC is [SBC v1.9.9](https://github.com/Ope
 ![image](/images/emax_vrx_buttons_v1.9.png)
 
  - Up and down buttons change the wifi channel
- - side arrow (2nd left button in image) starts/stops DVR recording 
- - The left most "wifi" button has two functions
+ - side arrow starts/stops DVR recording
+ - The right most "wifi" button has two functions
    - short press changes the bandwidth
    - long press activates the wifi access-point (AP). VRX will appear on your local wifi network as SSID: RadxaGroundstation password: radaxaopenipc  
    Groundstation WebUI can be accessed at http://192.168.4.1/ 
