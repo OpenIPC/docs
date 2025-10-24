@@ -87,24 +87,7 @@ It is recommended to flash the latest firmware onto an SDcard and boot from the 
 ### SBC 2.0.0 Beta2 setup for wfb-ng
 Download [SBC 2.0.0 Beta](https://github.com/OpenIPC/sbc-groundstations/releases/tag/zero3w-v2.0.0-beta2) and flash onto an SDcard using [belenaEtcher](https://etcher.balena.io/) or your favorite flash utility. After the firmware is flashed remount the SDcard on your PC. The main /config drive will mount (possibly as D:) and allow you to edit the /config/setup.txt and the GPIO files.
 
-Create a new GPIO button layout file /config/scripts/GPIO/Emax.yaml or modify the /config/scripts/GPIO/Custom.yaml file. Modify the setup.txt to use the matching GPIO. Here is an example setup.txt when using a new Emax.yaml file
-```
-# Set the screen_mode to your HDMI display's desired mode. Format is WxH@fps - Common values would be 1920x1080@60, 1920x1080@120. 1280x720@60, 1280x720@120
-[screen mode]
-screen_mode = 1920x1080@60
-
-# Set the rec-fps to the fps at which your camera is shooting. e.g. 60, 90, 120
-[dvr recording]
-rec_fps = 60
-
-# Set the gpio_layout. Accepted values are Ruby, Bonnet, Runcam, and Custom.
-[gpio]
-gpio_layout = Emax
-
-# Setting osd to "ground" enables the vrx-side msposd_rockchip process.
-[msposd]
-osd = air
-```
+Create a new GPIO button layout file /config/scripts/GPIO/Emax.yaml or modify the /config/scripts/GPIO/Custom.yaml file. 
 
 The GPIO buttons are mapped as following
 ![image](/images/emax_vrx_button_GPIO_pins.png)
@@ -146,6 +129,24 @@ gsmenu:
     down: 18
 ```
 
+After editing the GPIO file, modify the setup.txt to use the matching GPIO. Here is an example setup.txt when using a new Emax.yaml file
+```
+# Set the screen_mode to your HDMI display's desired mode. Format is WxH@fps - Common values would be 1920x1080@60, 1920x1080@120. 1280x720@60, 1280x720@120
+[screen mode]
+screen_mode = 1920x1080@60
+
+# Set the rec-fps to the fps at which your camera is shooting. e.g. 60, 90, 120
+[dvr recording]
+rec_fps = 60
+
+# Set the gpio_layout. Accepted values are Ruby, Bonnet, Runcam, and Custom.
+[gpio]
+gpio_layout = Emax
+
+# Setting osd to "ground" enables the vrx-side msposd_rockchip process.
+[msposd]
+osd = air
+```
 
 
 
