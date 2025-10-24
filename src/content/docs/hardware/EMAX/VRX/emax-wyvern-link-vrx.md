@@ -66,7 +66,13 @@ The default firmware on the internal eMMC is [SBC v1.9.9](https://github.com/Ope
    
 ![image](/images/emax_vrx_ap_webui.png)
 
-    
+### How to get or change gs.key with v1.9.9 firmware
+
+ -   Insert an empty, formatted micro SD into the VRX. 
+ -   When you first power up your VRX, the device will create a 'user' file and a 'gs.key' file. 
+ -   Mount SDcard on PC and either replace the gs.key file to match your VTXs or use this gs.key on all your VTXs.
+ -   Reinsert the SDcard into the VRX and on next boot it will replace the internal gs.key with the one on the SDcard.
+
 
 ### Basic setup summary
 The VRX is configured with the default gs.key and should work with either RunCam or Emax VTXs. After basic setup you will get cheapest modern digital FPV system. The manufacturer currently doesn't have any manuals for the Wyvern Link v2 hardware.
@@ -130,32 +136,7 @@ gsmenu:
 ```
 
 
-Modify the GPIO button layoout  the instructions for
-emax_vrx_button_GPIO_pins.png
 
-
-### How to get gs.key?
-
- -   Insert an empty, formatted micro SD into the VTX. The card
-    > pads need to face the board. The slot for the micro SD can be on
-    > the 'inside' of the board so you might need to disassemble it to
-    > put the card in.
-
- -   When you first power up your VTX, the device will create a 'user'
-    > file and a 'gs.key' file. Take the SD card out from your VTX
-    > and copy the GS.key file into your VRX(android device, PC, etc.).
-
-
-### LEDs function
-| LEDs status                       | Indicates               |
-|:---------------------------------:|:-----------------------:|
-| Green off                         | Audio off               |
-| Green on                          | Audio on                |
-| Green fast flashing               | Firmware upgrade        |
-| Green slow flashing               | Recording on            |
-| Blue on                           | Startup                 |
-| Blue fast flashing                | WiFi error              |
-| Blue and green alternating flash  | Overheat warning (>90℃) |
 
 
 
