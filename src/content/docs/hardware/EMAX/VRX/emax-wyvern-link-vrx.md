@@ -92,10 +92,10 @@ Create a new GPIO button layout file /config/scripts/GPIO/Emax.yaml or modify th
 The GPIO buttons are mapped as following
 ![image](/images/emax_vrx_button_GPIO_pins.png)
 
-![image](https://docs.radxa.com/img//rock5b/rock5bp_40pin_power_3.webp)
+<img src="https://docs.radxa.com/img//rock5b/rock5bp_40pin_power_3.webp" width="350px"/>
 
 
-Since the Emax VRX only has 4 buttons we need to make some choice on how to map their functions for GSMenu. Here is one possible layout with the left most button as "center". This allows for using the GSMenu keyboard and all other GSMenu functions since right/center behaves the same for most of the menu.
+Since the Emax VRX only has 4 buttons we need to make some choices on how to map their functions for GSMenu. Here is one possible layout with the left most button as "center" and the 2nd buttons as "left" . This allows for using the GSMenu keyboard and all other GSMenu functions since right/center behaves the same for most of the menu.
 ```
 gsmenu:
   enabled: true
