@@ -2,8 +2,6 @@
 title: "Emax Wyvern Link VRX"
 description: "Emax Wyvern Link documentation page for OpenIPC wiki"
 ---
-import ThemeImage from '/src/components/ThemeImage.astro'
-
 ![image](/images/emax_vrx_fatshark.jpg)
 
 ### Specifications
@@ -49,7 +47,7 @@ TODO: I need to take pictures of the internal boards. wifilink2 boards as placeh
  
  -   Mount bracket onto goggles if Fatshark or Skyzone. If other googles or portable monitor, 3D print custom bracket or use velcro or double-sided tape.
  
- -   Connect HDMI cable between VRX and goggles or monitor. Micro-HDMI
+ -   Connect HDMI cable between VRX and goggles or monitor. VRX Radxa uses micro-HDMI.
  
  -   (optional) Insert a formatted micro SD card into the VRX. The slot doesn't autocorrect so insert with the connectors facing up when the fan faces up.
       ![image](/images/emax_vrx_sdcard_orientation.png)
@@ -57,13 +55,17 @@ TODO: I need to take pictures of the internal boards. wifilink2 boards as placeh
 ### Default firmware interface
 
 The default firmware on the internal eMMC is [SBC v1.9.9](https://github.com/OpenIPC/sbc-groundstations/releases/tag/zero3w-v1.9.9-rc1) and has a simple menu and button system.
+![image](/images/emax_vrx_buttons.png)
+
  - Up and down buttons change the wifi channel
  - left arrow (2nd button) starts/stops DVR recording 
  - The left most button has two functions
    - short press changes the bandwidth
-   - long press acrivates the wifi access-point (AP). VRX will appear on your local wifi network as SSID: RadxaGroundstation password: radaxaopenipc
+   - long press activates the wifi access-point (AP). VRX will appear on your local wifi network as SSID: RadxaGroundstation password: radaxaopenipc  
+   Groundstation WebUI can be accessed at http://192.168.4.1/ 
    
-![image](/images/emax_vrx_buttons.png)
+![image](/images/emax_vrx_ap_webui.png)
+
     
 
 ### Basic setup summary
