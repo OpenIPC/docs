@@ -1,0 +1,107 @@
+---
+title: "EMAX Wyvern Link VRX"
+description: "EMAX Wyvern Link documentation page for OpenIPC wiki"
+---
+import ThemeImage from '/src/components/ThemeImage.astro'
+
+![image](/images/emax_vrx_fatshark.jpg)
+
+### Specifications
+
+|SOC board                      | [Radxa ZERO 3W](https://radxa.com/products/zeros/zero3w/) with xxxGB of eMMC   |
+|:------------------------------|:---------:|
+|WiFi chip                      | [RTL8812AU](/use-cases/fpv/net-cards/rtl8812au) (5MHz, 10MHz, 20MHz, 40Mhz)  |
+|Bracket hole spacing          | 21mm*21mm (Fatshark, Skyzone standard)    |
+|Size                           | 88mm(width), 55.5mm(height), 40.5mm(depth)   |
+|Weight                         | 101.2g (complete kit) / 87.7g (with antenna) / 71.6g (without antenna)    |
+|Antennas                       | SMA connector (kit: LHCP Omni + Patch)   |
+|Factory Firmware               | SBC v1.9.6 (1.9.9?) |
+|Included cables                | short USB, split-Y power cable, micro-HDMI to mini HDMI |
+
+### Boards
+<ThemeImage
+  lightSrc="/images/runcam-wifilink-2-motherboard-down-light.png"
+  darkSrc="/images/runcam-wifilink-2-motherboard-down-dark.png"
+  alt="Motherboard down image"
+/>
+
+<ThemeImage
+  lightSrc="/images/runcam-wifilink-2-motherboard-up-light.png"
+  darkSrc="/images/runcam-wifilink-2-motherboard-up-dark.png"
+  alt="Motherboard down image"
+/>
+
+## Basic setup
+### What you need
+ -   Goggles or portable monitor with HDMI input.
+ 
+ -   2S-6S battery with barrel jack or USB powerbank 
+ 
+
+### Hardware Setup
+
+ -   Connect supplied USB cable between internal boards
+     ![image](/images/emax_vrx_usb_cable.png)
+
+ -   Connect the antennas to VRX
+ 
+ -   Mount bracket onto goggles if Fatshark or Skyzone. If other googles or portable monitor, 3D print custom bracket or use velcro or double-sided tape.
+ 
+ -   Connect HDMI cable between VRX and goggles or monitor. Micro-HDMI
+ 
+ -   (optional) Insert a formatted micro SD card into the VRX. The slot doesn't autocorrect so insert with the connectors facing up when the fan faces up.
+      ![image](/images/emax_vrx_sdcard_orientation.png)
+      
+### Default firmware interface
+
+The default firmware on the internal eMMC is [SBC v1.9.9](https://github.com/OpenIPC/sbc-groundstations/releases/tag/zero3w-v1.9.9-rc1) and has a simple menu and button system.
+ - Up and down buttons change the wifi channel
+ - Left arrow / back button changes the bandwidth
+ - The left most button has two functions
+   - short press starts/stops DVR recording
+   - long press acrivates the wifi access-point (AP) feature
+![image](/images/emax_vrx_buttons.png)
+    
+
+### Basic setup summary
+The VRX is configured with the default gs.key and should work with either RunCam or EMAX VTXs. After basic setup you will get cheapest modern digital FPV system. The manufacturer currently doesn't have any manuals for the Wyvern Link v2 hardware.
+
+
+
+## Advanced setup
+
+It is recommended to flash the latest firmware onto an SDcard and boot from the SDcard to get the latest features. Once a new stable firmware is available for flashing onto the internal eMMC, we will update the documentation.
+
+
+### Flash SBC 2.0.0 Beta2 
+Download [SBC 2.0.0 Beta](https://github.com/OpenIPC/sbc-groundstations/releases/tag/zero3w-v2.0.0-beta2) and flash onto an SDcard using belenaEtcher.
+
+
+### How to get gs.key?
+
+ -   Insert an empty, formatted micro SD into the VTX. The card
+    > pads need to face the board. The slot for the micro SD can be on
+    > the 'inside' of the board so you might need to disassemble it to
+    > put the card in.
+
+ -   When you first power up your VTX, the device will create a 'user'
+    > file and a 'gs.key' file. Take the SD card out from your VTX
+    > and copy the GS.key file into your VRX(android device, PC, etc.).
+
+
+### LEDs function
+| LEDs status                       | Indicates               |
+|:---------------------------------:|:-----------------------:|
+| Green off                         | Audio off               |
+| Green on                          | Audio on                |
+| Green fast flashing               | Firmware upgrade        |
+| Green slow flashing               | Recording on            |
+| Blue on                           | Startup                 |
+| Blue fast flashing                | WiFi error              |
+| Blue and green alternating flash  | Overheat warning (>90℃) |
+
+
+
+
+
+
