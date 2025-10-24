@@ -55,7 +55,7 @@ TODO: I need to take pictures of the internal boards. wifilink2 boards as placeh
 ### Default firmware interface
 
 The default firmware on the internal eMMC is [SBC v1.9.9](https://github.com/OpenIPC/sbc-groundstations/releases/tag/zero3w-v1.9.9-rc1) and has a simple menu and button system.
-![image](/images/emax_vrx_buttons.png)
+![image](/images/emax_vrx_buttons_v1.9.png)
 
  - Up and down buttons change the wifi channel
  - side arrow (2nd left button in image) starts/stops DVR recording 
