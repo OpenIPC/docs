@@ -58,8 +58,8 @@ The default firmware on the internal eMMC is [SBC v1.9.9](https://github.com/Ope
 ![image](/images/emax_vrx_buttons.png)
 
  - Up and down buttons change the wifi channel
- - left arrow (2nd button) starts/stops DVR recording 
- - The left most button has two functions
+ - side arrow (2nd left button in image) starts/stops DVR recording 
+ - The left most "wifi" button has two functions
    - short press changes the bandwidth
    - long press activates the wifi access-point (AP). VRX will appear on your local wifi network as SSID: RadxaGroundstation password: radaxaopenipc  
    Groundstation WebUI can be accessed at http://192.168.4.1/ 
@@ -112,7 +112,7 @@ The GPIO buttons are mapped as following
 ![image](https://docs.radxa.com/img//rock5b/rock5bp_40pin_power_3.webp)
 
 
-Since the Emax VRX only has 4 buttons we need to make some choice on how to map their functions for GSMenu. Here is one possible layout with the left most button as "center". This allows for using the GSMenu keyboard and all other GSMenu functions since right/center behave the same for most of the menu.
+Since the Emax VRX only has 4 buttons we need to make some choice on how to map their functions for GSMenu. Here is one possible layout with the left most button as "center". This allows for using the GSMenu keyboard and all other GSMenu functions since right/center behaves the same for most of the menu.
 ```
 gsmenu:
   enabled: true
@@ -123,7 +123,7 @@ gsmenu:
     up: 18
     down: 16
 ```
-If you prefer a more traditional mapping this might be prefered.
+If you prefer a more traditional mapping this might be prefered, but it lacks the center function so we can't use the GSMenu keyboard.
 ```
 gsmenu:
   enabled: true
@@ -134,6 +134,18 @@ gsmenu:
     up: 18
     down: 16
 ```
+If you prefer to think of the buttons looking at the VRX head on rather than when mounted on your goggles (from the back), you can reverse the button order
+```
+gsmenu:
+  enabled: true
+  gpio:
+    # Emax
+    left: 32
+    right: 38
+    up: 16
+    down: 18
+```
+
 
 
 
