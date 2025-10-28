@@ -6,29 +6,30 @@ description: "Emax Wyvern Link documentation page for OpenIPC wiki"
 
 ### Specifications
 
-|SOC board                      | [Radxa ZERO 3W](https://radxa.com/products/zeros/zero3w/) with xxxGB of eMMC   |
+|SOC board                      | [Radxa ZERO 3W](https://radxa.com/products/zeros/zero3w/) with 32GB of eMMC   |
 |:------------------------------|:---------:|
-|WiFi chip                      | [RTL8812AU](/use-cases/fpv/net-cards/rtl8812au) (5MHz, 10MHz, 20MHz, 40Mhz)  |
-|Bracket hole spacing          | 21mm*21mm (Fatshark, Skyzone standard)    |
+|WiFi chip                      | [RTL8812AF1](/use-cases/fpv/net-cards/rtl8812au) (5MHz, 10MHz, 20MHz, 40Mhz)  |
+|Bracket hole spacing           | 21mm*21mm (Fatshark, Skyzone standard)    |
 |Size                           | 88mm(width), 55.5mm(height), 40.5mm(depth)   |
 |Weight                         | 101.2g (complete kit) / 87.7g (with antenna) / 71.6g (without antenna)    |
 |Antennas                       | SMA connector (kit: LHCP Omni + Patch)   |
-|Factory Firmware               | SBC v1.9.6 (1.9.9?) |
+|Factory Firmware               | SBC v1.9.6 (v1.9.9?) |
 |Included cables                | short USB, split-Y power cable, micro-HDMI to mini HDMI |
 
 ### Boards
-TODO: I need to take pictures of the internal boards. wifilink2 boards as placeholders for now
 
 #### RADXA ZERO 3W
 ![image](https://docs.radxa.com/en/assets/images/radxa_zero_3w-84a1e0f01c8381ff1a202d4322f9ed17.webp)
 
+![image](/images/emax_vrx_radxa_board_front.png)
+
+![image](/images/emax_vrx_radxa_board_back.png)
+
+eMMC is Samsung [KLMBG2JETD-B041 32GB](https://semiconductor.samsung.com/estorage/emmc/emmc-5-1/klmbg2jetd-b041/)
+
 
 #### Emax custom power, wifi and buttons board
-<ThemeImage
-  lightSrc="/images/runcam-wifilink-2-motherboard-up-light.png"
-  darkSrc="/images/runcam-wifilink-2-motherboard-up-dark.png"
-  alt="Motherboard down image"
-/>
+![image](/images/emax_vrx_wifi_power_board.png)
 
 
 ## Basic setup
@@ -85,7 +86,7 @@ It is recommended to flash the latest firmware onto an SDcard and boot from the 
 
 
 ### SBC 2.0.0 Beta2 setup for wfb-ng
-Download [SBC 2.0.0 Beta](https://github.com/OpenIPC/sbc-groundstations/releases/tag/zero3w-v2.0.0-beta2) and flash onto an SDcard using [belenaEtcher](https://etcher.balena.io/) or your favorite flash utility. After the firmware is flashed remount the SDcard on your PC. The main /config drive will mount (possibly as D:) and allow you to edit the /config/setup.txt and the GPIO files.
+Download [SBC 2.0.0 Beta2](https://github.com/OpenIPC/sbc-groundstations/releases/tag/zero3w-v2.0.0-beta2) and flash onto an SDcard using [belenaEtcher](https://etcher.balena.io/) or your favorite flash utility. After the firmware is flashed remount the SDcard on your PC. The main /config drive will mount (possibly as D:) and allow you to edit the /config/setup.txt and the GPIO files.
 
 Create a new GPIO button layout file /config/scripts/GPIO/Emax.yaml or modify the /config/scripts/GPIO/Custom.yaml file. 
 
