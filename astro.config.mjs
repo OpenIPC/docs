@@ -158,10 +158,6 @@ export default defineConfig({
 						directory: "reference",
 					},
 				},
-				{
-					label: "Team",
-					link: "/team/",
-				},
 			],
 		}),
 		tailwind({ applyBaseStyles: false }),
