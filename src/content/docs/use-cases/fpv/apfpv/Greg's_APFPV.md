@@ -56,7 +56,7 @@ Video transmitters (VTX) paired with RTL8812AU or EU -based Wi-Fi modules are su
 
 **On Mac/Linux:**
 1. Open Terminal
-2. Type: `ssh root@[drone-ip-address]`
+2. Type: `ssh root@[VTX-ip-address]`
 3. Press Enter
 4. Enter password when prompted
 
