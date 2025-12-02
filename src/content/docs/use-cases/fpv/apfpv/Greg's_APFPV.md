@@ -6,3 +6,78 @@ description: "A verson forked from APFPV tailored specally toward UAVs like mid 
 :::danger
 **APFPV is ALPHA software.** You may lose control of your RC vehicle due to link loss or interference. Use at your own risk. We are not responsible for any damage or loss.
 :::
+
+APFPV stands for "Access Point FPV" - it's a simple way to get video from your drone to your phone, tablet, or computer using regular WiFi. Think of it like your drone creating its own WiFi hotspot that you connect to for live video.
+
+## Why this APFPV verson ?
+
+"This version incorporates a-link adaptive streaming solution developed by Greg Spark and Joakim Verona, which dynamically adjusts video quality based on real-time network conditions."
+
+### For Viewing (Ground Station):
+- **Android**: PixelPilot app (recommended)
+- **Computer**: Any computer with WiFi and a web browser
+- **Professional**: Outdoor WiFi equipment (TP-Link, Ubiquiti, etc.)
+- **Radxa GS**: With our latest SBC images you can easily whitch between WFB-ng and APFPV .
+- **Any device**: That can receive RTP video streams
+
+### VTX hardware 
+Video transmitters (VTX) paired with RTL8812AU or EU2-based Wi-Fi modules are supported. This includes popular solutions such as the RunCam WiFi Link V1/V2, EMAX Wyvern Link, and DIY implementations using the SSC338Q chipset like openipc thinker SD + NIC.
+## For optimal performance, the use of RTL8812EU2-based Wi-Fi modules is strongly recommended on both the transmitter and receiver ends.
+
+## Step-by-Step Setup
+
+### Installing Greg's APFPV Firmware
+
+
+### Step 1: Connect Your Drone to Internet
+
+**Physical connection:**
+1. Connect your drone to your computer using a Ethernet cable, USB adapter or UART adapter
+2. Power on your drone
+3. Wait for it to fully boot up (about 1-2 minutes)
+
+**Connect to your WiFi router:**
+1. Your drone needs to connect to your home WiFi to download the firmware
+2. Use SSH to connect to your drone (see "How to SSH" below)
+3. Configure your drone to connect to your home WiFi network
+
+### Step 2: How to SSH Into Your Drone
+
+**What is SSH?** SSH is a way to type commands directly into your drone from your computer.
+
+**On Windows:**
+1. Download and install [PuTTY](https://www.putty.org/) (free SSH program)
+2. Open PuTTY
+3. In "Host Name" field, enter your drone's IP address
+4. Port: 22
+5. Connection type: SSH
+6. Click "Open"
+7. Login with your drone's username (root) and password (12345)
+
+**On Mac/Linux:**
+1. Open Terminal
+2. Type: `ssh root@[drone-ip-address]`
+3. Press Enter
+4. Enter password when prompted
+
+**Finding your drone's IP address:**
+- Check your router's admin page for connected devices
+- Or use network scanning apps on your phone
+- Common default: 192.168.1.24 or 192.168.0.24
+
+### Step 3: Install Firmware with One Command
+
+Once you're connected via SSH and your drone has internet access:
+
+1. Copy and paste this exact command:
+```bash
+curl -L -o /tmp/openipc.ssc338q-nor-apfpv-greg08RC2.tgz https://github.com/sickgreg/OpenIPC_sickgregFPV_apfpv/raw/main/openipc.ssc338q-nor-apfpv-greg08RC2.tgz && sysupgrade --archive=/tmp/openipc.ssc338q-nor-apfpv-greg08RC2.tgz -f -n
+```
+
+2. Press Enter
+
+3. Wait for the download and installation (5-10 minutes)
+
+4. Your drone will automatically reboot when finished
+
+**That's it!** Your drone now has APFPV firmware installed. Make sure you unplug the ethernet cable after you finish for the stream to work properly.
