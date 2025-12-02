@@ -11,7 +11,7 @@ APFPV stands for "Access Point FPV" - it's a simple way to get video from your d
 
 ## Why this APFPV version ?
 
-"This version incorporates a-link adaptive streaming solution developed by Greg Spark and Joakim , which dynamically adjusts video quality based on real-time network conditions."
+"This version incorporates a-link adaptive streaming solution developed by [ Greg Spark ](https://github.com/sickgreg/) and [Joakim](https://github.com/snokvist/) , which dynamically adjusts video quality based on real-time network conditions."
 
 ### For Viewing (Ground Station):
 - **Android**: PixelPilot app (recommended)
@@ -21,38 +21,38 @@ APFPV stands for "Access Point FPV" - it's a simple way to get video from your d
 - **Any device**: That can receive RTP video streams
 
 ### VTX hardware 
-Video transmitters (VTX) paired with RTL8812AU or EU2-based Wi-Fi modules are supported. This includes popular solutions such as the RunCam WiFi Link V1/V2, EMAX Wyvern Link, and DIY implementations using the SSC338Q chipset like openipc thinker SD + NIC.
-## For optimal performance, the use of RTL8812EU2-based Wi-Fi modules is strongly recommended on both the transmitter and receiver ends.
+Video transmitters (VTX) paired with RTL8812AU or EU -based Wi-Fi modules are supported. This includes popular solutions such as the RunCam WiFi Link V1/V2, EMAX Wyvern Link, and DIY implementations using the SSC338Q chipset like openipc thinker SD + NIC.
+## For optimal performance, the use of RTL8812EU -based Wi-Fi modules is strongly recommended on both the transmitter and receiver ends.
 
 ## Step-by-Step Setup
 
 ### Installing Greg's APFPV Firmware
 
 
-### Step 1: Connect Your Drone to Internet
+### Step 1: Connect Your VTX to Internet
 
 **Physical connection:**
-1. Connect your drone to your computer using a Ethernet cable, USB adapter or UART adapter
-2. Power on your drone
+1. Connect your VTX to your computer using a Ethernet cable, USB adapter or UART adapter
+2. Power on your VTX
 3. Wait for it to fully boot up (about 1-2 minutes)
 
 **Connect to your WiFi router:**
-1. Your drone needs to connect to your home WiFi to download the firmware
-2. Use SSH to connect to your drone (see "How to SSH" below)
-3. Configure your drone to connect to your home WiFi network
+1. Your VTX needs to connect to your home WiFi to download the firmware
+2. Use SSH to connect to your VTX (see "How to SSH" below)
+3. Configure your VTX to connect to your home WiFi network
 
-### Step 2: How to SSH Into Your Drone
+### Step 2: How to SSH Into Your VTX
 
 **What is SSH?** SSH is a way to type commands directly into your drone from your computer.
 
 **On Windows:**
 1. Download and install [PuTTY](https://www.putty.org/) (free SSH program)
 2. Open PuTTY
-3. In "Host Name" field, enter your drone's IP address
+3. In "Host Name" field, enter your VTX's IP address
 4. Port: 22
 5. Connection type: SSH
 6. Click "Open"
-7. Login with your drone's username (root) and password (12345)
+7. Login with your VTX's username (root) and password (12345)
 
 **On Mac/Linux:**
 1. Open Terminal
@@ -60,7 +60,7 @@ Video transmitters (VTX) paired with RTL8812AU or EU2-based Wi-Fi modules are su
 3. Press Enter
 4. Enter password when prompted
 
-**Finding your drone's IP address:**
+**Finding your VTX's IP address:**
 - Check your router's admin page for connected devices
 - Open a web browser on any device connected to your Wi-Fi.
 Type your router’s gateway address in the address bar (common ones below) and press Enter:
@@ -87,7 +87,7 @@ find the device named Sigmastar and it's IP address
 
 ### Step 3: Install Firmware with One Command
 
-Once you're connected via SSH and your drone has internet access:
+Once you're connected via SSH and your VTX has internet access:
 
 1. Copy and paste this exact command:
 ```bash
@@ -98,9 +98,9 @@ curl -L -o /tmp/openipc.ssc338q-nor-apfpv-greg08RC2.tgz https://github.com/sickg
 
 3. Wait for the download and installation (5-10 minutes)
 
-4. Your drone will automatically reboot when finished
+4. Your VTX will automatically reboot when finished
 
-**That's it!** Your drone now has APFPV firmware installed. Make sure you unplug the ethernet cable after you finish for the stream to work properly.
+**That's it!** Your VTX now has APFPV firmware installed. Make sure you unplug the ethernet cable after you finish for the stream to work properly.
 ## From this point forward, the setup process follows the same structure and conventions as the OpenIPC APFPV firmware. Please refer to the corresponding APFPV section in the official OpenIPC documentation.
 ### For a more detailed explanation, please refer to Greg’s official guide on GitHub:
 [Sickgreg OpenIPC_sickgregFPV_apfpv ](https://github.com/OpenIPC/firmware/wiki/APFPV](https://github.com/sickgreg/OpenIPC_sickgregFPV_apfpv))
