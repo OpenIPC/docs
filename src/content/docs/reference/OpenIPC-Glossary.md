@@ -141,3 +141,6 @@ description: Here is a glossary of terms related to OpenIPC
 
 - **Yaml-CLI**  
   A command-line interface tool used to change settings.
+- **NIC**
+-  "Network Interface Controller" (also commonly called Network Interface Card).
+It is the hardware component (either built into your device or an external adapter) that allows your computer, phone, laptop, or any device to connect to a Wi-Fi network.
