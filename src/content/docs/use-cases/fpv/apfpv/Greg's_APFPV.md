@@ -9,7 +9,7 @@ description: "A verson forked from APFPV tailored specally toward UAVs like mid 
 
 APFPV stands for "Access Point FPV" - it's a simple way to get video from your drone to your phone, tablet, or computer using regular WiFi. Think of it like your drone creating its own WiFi hotspot that you connect to for live video.
 
-## Why this APFPV verson ?
+## Why this APFPV version ?
 
 "This version incorporates a-link adaptive streaming solution developed by Greg Spark and Joakim Verona, which dynamically adjusts video quality based on real-time network conditions."
 
