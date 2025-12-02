@@ -62,6 +62,26 @@ Video transmitters (VTX) paired with RTL8812AU or EU2-based Wi-Fi modules are su
 
 **Finding your drone's IP address:**
 - Check your router's admin page for connected devices
+- Open a web browser on any device connected to your Wi-Fi.
+Type your router’s gateway address in the address bar (common ones below) and press Enter:
+192.168.1.1 or
+192.168.0.1 or
+192.168.1.254 or
+10.0.0.1
+Or try: http://routerlogin.net (Netgear) or http://my.router
+(Tip: The correct address is usually shown as “Default Gateway” in the ipconfig or settings steps above.)
+
+Log in with your router’s admin username and password
+(Common defaults: username admin, password admin or password — check the sticker on your router if you never changed it.)
+Look for sections called:
+Connected Devices,
+Device List,
+Attached Devices,
+DHCP Clients,
+
+You’ll see a list of all devices with their names and IP addresses.
+find the device named Sigmastar and it's IP address
+
 - Or use network scanning apps on your phone
 - Common default: 192.168.1.24 or 192.168.0.24
 
