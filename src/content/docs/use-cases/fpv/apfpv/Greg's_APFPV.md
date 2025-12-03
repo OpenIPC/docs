@@ -103,4 +103,4 @@ curl -L -o /tmp/openipc.ssc338q-nor-apfpv-greg08RC2.tgz https://github.com/sickg
 **That's it!** Your VTX now has APFPV firmware installed. Make sure you unplug the ethernet cable after you finish for the stream to work properly.
 ## From this point forward, the setup process follows the same structure and conventions as the OpenIPC APFPV firmware. Please refer to the corresponding APFPV section in the official OpenIPC documentation.
 ### For a more detailed explanation, please refer to Greg’s official guide on GitHub:
-[Sickgreg OpenIPC_sickgregFPV_apfpv ](https://github.com/OpenIPC/firmware/wiki/APFPV](https://github.com/sickgreg/OpenIPC_sickgregFPV_apfpv))
+[Sickgreg OpenIPC_sickgregFPV_apfpv ](https://github.com/sickgreg/OpenIPC_sickgregFPV_apfpv))
