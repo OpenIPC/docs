@@ -11,13 +11,13 @@ APFPV stands for "Access Point FPV" - it's a simple way to get video from your d
 
 ## Why this APFPV version ?
 
-"This version incorporates a-link adaptive streaming solution developed by [ Greg Spark ](https://github.com/sickgreg/) and [Joakim](https://github.com/snokvist/) , which dynamically adjusts video quality based on real-time network conditions."
+"This version incorporates a-link adaptive streaming solution developed by [ Greg Sparks ](https://github.com/sickgreg/) and [Joakim](https://github.com/snokvist/) , which dynamically adjusts video quality based on real-time network conditions."
 
 ### For Viewing (Ground Station):
 - **Android**: PixelPilot app (recommended)
 - **Computer**: Any computer with WiFi and a web browser
 - **Professional**: Outdoor WiFi equipment (TP-Link, Ubiquiti, etc.)
-- **Radxa GS**: With our latest SBC images you can easily whitch between WFB-ng and APFPV .
+- **Radxa GS**: With our latest SBC images you can easily switch between WFB-ng and APFPV .
 - **Any device**: That can receive RTP video streams
 
 ### VTX hardware 
