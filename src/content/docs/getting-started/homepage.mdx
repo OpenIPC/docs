@@ -1,31 +1,35 @@
 ---
 title: Welcome to OpenIPC Documentation
-description: Start your journey with OpenIPC for advanced camera firmware solutions.
+description: Start with OpenIPC as IP camera firmware for video surveillance, then explore additional use cases.
 
 ---
- 
+
+
 ![image](/images/OpenIPC_TREE.jpg)
 
 
 import { Card, CardGrid } from "@astrojs/starlight/components";
 
-## Next Steps in Your OpenIPC Adventure
+## Start Here
 
-<CardGrid stagger>
-  <Card title="Explore Hardware Compatibility" icon="camera">
-    Check [the Hardware section](/hardware/hardware-page/). for compatible
-    devices and setup instructions.
+<CardGrid>
+  <Card title="Start with Video Surveillance" icon="camera">
+    OpenIPC's primary path is turning supported hardware into a stable IP
+    surveillance camera. Start with the
+    [Video Surveillance overview](/video-surveillance/) and quick start.
   </Card>
-  <Card title="Configure Your Camera" icon="gear">
-    Navigate to [the Software section](/software/software-page/). for
-    software settings and customizations.
+  <Card title="Check Hardware First" icon="gear">
+    Confirm your camera SoC and flash layout in the <a href="/hardware/">hardware section</a>
+    and the official <a href="https://openipc.org/supported-hardware/featured">supported hardware list</a>
+    before installing firmware.
   </Card>
-  <Card title="Join the Community" icon="group">
-    Connect with other users in the OpenIPC community for support and
-    collaboration.
+  <Card title="Explore Additional Use Cases" icon="group">
+    FPV, OpenWrt, home automation, and streaming are practical applications
+    built on top of the base camera platform. Explore them after the camera
+    works as a regular IP camera.
   </Card>
   <Card title="Contribute to OpenIPC" icon="heart">
-    Find out how you can contribute to the project in [the OpenIPC Contribution
-    Guide](/development/contribution-guidelines/).
+    Improve pages, correct outdated instructions, or add tested device notes
+    through the [Contribution Guide](/development/contribution-guidelines/).
   </Card>
 </CardGrid>

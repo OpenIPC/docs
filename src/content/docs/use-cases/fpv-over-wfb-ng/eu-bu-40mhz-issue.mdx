@@ -1,0 +1,25 @@
+---
+title: "EU/BU 40 MHz Issue"
+description: "Recover EU and BU-based VTXes after enabling unsupported 40 MHz mode."
+sidebar:
+  order: 11
+---
+## What happened?
+**All** EU-based net cards can not transmit at 40MHz, **some** BU-based net cards can not transmit at 40MHz. When you forcibly enable 40MHz mode on those net cards - your RX can not receive signal. Please check the information about your network card in the "Net cards" section, the specifications list all supported modes.
+
+## What you need to fix this glitch.
+     -     PC with installed [OpenIPC Configurator](https://github.com/OpenIPC/openipc-configurator).
+     -     Glitched VTX.
+
+## How to fix 40MHz glitch.
+     -     Connect your VTX to your PC using Ethernet(or debug port) to PC.
+     -     Configure your Ethernet connection(read [OpenIPC Companion](/use-cases/fpv-over-wfb-ng/openipc-companion/)).
+     -     Update firmware on your VTX using OpenIPC Companion(read [OpenIPC Companion](/use-cases/fpv-over-wfb-ng/openipc-companion/)).
+
+:::caution
+Do not interfere during update process!! Do not unplug battery! Do not unplug Ethernet cable! Do not turn off your PC!
+:::
+
+:::caution
+Please wait additional 10 seconds after "Firmware upgrade completed successfully." message.
+:::

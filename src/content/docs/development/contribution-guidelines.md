@@ -116,7 +116,6 @@ However, for directories that do **not** use `autogenerate`, like `getting-start
       {
         label: "Contribution Guidelines",
         link: "/development/contribution-guidelines/",
-        badge: { text: "WIP", variant: "caution" },
       },
       {
         label: "New Feature Guide",  // Your new page

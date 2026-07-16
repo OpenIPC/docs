@@ -1,9 +1,9 @@
 ---
 title: Welcome to OpenIPC Documentation
-description: Start your journey with OpenIPC for advanced camera firmware solutions.
+description: Start your journey with OpenIPC firmware, supported hardware, and common installation paths.
 template: splash
 hero:
-  tagline: Dive into the world of OpenIPC and unlock your camera's full potential!
+  tagline: Open source firmware documentation for IP cameras, FPV video links, and camera-based projects.
   image:
     file: ../../assets/logo/OpenIPC__OPENIPC_logo_vertical_white.svg
   actions:
@@ -12,30 +12,33 @@ hero:
       icon: right-arrow
       variant: primary
     - text: Explore Use Cases
-      link: /use-cases/fpv/quick-start/
+      link: /use-cases/fpv-over-wfb-ng/quick-start/
       icon: right-arrow
       variant: secondary
 ---
 
 import { Card, CardGrid } from "@astrojs/starlight/components";
 
-## Next Steps in Your OpenIPC Adventure
+## Start Here
 
 <CardGrid stagger>
-  <Card title="Explore Hardware Compatibility" icon="camera">
-    Check [the Hardware section](/hardware/supported-devices/). for compatible
-    devices and setup instructions.
+  <Card title="Check Hardware First" icon="camera">
+    Start with the <a href="/hardware/">hardware section</a> and the official
+    <a href="https://openipc.org/supported-hardware/featured">supported hardware list</a>.
+    A matching SoC and flash layout are required before installing firmware.
   </Card>
-  <Card title="Configure Your Camera" icon="gear">
-    Navigate to [the Software section](/software/software-overview/). for
-    software settings and customizations.
+  <Card title="Plan Your Install" icon="gear">
+    Read the [Quick Start](/getting-started/quick-start/) and choose the guide
+    that matches your use case: regular camera firmware, FPV, home automation,
+    or video surveillance.
   </Card>
   <Card title="Join the Community" icon="group">
-    Connect with other users in the OpenIPC community for support and
-    collaboration.
+    Use the official OpenIPC website and Telegram links when you need help.
+    Include your device model, SoC, boot log, and the exact step where you are
+    blocked.
   </Card>
   <Card title="Contribute to OpenIPC" icon="heart">
-    Find out how you can contribute to the project in [the OpenIPC Contribution
-    Guide](/development/contribution-guidelines/).
+    Improve pages, correct outdated instructions, or add tested device notes
+    through the [Contribution Guide](/development/contribution-guidelines/).
   </Card>
 </CardGrid>

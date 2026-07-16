@@ -5,164 +5,127 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://docs.openipc.org",
+	site: process.env.SITE || "https://docs.openipc.org",
 	base: "/",
 	integrations: [
 		starlight({
 			title: "Documentation",
-			customCss: ["./src/tailwind.css"],
-			social: {
-				github: "https://github.com/OpenIPC",
+			defaultLocale: "root",
+			locales: {
+				root: { label: "English", lang: "en" },
 			},
+			customCss: ["./src/tailwind.css"],
+			social: { github: "https://github.com/OpenIPC" },
 			logo: {
 				light: "./src/assets/logo/OpenIPC__OPENIPC_logo_vertical.svg",
 				dark: "./src/assets/logo/OpenIPC__OPENIPC_logo_vertical_white.svg",
 			},
-			editLink: {
-				baseUrl: "https://github.com/OpenIPC/docs/edit/main/",
-			},
-			components: {
-				// Relative path to the custom component.
-				Head: "./src/components/Head.astro",
-			},
+			editLink: { baseUrl: "https://github.com/OpenIPC/docs/edit/main/" },
+			components: { Head: "./src/components/Head.astro" },
 			sidebar: [
-				{
-					label: "Getting Started",
-					collapsed: true,
-					items: [
-					    {
-					        label: "Homepage",
-					        link: "/getting-started/homepage",
-					    },
-						{
-							label: "About the Project",
-							link: "/getting-started/introduction/",
-						},
-						{
-							label: "Quick Start",
-							link: "/getting-started/quick-start/",
-							badge: { text: "WIP", variant: "caution" },
-						},
-						{
-							label: "Roadmap",
-							link: "/getting-started/roadmap/",
-						},
-					],
-				},
-				{
-					label: "Use Cases",
-					collapsed: true,
-					items: [
-						{
-							label: "FPV (First Person View)",
-							collapsed: true,
-							items: [
-							    {
-							        label: "Net cards",
-							        collapsed: true,
-							        autogenerate: {
-								        directory: "/use-cases/fpv/net-cards",
-							        },
-						        },
-						        {
-							        label: "WFB-NG",
-							        collapsed: true,
-							        autogenerate: {
-						            		directory: "/use-cases/fpv/wfb-ng",
-							        },
-						        },
-						        {
-							        label: "APFPV",
-							        collapsed: true,
-							        autogenerate: {
-								        directory: "/use-cases/fpv/apfpv",
-							        },
-						        },
-					    ],
-							badge: { text: "WIP", variant: "caution" },
-						},
-						{
-							label: "Home Automation",
-							collapsed: true,
-							autogenerate: {
-								directory: "/use-cases/home-automation",
-							},
-							badge: { text: "WIP", variant: "caution" },
-						},
-						{
-							label: "Video Surveillance",
-							collapsed: true,
-							autogenerate: {
-								directory: "/use-cases/video-surveillance",
-							},
-							badge: { text: "WIP", variant: "caution" },
-						},
-					],
-				},
-				{
-					label: "Hardware",
-					collapsed: true,
-					autogenerate: {
-					collapsed: true,
-						directory: "/hardware",
-					},
-				},
-				{
-					label: "Software",
-					collapsed: true,
-					autogenerate: {
-						directory: "/software",
-					},
-				},
-				{
-					label: "Development",
-					collapsed: true,
-					items: [
-						{
-							label: "Contribution Guidelines",
-							link: "/development/contribution-guidelines/",
-						},
-						{
-							label: "Projects & Applications",
-							link: "/development/projects-applications/",
-							badge: { text: "WIP", variant: "caution" },
-						},
-						{
-							label: "Webface Guide",
-							link: "/development/webface-guide/",
-							badge: { text: "WIP", variant: "caution" },
-						},
-					],
-				},
-				{
-					label: "Resources",
-					collapsed: true,
-					items: [
-						{
-							label: "Frequently Asked Questions",
-							link: "/resources/faq/",
-							badge: { text: "WIP", variant: "caution" },
-						},
-						{
-							label: "Useful Links",
-							link: "/resources/useful-links/",
-							badge: { text: "WIP", variant: "caution" },
-						},
-					],
-				},
-				{
-					label: "Reference",
-					collapsed: true,
-					autogenerate: {
-					collapsed: true,
-						directory: "reference",
-					},
-				},
+				{ label: "Getting Started", collapsed: true, items: [
+					{ label: "Homepage", link: "/getting-started/homepage" },
+					{ label: "About the Project", link: "/getting-started/introduction/" },
+					{ label: "Quick Start", link: "/getting-started/quick-start/" },
+					{ label: "Roadmap", link: "/getting-started/roadmap/" },
+				] },
+				{ label: "Video Surveillance", collapsed: false, items: [
+					{ label: "Overview", link: "/video-surveillance/" },
+					{ label: "Quick Start", link: "/video-surveillance/quick-start/" },
+					{ label: "Streams and Majestic", link: "/video-surveillance/streams-and-majestic/" },
+					{ label: "NVR Integration", link: "/video-surveillance/nvr-integration/" },
+					{ label: "Supported SoC", link: "/video-surveillance/soc/" },
+				] },
+				{ label: "Hardware", collapsed: true, items: [
+					{ label: "Overview", link: "/hardware/" },
+					{ label: "SBCs", collapsed: true, autogenerate: { directory: "/hardware/sbcs" } },
+					{ label: "Air Units", collapsed: true, items: [
+						{ label: "Runcam", collapsed: true, autogenerate: { directory: "/hardware/air-units/runcam" } },
+						{ label: "OpenIPC", collapsed: true, autogenerate: { directory: "/hardware/air-units/openipc" } },
+						{ label: "Others", link: "/hardware/air-units/others/" },
+					] },
+					{ label: "IP Cameras", collapsed: true, autogenerate: { directory: "/hardware/cameras" } },
+					{ label: "Wi-Fi Adapters", collapsed: true, autogenerate: { directory: "/hardware/wi-fi-adapters" } },
+				] },
+				{ label: "Firmware & Recovery", collapsed: true, autogenerate: { directory: "/firmware-recovery" } },
+				{ label: "Software & Tools", collapsed: true, items: [
+					{ label: "Overview", link: "/software-tools/" },
+					{ label: "OpenIPC Builder", link: "/software-tools/openipc-builder/" },
+					{ label: "Companion", link: "/software-tools/companion/" },
+					{ label: "OpenIPC Configurator", link: "/software-tools/openipc-configurator/" },
+					{ label: "FPV Presets", link: "/software-tools/fpv-presets/" },
+					{ label: "Aviateur", link: "/software-tools/aviateur/" },
+					{ label: "SBC Ground Stations", link: "/software-tools/sbc-groundstations/" },
+				] },
+				{ label: "System Components", collapsed: true, items: [
+					{ label: "MSP OSD", link: "/system-components/msp-osd/" },
+					{ label: "MAVFWD", link: "/system-components/mavfwd/" },
+					{ label: "Adaptive Link", link: "/system-components/adaptive-link/" },
+					{ label: "Joystick", link: "/system-components/joystick/" },
+					{ label: "OpenIPC Dashboard", link: "/system-components/dashboard/" },
+					{ label: "PixelPilot RK", link: "/system-components/pixelpilot-rk/" },
+					{ label: "PixelPilot Android", link: "/system-components/pixelpilot-android/" },
+					{ label: "Bidirectional Link", link: "/system-components/bidirectional-link/" },
+					{ label: "Divinus", link: "/system-components/divinus/" },
+					{ label: "Devourer", link: "/system-components/devourer/" },
+					{ label: "Majestic", link: "/system-components/majestic/" },
+					{ label: "Web UI Development", link: "/system-components/web-ui-development/" },
+					{ label: "Third-Party Components", link: "/system-components/third-party-components/" },
+				] },
+				{ label: "Use Cases", collapsed: true, items: [
+					{ label: "FPV over WFB-NG", collapsed: true, autogenerate: { directory: "/use-cases/fpv-over-wfb-ng" } },
+					{ label: "FPV over Wi-Fi (APFPV)", collapsed: true, autogenerate: { directory: "/use-cases/ap-fpv-over-wi-fi" } },
+					{ label: "OpenWrt", link: "/use-cases/openwrt/" },
+					{ label: "YouTube Streaming", link: "/use-cases/youtube-streaming/" },
+				] },
+				{ label: "Development", collapsed: true, items: [
+					{ label: "Contribution Guidelines", link: "/development/contribution-guidelines/" },
+					{ label: "Projects & Applications", link: "/development/projects-applications/" },
+				] },
+				{ label: "Resources", collapsed: true, items: [
+					{ label: "Frequently Asked Questions", link: "/resources/faq/" },
+					{ label: "Useful Links", link: "/resources/useful-links/" },
+				] },
+				{ label: "Reference", collapsed: true, autogenerate: { directory: "reference" } },
 			],
 		}),
 		tailwind({ applyBaseStyles: false }),
 	],
 	redirects: {
-    "/": "/getting-started/homepage",
-  }
+		"/": "/getting-started/homepage",
+		"/hardware/hardware-page": "/hardware/",
+		"/hardware/displays": "/hardware/",
+		"/software/software-page": "/software-tools/",
+		"/software/general-uart-flashing-guide": "/firmware-recovery/general-uart-flashing-guide/",
+		"/software/sysupgrade": "/firmware-recovery/online-sysupgrade/",
+		"/software/firmware-updates": "/firmware-recovery/firmware-updates/",
+		"/use-cases/camera-surveillance": "/video-surveillance/",
+		"/use-cases/video-surveillance/quick-start": "/video-surveillance/quick-start/",
+		"/use-cases/video-surveillance/soc": "/video-surveillance/soc/",
+		"/use-cases/fpv/apfpv/apfpv": "/use-cases/ap-fpv-over-wi-fi/",
+		"/use-cases/fpv/apfpv/APFPV": "/use-cases/ap-fpv-over-wi-fi/",
+		"/use-cases/fpv/wfb-ng/quick-start": "/use-cases/fpv-over-wfb-ng/quick-start/",
+		"/use-cases/fpv/wfb-ng/advanced-setup": "/use-cases/fpv-over-wfb-ng/openipc-companion/",
+		"/use-cases/fpv-over-wfb-ng/advanced-setup": "/use-cases/fpv-over-wfb-ng/openipc-companion/",
+		"/use-cases/fpv/wfb-ng/groundstation-radxa-zero-3w": "/use-cases/fpv-over-wfb-ng/groundstation-radxa-zero-3w/",
+		"/use-cases/fpv/wfb-ng/groundstation-ubuntu": "/use-cases/fpv-over-wfb-ng/groundstation-ubuntu/",
+		"/use-cases/fpv/wfb-ng/install-adaptive-link": "/use-cases/fpv-over-wfb-ng/install-adaptive-link/",
+		"/hardware/runcam/vtx/installing-alink-runcam": "/use-cases/fpv-over-wfb-ng/install-adaptive-link/",
+		"/use-cases/fpv/wfb-ng/unbrick-eu-bu": "/use-cases/fpv-over-wfb-ng/eu-bu-40mhz-issue/",
+		"/use-cases/fpv-over-wfb-ng/unbrick-eu-bu": "/use-cases/fpv-over-wfb-ng/eu-bu-40mhz-issue/",
+		"/use-cases/fpv/wfb-ng/wfb-ng-calculator": "/use-cases/fpv-over-wfb-ng/wfb-ng-calculator/",
+		"/development/webface-guide": "/system-components/web-ui-development/",
+		"/system-components/zoom": "/system-components/third-party-components/",
+		"/use-cases/fpv/net-cards/rtl8812eu": "/hardware/wi-fi-adapters/bl-m8812eu2-rtl8812eu/",
+		"/use-cases/fpv/net-cards/rtl8812au": "/hardware/wi-fi-adapters/bl-r8812af1-rtl8812au/",
+		"/use-cases/fpv/net-cards/rtl8731bu": "/hardware/wi-fi-adapters/bl-m8731bu3-rtl873xbu/",
+		"/hardware/cameras/hisilicon-gk7025v200-gk7025v300": "/hardware/cameras/hisilicon-gk7205v200-gk7205v300/",
+		"/hardware/OpenIPC/VRX/openipc-bonnet": "/hardware/sbcs/openipc-bonnet/",
+		"/hardware/sbcs/sbc-groundstations": "/software-tools/sbc-groundstations/",
+		"/hardware/OpenIPC/VTX/fpv-mario-aio": "/hardware/air-units/openipc/openipc-mario-aio/",
+		"/hardware/OpenIPC/VTX/fpv-thinker-aio": "/hardware/air-units/openipc/openipc-thinker-air-unit/",
+		"/hardware/Runcam/VTX/runcam-wifilink-v1": "/hardware/air-units/runcam/runcam-wifilink1/",
+		"/hardware/Runcam/VTX/runcam-wifilink-v2": "/hardware/air-units/runcam/runcam-wifilink2/",
+	},
 });
+

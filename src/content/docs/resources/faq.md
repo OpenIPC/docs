@@ -51,7 +51,7 @@ Links to these channels are available on the [OpenIPC website](https://openipc.o
 OpenIPC FPV refers to using OpenIPC firmware and hardware for First Person View (FPV) applications—primarily in drones. It involves developing dedicated hardware and software for FPV use.
 
 ### What are the goals of OpenIPC FPV?
-The goal is to provide a flexible, open system for FPV that allows users to experiment and innovate using inexpensive, widely available components. There is also an aspiration for OpenIPC to become the defacto FPV standard.
+The goal is to provide a flexible, open system for FPV that allows users to experiment and innovate using inexpensive, widely available components. There is also an aspiration for OpenIPC to become the de facto FPV standard.
 
 ### Which firmware can I use for FPV?
 Current firmware options include:
@@ -65,7 +65,7 @@ OpenIPC supports multiple solutions tailored for FPV.
 Latency is generally around 80–100 ms at 60fps. For lower latency, it is recommended to use 120fps encoding/decoding with a 120Hz monitor. Official latency figures are not stated due to measurement variability.
 
 ### Is there a WebUI for OpenIPC FPV firmware?
-PLACE HOLDER
+OpenIPC devices can expose a Web UI depending on the installed image and streamer. Use the Web UI for routine configuration when it is available, but keep SSH and UART recovery options ready for installation, troubleshooting, or failed upgrades.
 ### How can I get help with setting up OpenIPC FPV?
 You can ask for help in the OpenIPC FPV users Telegram group. It is also recommended to review the existing documentation first, as many common questions have already been discussed.
 
@@ -79,7 +79,7 @@ MSP OSD (On‑Screen Display) is a feature that overlays flight controller infor
 WFB‑NG is the next generation of a long‑range packet radio link that uses raw WiFi. It is a key component of OpenIPC FPV, and setup is managed via commands like `wfb_cli gs`.
 
 ### What is Ruby FPV?
-Ruby FPV is another digital FPV system compatible with OpenIPC cameras. More detailed resources are available on [RubyFPV website] (https://rubyfpv.com/).
+Ruby FPV is another digital FPV system compatible with OpenIPC cameras. More detailed resources are available on [RubyFPV website](https://rubyfpv.com/).
 
 ## Documentation Related Questions
 
