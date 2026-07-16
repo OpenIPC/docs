@@ -102,9 +102,15 @@ For advanced setup guide please read this [article](/use-cases/fpv/advanced-setu
 After basic setup you will get cheapest modern digital FPV system, but you`ll not see OSD, to setup OSD you need to read [advanced setup article](/use-cases/fpv/advanced-setup/). If you want to read instruction from manufacturer, please read [this](https://store-m8o52p.mybigcommerce.com/product_images/img_runcam_wifilink2/wifilink2_manual-en.pdf).
 
 
-### How to diagnose a failed flash  
-This info was gathered from the RunCam Support on 06/2025:
+### Flashing
 
+#### Uboot loader
+Runcam ships them with their proprietary bootloader - which is less flexible than the OpenIPC one and makes it harder to recover. It's recommended to replace it before doing flashing. If you have bad flash with the old (default) bootloader you'll have to get CH341A flasher and flash it by clamping the chip pins first.
+
+To replace the bootloader use the Companion app.
+
+#### How to diagnose a failed flash - Runcam's way
+This info was gathered from the RunCam Support on 06/2025:
 
 To determine if Uboot is still accessible, the current of the Wifilink2 should be measured and compared to given values:
 This can be achieved by a regulated power supply and/or a multimeter.
@@ -115,5 +121,10 @@ Power should be applied via the 6pin FC connector
 |1|13.5 V| 0.182 A| 2.5 W| Uboot still accessible. This suggests the firmware flash failed, but U-Boot is still present. Firmware flash error, can be fixed with UART flashing.|
 |2|13.5 V| &lt;=0.144 A| &lt;= 1.9 W| Uboot missing/unavailable. Need full reflash using chip programmer.|
 
+But sometimes wiflink2 with a working bootloader but dead Linux/OpenIPC can consume 0.1A while still able to be recovered.
 
+#### Recovering from bad flash
 
+If you already have the OpenIPC bootloader you can remove the heatsink and use DRX DTX pads (next to the fan connector) to connect it to your CP2102, CH340G, FT232RL, or similar USB-UART dongle and access the serial console from your computer to flash it again (using tftp or putting files to a SD card). Note that exposed RX/TX pads are UART2 while you need UART0 (DRX DTX).
+
+If you have Runcam's bootloader - you'll have to get CH341A adapter and flash the OpenIPC one first.
