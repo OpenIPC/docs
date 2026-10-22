@@ -11,8 +11,9 @@ Edit `/etc/wifibroadcast.cfg` and change the `[gs_mavlink]` peer from outgoing t
 
 ```diff
 [gs_mavlink]
-peer = 'connect://127.0.0.1:14550'  # outgoing connection
+-peer = 'connect://127.0.0.1:14550'  # outgoing connection
 -# peer = 'listen://0.0.0.0:14550'   # incoming connection
++# peer = 'connect://127.0.0.1:14550'  # outgoing connection
 +peer = 'listen://0.0.0.0:14550'   # incoming connection
 ```
 
