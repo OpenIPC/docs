@@ -1,6 +1,8 @@
 ---
 title: A Step-by-Step Installation Guide
 description: A guide designed to provide a detailed walkthrough for setting up an FPV (First Person View)using OpenIPC
+sidebar:
+  order: 1
 ---
 
 This guide is designed to provide a detailed walkthrough for setting up an FPV (First Person View) system using OpenIPC. It is structured into several key steps.
