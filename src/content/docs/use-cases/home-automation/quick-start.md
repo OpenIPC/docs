@@ -1,6 +1,8 @@
 ---
 title: Quick Start
 description: A quick start for Home Automation.
+sidebar:
+  order: 1
 ---
 
 ### OpenIPC + MQTT examples

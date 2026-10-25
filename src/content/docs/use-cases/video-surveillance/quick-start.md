@@ -1,6 +1,8 @@
 ---
 title: Quick Start
 description: A guide on how to turn your camera into an IP surveillance camera.
+sidebar:
+  order: 1
 ---
 This guide will help you get started on turning your camera into an IP Security Camera!
 

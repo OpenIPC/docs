@@ -4,9 +4,6 @@ description: A guide to setting up the FPV Mario AIO.
 ---
 
 
-# OpenIPC Wiki
-[Table of Content](../README.md)
-
 OpenIPC AIO "Mario"
 -------------------
 

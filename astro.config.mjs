@@ -163,6 +163,10 @@ export default defineConfig({
 		tailwind({ applyBaseStyles: false }),
 	],
 	redirects: {
-    "/": "/getting-started/homepage",
-  }
+		"/": "/getting-started/homepage",
+		// Old URLs from when these files were named `-quick-start.md`.
+		"/use-cases/fpv/wfb-ng/-quick-start": "/use-cases/fpv/wfb-ng/quick-start/",
+		"/use-cases/home-automation/-quick-start": "/use-cases/home-automation/quick-start/",
+		"/use-cases/video-surveillance/-quick-start": "/use-cases/video-surveillance/quick-start/",
+	}
 });
